@@ -166,4 +166,476 @@
             flex-direction: column;
             justify-content: space-between;
         }
-        .product-card h3 { margin
+        .product-card h3 { margin: 0 0 15px 0; font-size: 1.25rem; color: #222; text-align: left; }
+        .selector-group { display: flex; gap: 12px; margin-bottom: 15px; align-items: center; }
+        select, input[type="number"] { padding: 10px; border: 1px solid #cccccc; border-radius: 6px; font-size: 0.95rem; outline: none; background-color: #fafafa; }
+        select { flex: 2; width: 100%; cursor: pointer; }
+        input[type="number"] { flex: 1; width: 55px; text-align: center; }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-top: 1px dashed #e2e2e2;
+            padding-top: 12px;
+            margin-top: 5px;
+        }
+        .unit-price { color: #555555; font-size: 0.95rem; font-weight: normal; }
+        .total-item-price { color: var(--primary-color); }
+
+        /* Slideout Cart Drawer Layout */
+        .cart-drawer-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 5000;
+        }
+        .cart-drawer {
+            position: fixed;
+            top: 0; right: -400px;
+            width: 100%; max-width: 400px; height: 100%;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+            z-index: 5001;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .cart-drawer.open { right: 0; }
+        .cart-header { background: #2c2c2c; color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .cart-header h2 { margin: 0; font-size: 1.4rem; }
+        .close-cart-btn { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+        
+        .cart-items-list { padding: 20px; overflow-y: auto; flex-grow: 1; }
+        .empty-cart-text { color: #888; text-align: center; margin-top: 40px; font-style: italic; }
+        .cart-row-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; font-size: 0.95rem; }
+        .cart-row-item div { max-width: 70%; }
+        
+        .cart-footer { padding: 20px; border-top: 2px solid #eee; background: #fafafa; }
+        .cart-total-row { display: flex; justify-content: space-between; font-weight: bold; font-size: 1.25rem; margin-bottom: 15px; }
+        .btn-checkout-scroll { width: 100%; background: var(--primary-color); color: white; border: none; padding: 12px; font-size: 1.1rem; font-weight: bold; border-radius: 6px; cursor: pointer; }
+
+        /* Order Form Area */
+        .order-section { 
+            background: white; padding: 35px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            margin: 50px auto 40px auto; max-width: 620px; text-align: left; border: 1px solid #efefef;
+        }
+        .form-group { margin-bottom: 22px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #444; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #cccccc; border-radius: 6px; box-sizing: border-box; font-size: 1rem; background-color: #fafafa; }
+        .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; background-color: var(--accent-color); color: white; border: none; padding: 16px; font-size: 1.3rem; font-weight: bold; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-placeholder">
+            <img src="logo.png" alt="Ruchi Tarangam Logo" onerror="this.style.display='none'; this.parentNode.innerText='Logo Area'">
+        </div>
+        <h1>Ruchi Tarangam</h1>
+        <p>Waves of Flavors</p>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="nav-menu-wrapper">
+                <div class="nav-link active" onclick="executeCategoryFilter('all', this)">Home</div>
+                
+                <div class="nav-link has-dropdown">
+                    Pickles ▾
+                    <div class="dropdown-menu">
+                        <div onclick="executeCategoryFilter('pickles', this.parentNode.parentNode)">All Pickles</div>
+                        <div onclick="executeCategoryFilter('veg-pickles', this.parentNode.parentNode)">Veg Pickles</div>
+                        <div onclick="executeCategoryFilter('nonveg-pickles', this.parentNode.parentNode)">Non-Veg Pickles</div>
+                    </div>
+                </div>
+                
+                <div class="nav-link" onclick="executeCategoryFilter('podi', this)">Podis</div>
+                <div class="nav-link" onclick="executeCategoryFilter('sweet', this)">Sweets</div>
+                <div class="nav-link" onclick="executeCategoryFilter('hot', this)">Snacks</div>
+            </div>
+            
+            <div class="nav-utilities">
+                <div class="search-container">
+                    <input type="text" class="search-box" id="global-search-input" placeholder="Search products..." oninput="triggerLiveSearchFilter()">
+                    <span class="search-icon-inside">🔍</span>
+                </div>
+                <button class="cart-trigger-btn" onclick="toggleCartDrawer(true)">🛒 Cart (<span id="cart-counter-val">0</span>)</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="category-section filter-pickles filter-veg-pickles">
+            <div class="category-title">🌶️ Veg Pickles</div>
+            <div class="product-grid" id="veg-container"></div>
+        </div>
+
+        <div class="category-section filter-pickles filter-nonveg-pickles">
+            <div class="category-title">🍗 Non-Veg Pickles</div>
+            <div class="product-grid" id="nonveg-container"></div>
+        </div>
+
+        <div class="category-section filter-podi">
+            <div class="category-title">🌾 Flavorful Podis</div>
+            <div class="product-grid" id="podi-container"></div>
+        </div>
+
+        <div class="category-section filter-sweet">
+            <div class="category-title">🍯 Traditional Sweets</div>
+            <div class="product-grid" id="sweet-container"></div>
+        </div>
+
+        <div class="category-section filter-hot">
+            <div class="category-title">🔥 Hot Snacks</div>
+            <div class="product-grid" id="hot-container"></div>
+        </div>
+
+        <div class="order-section" id="checkout-form">
+            <h2>Complete Your Order Setup</h2>
+            <div class="form-group">
+                <label for="cust-name">Your Full Name:</label>
+                <input type="text" id="cust-name" placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label for="cust-address">Complete Delivery Address:</label>
+                <textarea id="cust-address" rows="4" placeholder="Enter landmark and pincode details"></textarea>
+            </div>
+            <button class="btn-whatsapp" onclick="dispatchWhatsAppOrderPipeline()">📱 Submit Order via WhatsApp</button>
+        </div>
+    </div>
+
+    <div class="cart-drawer-overlay" id="cart-overlay-node" onclick="toggleCartDrawer(false)"></div>
+    <div class="cart-drawer" id="cart-drawer-node">
+        <div class="cart-header">
+            <h2>Your Shopping Cart</h2>
+            <button class="close-cart-btn" onclick="toggleCartDrawer(false)">✕</button>
+        </div>
+        <div class="cart-items-list" id="drawer-items-container">
+            </div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Total Amount:</span>
+                <span>₹<span id="drawer-grand-total">0</span></span>
+            </div>
+            <button class="btn-checkout-scroll" onclick="toggleCartDrawer(false); document.getElementById('checkout-form').scrollIntoView({behavior: 'smooth'})">Proceed to Checkout ↓</button>
+        </div>
+    </div>
+
+    <script>
+        const MENU_DATA = {
+            veg: {
+                title: "Veg Pickles",
+                sizes: ["250gm", "500gm", "1Kg"],
+                items: [
+                    { name: "Tomato", prices: [140, 260, 480] },
+                    { name: "Usirikaya", prices: [150, 280, 520] },
+                    { name: "Kakarkaya", prices: [150, 280, 520] },
+                    { name: "Pandumirchi", prices: [140, 260, 480] },
+                    { name: "Nimakaya", prices: [130, 240, 450] },
+                    { name: "Allam", prices: [150, 280, 520] },
+                    { name: "Gongura", prices: [130, 240, 450] },
+                    { name: "Cauliflower Avakaya", prices: [160, 300, 550] },
+                    { name: "Vankay Avakaya", prices: [160, 300, 550] }
+                ]
+            },
+            nonveg: {
+                title: "Non Veg Pickles",
+                sizes: ["250gm", "500gm", "1Kg"],
+                items: [
+                    { name: "Bhimavaram spl Royala Avakaya", prices: [350, 680, 1300] },
+                    { name: "Boneless Chicken pickle", prices: [300, 580, 1100] },
+                    { name: "Chicken pickle with bone", prices: [250, 480, 900] },
+                    { name: "Mutton pickle with bone", prices: [400, 780, 1500] },
+                    { name: "Mutton pickle with boneless", prices: [450, 880, 1700] },
+                    { name: "Gongura Boneless chicken pickle", prices: [320, 620, 1150] }
+                ]
+            },
+            podi: {
+                title: "Podis",
+                sizes: ["250gm", "500gm", "1Kg"],
+                items: [
+                    { name: "Karam podi", prices: [100, 190, 360] },
+                    { name: "Karivepaku podi", prices: [110, 210, 400] },
+                    { name: "Palli karampodi", prices: [110, 210, 400] },
+                    { name: "Nuvvulu Karampodi", prices: [120, 230, 440] },
+                    { name: "Avisaginjalu podi", prices: [120, 230, 440] },
+                    { name: "Homemade Garam masala podi", prices: [150, 290, 560] }
+                ]
+            },
+            sweet: {
+                title: "Sweets",
+                sizes: ["250gm", "500gm", "1Kg"],
+                items: [
+                    { name: "Bellam Gavvalu", prices: [95, 180, 340] },
+                    { name: "Nuvvulu Ariselu", prices: [115, 220, 420] },
+                    { name: "Kajjikayalu", prices: [105, 200, 380] },
+                    { name: "Paakundalu", prices: [105, 200, 380] },
+                    { name: "Bellam Chalividi", prices: [95, 180, 340] },
+                    { name: "Bellam Nuvvulu undalu", prices: [105, 200, 380] },
+                    { name: "Palli undalu", prices: [95, 180, 340] },
+                    { name: "Bellam Gorimitilu", prices: [95, 180, 340] },
+                    { name: "Nethi Ravva laddu", prices: [125, 240, 460] },
+                    { name: "Kobbari undalu", prices: [105, 200, 380] },
+                    { name: "Sweet Maida biscuits", prices: [85, 160, 300] },
+                    { name: "Nethi Poornam Bobatlu", prices: [135, 260, 500] },
+                    { name: "Maramaralu Laddu", prices: [75, 140, 260] },
+                    { name: "Jeedipappu Achu", prices: [185, 360, 700] }
+                ]
+            },
+            hot: {
+                title: "Hot Snacks",
+                sizes: ["250gm", "500gm", "1Kg"],
+                items: [
+                    { name: "Corn flakes mixture", prices: [85, 160, 300] },
+                    { name: "Andhra mixture", prices: [90, 170, 320] },
+                    { name: "Atukulu mixture", prices: [85, 160, 300] },
+                    { name: "Sanna karpusa", prices: [85, 160, 300] },
+                    { name: "Karam gavvalu", prices: [90, 170, 320] },
+                    { name: "Aaku pakodi", prices: [90, 170, 320] },
+                    { name: "Masala jeedipappu", prices: [190, 370, 720] },
+                    { name: "Janthikalu", prices: [85, 160, 300] },
+                    { name: "Chekkalu", prices: [90, 170, 320] }
+                ]
+            }
+        };
+
+        // Tab Filtering Logic (Handles main categories and sub-pickles)
+        function executeCategoryFilter(targetCategory, triggerElement) {
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            triggerElement.classList.add('active');
+
+            const sectionBlocks = document.querySelectorAll('.category-section');
+            sectionBlocks.forEach(block => {
+                if (targetCategory === 'all') {
+                    block.style.display = 'block'; 
+                } else if (targetCategory === 'pickles') {
+                    block.classList.contains('filter-pickles') ? block.style.display = 'block' : block.style.display = 'none';
+                } else {
+                    block.classList.contains(`filter-${targetCategory}`) ? block.style.display = 'block' : block.style.display = 'none';
+                }
+            });
+        }
+
+        // Live Search Input Filtering Engine
+        function triggerLiveSearchFilter() {
+            const searchVal = document.getElementById('global-search-input').value.toLowerCase().trim();
+            const allProductCards = document.querySelectorAll('.product-card');
+
+            allProductCards.forEach(card => {
+                const nameText = card.querySelector('h3').innerText.toLowerCase();
+                if (nameText.includes(searchVal)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Open/Close Cart Sidebar View
+        function toggleCartDrawer(openState) {
+            const overlay = document.getElementById('cart-overlay-node');
+            const drawer = document.getElementById('cart-drawer-node');
+            if(openState) {
+                overlay.style.display = 'block';
+                drawer.classList.add('open');
+                buildItemizedCartView();
+            } else {
+                overlay.style.display = 'none';
+                drawer.classList.remove('open');
+            }
+        }
+
+        // HTML Structural Element Initializer Run
+        function renderDynamicMenuCatalogs() {
+            let runningCardId = 0;
+            for (let categoryKey in MENU_DATA) {
+                const domContainer = document.getElementById(`${categoryKey}-container`);
+                const sectionCatalog = MENU_DATA[categoryKey];
+                
+                sectionCatalog.items.forEach(itemRecord => {
+                    runningCardId++;
+                    const itemCardDiv = document.createElement('div');
+                    itemCardDiv.className = 'product-card';
+                    
+                    let selectorOptionsMarkup = `<option value="" data-price="0">-- Choose Size --</option>`;
+                    sectionCatalog.sizes.forEach((sizeString, sizeIdx) => {
+                        selectorOptionsMarkup += `<option value="${sizeString}" data-price="${itemRecord.prices[sizeIdx]}">${sizeString}</option>`;
+                    });
+                    
+                    itemCardDiv.innerHTML = `
+                        <h3>${itemRecord.name}</h3>
+                        <div class="selector-group">
+                            <select id="size-${runningCardId}" onchange="recalculateProductMetrics(${runningCardId})">
+                                ${selectorOptionsMarkup}
+                            </select>
+                            <input type="number" id="qty-${runningCardId}" value="0" min="0" onchange="recalculateProductMetrics(${runningCardId})">
+                        </div>
+                        <div class="price-row">
+                            <span class="unit-price" id="unit-p-${runningCardId}">Select size...</span>
+                            <span class="total-item-price">Total: ₹<span id="total-p-${runningCardId}" class="calculated-item-totals">0</span></span>
+                        </div>
+                    `;
+                    domContainer.appendChild(itemCardDiv);
+                });
+            }
+        }
+
+        // Live calculation and total monitoring updates
+        function recalculateProductMetrics(cardId) {
+            const sizeElement = document.getElementById(`size-${cardId}`);
+            const quantityElement = document.getElementById(`qty-${cardId}`);
+            const unitLabelElement = document.getElementById('unit-p-' + cardId);
+            const cardTotalLabelElement = document.getElementById('total-p-' + cardId);
+            
+            const selectedOptionNode = sizeElement.options[sizeElement.selectedIndex];
+            const parsedUnitCost = parseInt(selectedOptionNode.getAttribute('data-price')) || 0;
+            let interactiveQtyVal = parseInt(quantityElement.value) || 0;
+            
+            if (interactiveQtyVal < 0) { interactiveQtyVal = 0; quantityElement.value = 0; }
+            
+            if (sizeElement.value === "") {
+                unitLabelElement.innerText = "Select size...";
+                cardTotalLabelElement.innerText = "0";
+                quantityElement.value = 0; 
+            } else {
+                if (interactiveQtyVal === 0) { interactiveQtyVal = 1; quantityElement.value = 1; }
+                unitLabelElement.innerText = `Price: ₹${parsedUnitCost}`;
+                cardTotalLabelElement.innerText = parsedUnitCost * interactiveQtyVal;
+            }
+            
+            syncCartGlobalCounts();
+        }
+
+        // Syncs the navigation bar cart count bubble and totals
+        function syncCartGlobalCounts() {
+            let activeItemsCount = 0;
+            let totalCartSum = 0;
+            let functionalCardIndexCounter = 0;
+
+            for (let categoryKey in MENU_DATA) {
+                MENU_DATA[categoryKey].items.forEach(() => {
+                    functionalCardIndexCounter++;
+                    const sizeSelector = document.getElementById(`size-${functionalCardIndexCounter}`);
+                    const quantitySelector = document.getElementById(`qty-${functionalCardIndexCounter}`);
+                    const qtyVal = parseInt(quantitySelector.value) || 0;
+
+                    if (qtyVal > 0 && sizeSelector.value !== "") {
+                        activeItemsCount += qtyVal;
+                        const selectedOptionNode = sizeSelector.options[sizeSelector.selectedIndex];
+                        const price = parseInt(selectedOptionNode.getAttribute('data-price')) || 0;
+                        totalCartSum += (price * qtyVal);
+                    }
+                });
+            }
+            document.getElementById('cart-counter-val').innerText = activeItemsCount;
+            document.getElementById('drawer-grand-total').innerText = totalCartSum;
+        }
+
+        // Renders items inside the Slideout Cart view window
+        function buildItemizedCartView() {
+            const container = document.getElementById('drawer-items-container');
+            container.innerHTML = "";
+            let itemIndex = 0;
+            let totalSum = 0;
+            let hasItems = false;
+
+            for (let categoryKey in MENU_DATA) {
+                MENU_DATA[categoryKey].items.forEach(item => {
+                    itemIndex++;
+                    const sizeSel = document.getElementById(`size-${itemIndex}`);
+                    const qtySel = document.getElementById(`qty-${itemIndex}`);
+                    const qty = parseInt(qtySel.value) || 0;
+
+                    if (qty > 0 && sizeSel.value !== "") {
+                        hasItems = true;
+                        const opt = sizeSel.options[sizeSel.selectedIndex];
+                        const price = parseInt(opt.getAttribute('data-price')) || 0;
+                        const sum = price * qty;
+                        totalSum += sum;
+
+                        const row = document.createElement('div');
+                        row.className = 'cart-row-item';
+                        row.innerHTML = `
+                            <div><strong>${item.name}</strong><br><small>Size: ${sizeSel.value} x ${qty}</small></div>
+                            <span>₹${sum}</span>
+                        `;
+                        container.appendChild(row);
+                    }
+                });
+            }
+
+            if(!hasItems) {
+                container.innerHTML = `<div class="empty-cart-text">Your basket is empty. Select items to see them here!</div>`;
+            }
+            document.getElementById('drawer-grand-total').innerText = totalSum;
+        }
+
+        // WhatsApp dispatch configuration pipeline
+        function dispatchWhatsAppOrderPipeline() {
+            const officialBusinessPhoneNum = "918125576101"; 
+            const userNameVal = document.getElementById('cust-name').value.trim();
+            const userAddressVal = document.getElementById('cust-address').value.trim();
+            
+            if (!userNameVal || !userAddressVal) {
+                alert("Please fill out both Name and Address fields before initiating checkout delivery.");
+                return;
+            }
+            
+            let finalReceiptMessageText = "";
+            let overallCalculatedInvoiceAmount = 0;
+            let functionalCardIndexCounter = 0;
+            
+            for (let categoryKey in MENU_DATA) {
+                const sectionCatalog = MENU_DATA[categoryKey];
+                let categoryHeaderPrintedFlag = false;
+                
+                sectionCatalog.items.forEach(itemRecord => {
+                    functionalCardIndexCounter++;
+                    const sizeSelector = document.getElementById(`size-${functionalCardIndexCounter}`);
+                    const quantitySelector = document.getElementById(`qty-${functionalCardIndexCounter}`);
+                    const extractedQty = parseInt(quantitySelector.value) || 0;
+                    
+                    if (extractedQty > 0 && sizeSelector.value !== "") {
+                        if (!categoryHeaderPrintedFlag) {
+                            finalReceiptMessageText += `\n*■ ${sectionCatalog.title}*:\n`;
+                            categoryHeaderPrintedFlag = true;
+                        }
+                        const selectedOptionNode = sizeSelector.options[sizeSelector.selectedIndex];
+                        const individualItemCost = parseInt(selectedOptionNode.getAttribute('data-price')) || 0;
+                        const individualLineSummedPrice = individualItemCost * extractedQty;
+                        overallCalculatedInvoiceAmount += individualLineSummedPrice;
+                        
+                        finalReceiptMessageText += `  • ${itemRecord.name} (${sizeSelector.value}) x ${extractedQty} = ₹${individualLineSummedPrice}\n`;
+                    }
+                });
+            }
+            
+            if (overallCalculatedInvoiceAmount === 0) {
+                alert("Your cart total is ₹0. Please choose items and quantities before checking out.");
+                return;
+            }
+            
+            let encodedWhatsAppString = `*NEW ORDER - RUCHI TARANGAM*\n`;
+            encodedWhatsAppString += `=========================\n`;
+            encodedWhatsAppString += `*Customer Delivery Coordinates*:\n`;
+            encodedWhatsAppString += `Name: ${userNameVal}\n`;
+            encodedWhatsAppString += `Address:\n${userAddressVal}\n`;
+            encodedWhatsAppString += `=========================\n`;
+            encodedWhatsAppString += `*Order Breakdown Details*:${finalReceiptMessageText}`;
+            encodedWhatsAppString += `=========================\n`;
+            encodedWhatsAppString += `*Grand Invoice Total Summary:* ₹${overallCalculatedInvoiceAmount}\n\n`;
+            encodedWhatsAppString += `Please confirm fresh product availability pipelines and share digital payout parameters. Thank you!`;
+            
+            window.location.href = `https://wa.me/${officialBusinessPhoneNum}?text=${encodeURIComponent(encodedWhatsAppString)}`;
+        }
+
+        window.onload = renderDynamicMenuCatalogs;
+    </script>
+</body>
+</html>
