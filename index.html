@@ -76,6 +76,30 @@ function updatePrice(selectElement) {
 }
 </script>
 
+ <script>
+function updatePrice(selectElement) {
+    // Find the product card container that holds this specific dropdown
+    const card = selectElement.closest('.product-card');
+    
+    // Check which size the user selected (250, 500, or 1000)
+    const selectedSize = selectElement.value;
+    
+    let price = 0;
+    
+    // Fetch the correct price based on selection
+    if (selectedSize === "250") {
+        price = card.getAttribute('data-price250');
+    } else if (selectedSize === "500") {
+        price = card.getAttribute('data-price500');
+    } else if (selectedSize === "1000") {
+        price = card.getAttribute('data-price1kg');
+    }
+    
+    // Update the price text visible on the screen
+    card.querySelector('.price-display').innerText = "Price: ₹" + price;
+}
+</script>
+    
     <div class="product" data-name="Karappodi (250g)" data-price="120">
         <h3>Karappodi (250g)</h3>
         <p>Price: ₹120</p>
