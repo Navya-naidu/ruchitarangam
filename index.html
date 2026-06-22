@@ -145,12 +145,12 @@
 
         .container { max-width: 1100px; margin: 15px auto; padding: 0 12px; min-height: 400px; }
         
-        /* Minnie Inti Ruchulu Style Visual Grid Categories Display */
+        /* Categories Display */
         .category-showcase-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 15px;
-            margin: 25px 0;
+            margin: 25px 0 15px 0;
         }
         
         .showcase-card {
@@ -177,6 +177,41 @@
             object-fit: cover;
         }
         .showcase-card h4 { margin: 10px 0; font-size: 1rem; color: #222; padding: 0 5px; }
+
+        /* Custom Infobar Banners */
+        .infobar-benefits {
+            background-color: #fff3e0;
+            color: #e65100;
+            border: 1px dashed #ffb74d;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 15px 0;
+            font-weight: bold;
+            text-align: center;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px 20px;
+        }
+        .infobar-benefits span { display: inline-block; white-space: nowrap; }
+
+        .infobar-policies {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+            border-radius: 8px;
+            padding: 8px;
+            margin: 10px 0 25px 0;
+            font-weight: bold;
+            text-align: center;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px 20px;
+        }
+        .infobar-policies span { display: inline-block; white-space: nowrap; }
 
         /* Back Navigation Tool Button alignment rules */
         .back-nav-container {
@@ -239,7 +274,7 @@
         .cart-total-row { display: flex; justify-content: space-between; font-weight: bold; font-size: 1.15rem; margin-bottom: 12px; }
         .btn-checkout-scroll { width: 100%; background: var(--primary-color); color: white; border: none; padding: 14px; font-size: 1.05rem; font-weight: bold; border-radius: 6px; cursor: pointer; }
 
-        /* Dynamic Checkout form structure */
+        /* Checkout Form Layout */
         .order-section { background: white; padding: 20px 15px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin: 30px auto; max-width: 620px; border: 1px solid #efefef; display: none; }
         .order-section h2 { font-size: 1.4rem; margin-top: 0; margin-bottom: 15px; }
         .form-group { margin-bottom: 16px; }
@@ -249,7 +284,7 @@
         .form-group input[disabled] { background-color: #eee; color: #666; cursor: not-allowed; }
         .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; background-color: var(--accent-color); color: white; border: none; padding: 15px; font-size: 1.15rem; font-weight: bold; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25); }
 
-        /* Business Footers section layout */
+        /* Business Footer Section Layout */
         footer {
             background-color: #2c2c2c;
             color: #dfdfdf;
@@ -323,11 +358,26 @@
     <div class="container">
 
         <div class="back-nav-container" id="back-nav-row">
+            <button class="back-nav-container" id="back-nav-row" style="display: none; margin-bottom: 20px; text-align: left;"></button>
             <button class="btn-back-dashboard" onclick="executeCategoryFilter('all', null)">← Back to Main Categories</button>
         </div>
 
         <div id="home-categories-dashboard">
-            <h2 style="text-align: center; font-size: 1.6rem; margin-bottom: 25px;">Shop Our Homemade Categories</h2>
+            <h2 style="text-align: center; font-size: 1.6rem; margin-bottom: 10px;">Shop Our Homemade Categories</h2>
+            
+            <div class="infobar-benefits">
+                <span>🌱 No added preservatives</span>
+                <span>🎨 No added colors</span>
+                <span>🌴 No palm oil</span>
+                <span>🧪 No chemicals</span>
+            </div>
+
+            <div class="infobar-policies">
+                <span>❌ No cancellation</span>
+                <span>📦 No return</span>
+                <span>💰 No refund</span>
+            </div>
+
             <div class="category-showcase-grid">
                 
                 <div class="showcase-card" onclick="triggerShowcaseRouting('veg-pickles')">
@@ -605,7 +655,6 @@
                         block.classList.contains(`filter-${targetCategory}`) ? block.style.display = 'block' : block.style.display = 'none';
                     }
                 });
-                
                 syncCheckoutFormVisibility();
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
