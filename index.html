@@ -1,127 +1,278 @@
+HTML
 <!DOCTYPE html>
 <html>
 <head>
     <title>Ruchi Tarangam</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #fcf8f2; color: #333; }
+        header { background-color: #d32f2f; color: white; padding: 20px; text-align: center; border-radius: 8px; }
+        h2 { color: #d32f2f; margin-top: 30px; border-bottom: 2px solid #d32f2f; padding-bottom: 5px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 15px; }
+        .product { background: white; padding: 15px; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .product h3 { margin: 0 0 10px 0; font-size: 1.1rem; }
+        select, input { padding: 6px; font-size: 1rem; border-radius: 4px; border: 1px solid #ccc; margin-left: 5px; }
+        .qty { width: 50px; }
+        .price-display { font-weight: bold; color: #d32f2f; }
+        .grand-total-box { background: #fff3e0; padding: 15px; border-radius: 8px; font-size: 1.3rem; font-weight: bold; margin-top: 30px; border: 1px solid #ffb74d; text-align: right; }
+        .form-section { background: white; padding: 20px; border-radius: 8px; margin-top: 20px; border: 1px solid #ddd; }
+        textarea, input[type="text"] { width: 100%; padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box; }
+    </style>
 </head>
 <body>
 
-    <h1>Welcome to Ruchi Tarangam</h1>
-    <p>Homemade Pickles, Flavorful Podis & Crispy Snacks</p>
-    <!-- YOUR NEW PRODUCT CODE GOES RIGHT HERE -->
-    <h2>Our Menu</h2>
-   <h3>🟢 Veg Pickles</h3>
-<p>Select your preferred size and quantity:</p>
+    <header>
+        <h1>Ruchi Tarangam</h1>
+        <p>Homemade Pickles, Flavorful Podis & Crispy Snacks</p>
+    </header>
 
-<div class="product-grid">
+    <!-- ================= VEG PICKLES SECTION ================= -->
+    <h2>🟢 Veg Pickles</h2>
+    <div class="product-grid">
+        <!-- Tamato -->
+        <div class="product" data-name="Tamato Pickle">
+            <h3>Tamato Pickle</h3>
+            <select class="weight-select" onchange="updatePrice(this)">
+                <option value="120" data-weight="250gm">250gm - ₹120</option>
+                <option value="220" data-weight="500gm">500gm - ₹220</option>
+                <option value="400" data-weight="1Kg">1Kg - ₹400</option>
+            </select>
+            <p>Price: ₹<span class="price-display">120</span></p>
+            <label>Quantity: </label>
+            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
+        </div>
 
-    <!-- 1. Tomato Pickle -->
-    <div class="product-card" data-name="Tomato Pickle" data-price250="100" data-price500="180" data-price1kg="340">
-        <h4>Tomato Pickle</h4>
-        
-        <label>Size: </label>
-        <select class="size-select" onchange="updatePrice(this)">
-            <option value="250">250g</option>
-            <option value="500">500g</option>
-            <option value="1000">1kg</option>
-        </select>
-        
-        <!-- This is where the price will dynamically change -->
-        <p class="price-display">Price: ₹100</p>
-        
-        <label>Quantity: </label>
-        <input type="number" class="qty" value="0" min="0">
+        <!-- Usirikaya -->
+        <div class="product" data-name="Usirikaya Pickle">
+            <h3>Usirikaya Pickle</h3>
+            <select class="weight-select" onchange="updatePrice(this)">
+                <option value="130" data-weight="250gm">250gm - ₹130</option>
+                <option value="240" data-weight="500gm">500gm - ₹240</option>
+                <option value="450" data-weight="1Kg">1Kg - ₹450</option>
+            </select>
+            <p>Price: ₹<span class="price-display">130</span></p>
+            <label>Quantity: </label>
+            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
+        </div>
+
+        <!-- Kakarkaya -->
+        <div class="product" data-name="Kakarkaya Pickle">
+            <h3>Kakarkaya Pickle</h3>
+            <select class="weight-select" onchange="updatePrice(this)">
+                <option value="130" data-weight="250gm">250gm - ₹130</option>
+                <option value="240" data-weight="500gm">500gm - ₹240</option>
+                <option value="450" data-weight="1Kg">1Kg - ₹450</option>
+            </select>
+            <p>Price: ₹<span class="price-display">130</span></p>
+            <label>Quantity: </label>
+            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
+        </div>
+
+        <!-- Pandumirchi -->
+        <div class="product" data-name="Pandumirchi Pickle">
+            <h3>Pandumirchi Pickle</h3>
+            <select class="weight-select" onchange="updatePrice(this)">
+                <option value="120" data-weight="250gm">250gm - ₹120</option>
+                <option value="220" data-weight="500gm">500gm - ₹220</option>
+                <option value="400" data-weight="1Kg">1Kg - ₹400</option>
+            </select>
+            <p>Price: ₹<span class="price-display">120</span></p>
+            <label>Quantity: </label>
+            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
+        </div>
+
+        <!-- Nimakaya -->
+        <div class="product" data-name="Nimakaya Pickle">
+            <h3>Nimakaya Pickle</h3>
+            <select class="weight-select" onchange="updatePrice(this)">
+                <option value="100" data-weight="250gm">250gm - ₹100</option>
+                <option value="180" data-weight="500gm">500gm - ₹180</option>
+                <option value="350" data-weight="1Kg">1Kg - ₹350</option>
+            </select>
+            <p>Price: ₹<span class="price-display">100</span></p>
+            <label>Quantity: </label>
+            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
+        </div>
+
+        <!-- Allam -->
+        <div class="product" data-name="Allam Pickle">
+            <h3>Allam Pickle</h3>
+            <select class="weight-select" onchange="updatePrice(this)">
+                <option value="120" data-weight="250gm">250gm - ₹120</option>
+                <option value="220" data-weight="500gm">500gm - ₹220</option>
+                <option value="400" data-weight="1Kg">1Kg - ₹400</option>
+            </select>
+            <p>Price: ₹<span class="price-display">120</span></p>
+            <label>Quantity: </label>
+            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
+        </div>
+
+        <!-- Gongura -->
+        <div class="product" data-name="Gongura Pickle">
+            <h3>Gongura Pickle</h3>
+            <select class="weight-select" onchange="updatePrice(this)">
+                <option value="110" data-weight="250gm">250gm - ₹110</option>
+                <option value="200" data-weight="500gm">500gm - ₹200</option>
+                <option value="380" data-weight="1Kg">1Kg - ₹380</option>
+            </select>
+            <p>Price: ₹<span class="price-display">110</span></p>
+            <label>Quantity: </label>
+            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
+        </div>
+
+        <!-- Cauliflower Avakaya -->
+        <div class="product" data-name="Cauliflower Avakaya">
+            <h3>Cauliflower Avakaya</h3>
+            <select class="weight-select" onchange="updatePrice(this)">
+                <option value="140" data-weight="250gm">250gm - ₹140</option>
+                <option value="260" data-weight="500gm">500gm - ₹260</option>
+                <option value="500" data-weight="1Kg">1Kg - ₹500</option>
+            </select>
+            <p>Price: ₹<span class="price-display">140</span></p>
+            <label>Quantity: </label>
+            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
+        </div>
+
+        <!-- Vankay Avakaya -->
+        <div class="product" data-name="Vankay Avakaya">
+            <h3>Vankay Avakaya</h3>
+            <select class="weight-select" onchange="updatePrice(this)">
+                <option value="140" data-weight="250gm">250gm - ₹140</option>
+                <option value="260" data-weight="500gm">500gm - ₹260</option>
+                <option value="500" data-weight="1Kg">1Kg - ₹500</option>
+            </select>
+            <p>Price: ₹<span class="price-display">140</span></p>
+            <label>Quantity: </label>
+            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
+        </div>
     </div>
 
-    <!-- 2. Usirikaya Pickle -->
-    <div class="product-card" data-name="Usirikaya Pickle" data-price250="120" data-price500="220" data-price1kg="400">
-        <h4>Usirikaya Pickle</h4>
-        <select class="size-select" onchange="updatePrice(this)">
-            <option value="250">250g</option>
-            <option value="500">500g</option>
-            <option value="1000">1kg</option>
-        </select>
-        <p class="price-display">Price: ₹120</p>
-        <label>Quantity: </label>
-        <input type="number" class="qty" value="0" min="0">
+
+    <!-- ================= NON-VEG PICKLES SECTION ================= -->
+    <h2>🔴 Non-Veg Pickles</h2>
+    <div class="product-grid">
+        <!-- Bhimavaram spl Royala Avakaya -->
+        <div class="product" data-name="Bhimavaram spl Royala Avakaya">
+            <h3>Bhimavaram spl Royala Avakaya</h3>
+            <select class="weight-select" onchange="updatePrice(this)">
+                <option value="250" data-weight="250gm">250gm - ₹250</option>
+                <option value="480" data-weight="500gm">500gm - ₹480</option>
+                <option value="900" data-weight="1Kg">1Kg - ₹900</option>
+            </select>
+            <p>Price: ₹<span class="price-display">250</span></p>
+            <label>Quantity: </label>
+            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
+        </div>
+
+        <!-- Boneless Chicken pickle -->
+        <div class="product" data-name="Boneless Chicken Pickle">
+            <h3>Boneless Chicken Pickle</h3>
+            <select class="weight-select" onchange="updatePrice(this)">
+                <option value="220" data-weight="250gm">250gm - ₹220</option>
+                <option value="420" data-weight="500gm">500gm - ₹420</option>
+                <option value="800" data-weight="1Kg">1Kg - ₹800</option>
+            </select>
+            <p>Price: ₹<span class="price-display">220</span></p>
+            <label>Quantity: </label>
+            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
+        </div>
+
+        <!-- Chicken pickle with bone -->
+        <div class="product" data-name="Chicken Pickle (With Bone)">
+            <h3>Chicken Pickle (With Bone)</h3>
+            <select class="weight-select" onchange="updatePrice(this)">
+                <option value="180" data-weight="250gm">250gm - ₹180</option>
+                <option value="340" data-weight="500gm">500gm - ₹340</option>
+                <option value="650" data-weight="1Kg">1Kg - ₹650</option>
+            </select>
+            <p>Price: ₹<span class="price-display">180</span></p>
+            <label>Quantity: </label>
+            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
+        </div>
+
+        <!-- Mutton pickle with bone -->
+        <div class="product" data-name="Mutton Pickle (With Bone)">
+            <h3>Mutton Pickle (With Bone)</h3>
+            <select class="weight-select" onchange="updatePrice(this)">
+                <option value="300" data-weight="250gm">250gm - ₹300</option>
+                <option value="580" data-weight="500gm">500gm - ₹580</option>
+                <option value="1100" data-weight="1Kg">1Kg - ₹1100</option>
+            </select>
+            <p>Price: ₹<span class="price-display">300</span></p>
+            <label>Quantity: </label>
+            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
+        </div>
+
+        <!-- Mutton pickle with boneless -->
+        <div class="product" data-name="Mutton Pickle (Boneless)">
+            <h3>Mutton Pickle (Boneless)</h3>
+            <select class="weight-select" onchange="updatePrice(this)">
+                <option value="350" data-weight="250gm">250gm - ₹350</option>
+                <option value="680" data-weight="500gm">500gm - ₹680</option>
+                <option value="1300" data-weight="1Kg">1Kg - ₹1300</option>
+            </select>
+            <p>Price: ₹<span class="price-display">350</span></p>
+            <label>Quantity: </label>
+            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
+        </div>
+
+        <!-- Gongura Boneless chicken pickle -->
+        <div class="product" data-name="Gongura Boneless Chicken Pickle">
+            <h3>Gongura Boneless Chicken Pickle</h3>
+            <select class="weight-select" onchange="updatePrice(this)">
+                <option value="240" data-weight="250gm">250gm - ₹240</option>
+                <option value="450" data-weight="500gm">500gm - ₹450</option>
+                <option value="850" data-weight="1Kg">1Kg - ₹850</option>
+            </select>
+            <p>Price: ₹<span class="price-display">240</span></p>
+            <label>Quantity: </label>
+            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
+        </div>
     </div>
 
-</div>
-(Note: I put placeholder prices like ₹100 and ₹120. You can change the numbers inside data-price250, data-price500, and data-price1kg to match your actual pricing!)
-
-Step 13: Adding the JavaScript "Brain" to Switch Prices
-Right now, if a customer changes the dropdown from 250g to 500g, the text won't change because the website doesn't know how to look up the data attributes yet. We need a small JavaScript function to do this.
-
-Scroll all the way to the bottom of your file, right above the closing </body> tag, and type this code:
-<script>
-function updatePrice(selectElement) {
-    // Find the product card container that holds this specific dropdown
-    const card = selectElement.closest('.product-card');
-    
-    // Check which size the user selected (250, 500, or 1000)
-    const selectedSize = selectElement.value;
-    
-    let price = 0;
-    
-    // Fetch the correct price based on selection
-    if (selectedSize === "250") {
-        price = card.getAttribute('data-price250');
-    } else if (selectedSize === "500") {
-        price = card.getAttribute('data-price500');
-    } else if (selectedSize === "1000") {
-        price = card.getAttribute('data-price1kg');
-    }
-    
-    // Update the price text visible on the screen
-    card.querySelector('.price-display').innerText = "Price: ₹" + price;
-}
-</script>
-
- <script>
-function updatePrice(selectElement) {
-    // Find the product card container that holds this specific dropdown
-    const card = selectElement.closest('.product-card');
-    
-    // Check which size the user selected (250, 500, or 1000)
-    const selectedSize = selectElement.value;
-    
-    let price = 0;
-    
-    // Fetch the correct price based on selection
-    if (selectedSize === "250") {
-        price = card.getAttribute('data-price250');
-    } else if (selectedSize === "500") {
-        price = card.getAttribute('data-price500');
-    } else if (selectedSize === "1000") {
-        price = card.getAttribute('data-price1kg');
-    }
-    
-    // Update the price text visible on the screen
-    card.querySelector('.price-display').innerText = "Price: ₹" + price;
-}
-</script>
-    
-    <div class="product" data-name="Karappodi (250g)" data-price="120">
-        <h3>Karappodi (250g)</h3>
-        <p>Price: ₹120</p>
-        <label>Quantity: </label>
-        <input type="number" class="qty" value="0" min="0">
+    <!-- Live Bill Counter Box -->
+    <div class="grand-total-box">
+        Estimated Grand Total: ₹<span id="grand-total">0</span>
     </div>
 
-    <div class="product" data-name="Murukku (500g)" data-price="180">
-        <h3>Murukku (500g)</h3>
-        <p>Price: ₹180</p>
-        <label>Quantity: </label>
-        <input type="number" class="qty" value="0" min="0">
+    <!-- Delivery Details -->
+    <div class="form-section">
+        <h3>Delivery Info</h3>
+        <label>Your Full Name:</label>
+        <input type="text" id="cust-name" placeholder="Name">
+        <br><br>
+        <label>Full Address (with Pincode):</label>
+        <textarea id="cust-address" rows="3" placeholder="Address"></textarea>
     </div>
 
-    <br><br>
-    <h2>Delivery Details</h2>
-    <label>Your Name:</label><br>
-    <input type="text" id="customer-name" placeholder="Enter your full name"><br><br>
 
-    <label>Delivery Address:</label><br>
-    <textarea id="customer-address" placeholder="Enter your complete address with pincode"></textarea>
-    <!-- NEW CODE ENDS HERE -->
+    <!-- ================= JAVASCRIPT MATH LOGIC ================= -->
+    <script>
+        // 1. Changes the single item price text when a customer toggles 250g/500g/1kg
+        function updatePrice(dropdown) {
+            const chosenPrice = dropdown.value; 
+            const productDiv = dropdown.parentElement;
+            productDiv.querySelector('.price-display').innerText = chosenPrice;
+            
+            // Recalculate total immediately when weight changes
+            calculateGrandTotal();
+        }
+
+        // 2. Loops through every item, multiplies price by quantity, updates Grand Total box
+        function calculateGrandTotal() {
+            let total = 0;
+            const products = document.querySelectorAll('.product');
+            
+            products.forEach(p => {
+                const dropdown = p.querySelector('.weight-select');
+                const price = parseInt(dropdown.value);
+                const quantity = parseInt(p.querySelector('.qty').value) || 0;
+                
+                total += (price * quantity);
+            });
+            
+            document.getElementById('grand-total').innerText = total;
+        }
+    </script>
 
 </body>
 </html>
