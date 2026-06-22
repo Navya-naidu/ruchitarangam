@@ -9,57 +9,72 @@
     <p>Homemade Pickles, Flavorful Podis & Crispy Snacks</p>
     <!-- YOUR NEW PRODUCT CODE GOES RIGHT HERE -->
     <h2>Our Menu</h2>
-    <p>Enter the quantity you want for each item:</p>
+   <h3>🟢 Veg Pickles</h3>
+<p>Select your preferred size and quantity:</p>
 
-   <h2>Our Menu</h2>
-<p>Choose your size, quantity, and place your order:</p>
+<div class="product-grid">
 
-<!-- Product 1: Mango Pickle -->
-<div class="product" id="mango-pickle">
-    <h3>Mango Pickle</h3>
-    <!-- This dropdown lets the user choose the size -->
-    <label>Choose Size: </label>
-    <select class="product-size" onchange="updatePrice(this, 150, 280, 520)">
-        <option value="250g" data-price="150">250g - ₹150</option>
-        <option value="500g" data-price="280">500g - ₹280</option>
-        <option value="1kg" data-price="520">1kg - ₹520</option>
-    </select>
-    <br><br>
-    
-    <!-- This displays the calculated cost dynamically -->
-    <div class="price-display">Price: ₹<span class="current-price">150</span></div>
-    
-    <label>Quantity: </label>
-    <input type="number" class="qty" value="0" min="0" oninput="calculateItemTotal(this)">
-    
-    <div class="item-total-display" style="margin-top: 5px; font-weight: bold; color: green;">
-        Total: ₹<span class="item-total">0</span>
+    <!-- 1. Tomato Pickle -->
+    <div class="product-card" data-name="Tomato Pickle" data-price250="100" data-price500="180" data-price1kg="340">
+        <h4>Tomato Pickle</h4>
+        
+        <label>Size: </label>
+        <select class="size-select" onchange="updatePrice(this)">
+            <option value="250">250g</option>
+            <option value="500">500g</option>
+            <option value="1000">1kg</option>
+        </select>
+        
+        <!-- This is where the price will dynamically change -->
+        <p class="price-display">Price: ₹100</p>
+        
+        <label>Quantity: </label>
+        <input type="number" class="qty" value="0" min="0">
     </div>
-</div>
 
-<br>
-
-<!-- Product 2: Tomato Pickle -->
-<div class="product" id="tomato-pickle">
-    <h3>Tomato Pickle</h3>
-    <label>Choose Size: </label>
-    <select class="product-size" onchange="updatePrice(this, 120, 220, 400)">
-        <option value="250g" data-price="120">250g - ₹120</option>
-        <option value="500g" data-price="220">500g - ₹220</option>
-        <option value="1kg" data-price="400">1kg - ₹400</option>
-    </select>
-    <br><br>
-    
-    <div class="price-display">Price: ₹<span class="current-price">120</span></div>
-    
-    <label>Quantity: </label>
-    <input type="number" class="qty" value="0" min="0" oninput="calculateItemTotal(this)">
-    
-    <div class="item-total-display" style="margin-top: 5px; font-weight: bold; color: green;">
-        Total: ₹<span class="item-total">0</span>
+    <!-- 2. Usirikaya Pickle -->
+    <div class="product-card" data-name="Usirikaya Pickle" data-price250="120" data-price500="220" data-price1kg="400">
+        <h4>Usirikaya Pickle</h4>
+        <select class="size-select" onchange="updatePrice(this)">
+            <option value="250">250g</option>
+            <option value="500">500g</option>
+            <option value="1000">1kg</option>
+        </select>
+        <p class="price-display">Price: ₹120</p>
+        <label>Quantity: </label>
+        <input type="number" class="qty" value="0" min="0">
     </div>
-    
+
 </div>
+(Note: I put placeholder prices like ₹100 and ₹120. You can change the numbers inside data-price250, data-price500, and data-price1kg to match your actual pricing!)
+
+Step 13: Adding the JavaScript "Brain" to Switch Prices
+Right now, if a customer changes the dropdown from 250g to 500g, the text won't change because the website doesn't know how to look up the data attributes yet. We need a small JavaScript function to do this.
+
+Scroll all the way to the bottom of your file, right above the closing </body> tag, and type this code:
+<script>
+function updatePrice(selectElement) {
+    // Find the product card container that holds this specific dropdown
+    const card = selectElement.closest('.product-card');
+    
+    // Check which size the user selected (250, 500, or 1000)
+    const selectedSize = selectElement.value;
+    
+    let price = 0;
+    
+    // Fetch the correct price based on selection
+    if (selectedSize === "250") {
+        price = card.getAttribute('data-price250');
+    } else if (selectedSize === "500") {
+        price = card.getAttribute('data-price500');
+    } else if (selectedSize === "1000") {
+        price = card.getAttribute('data-price1kg');
+    }
+    
+    // Update the price text visible on the screen
+    card.querySelector('.price-display').innerText = "Price: ₹" + price;
+}
+</script>
 
     <div class="product" data-name="Karappodi (250g)" data-price="120">
         <h3>Karappodi (250g)</h3>
