@@ -6,7 +6,7 @@
     <title>Ruchi Tarangam - Waves of Flavors</title>
     <style>
         :root {
-            --primary-color: #d32f2f; /* Spicy Red */
+            --primary-color: #d32f2f; /* Warm Spicy Red Accent */
             --accent-color: #25D366;  /* WhatsApp Green */
             --bg-color: #fdfaf6;
             --card-bg: #ffffff;
@@ -55,7 +55,7 @@
         header h1 { margin: 0; font-size: 2.6rem; letter-spacing: 1px; }
         header p { margin: 6px 0 0 0; font-size: 1.25rem; opacity: 0.95; font-style: italic; }
 
-        /* Navigation Menu System */
+        /* Navigation Menu Interface System */
         nav {
             background-color: #2c2c2c;
             position: sticky;
@@ -68,22 +68,14 @@
             max-width: 1000px;
             margin: 0 auto;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             flex-wrap: wrap;
-            padding: 0 15px;
-        }
-
-        .nav-links-group {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
         }
 
         .nav-link {
             color: #efefef;
             text-decoration: none;
-            padding: 15px 18px;
+            padding: 15px 22px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -94,105 +86,10 @@
             background-color: var(--primary-color);
             color: white;
         }
-
-        /* Pickle Dropdown Styles */
-        .dropdown-wrapper {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            background-color: #2c2c2c;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-            z-index: 1050;
-        }
-
-        .dropdown-menu div {
-            color: #efefef;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .dropdown-menu div:hover {
-            background-color: var(--primary-color);
-        }
-
-        .dropdown-wrapper:hover .dropdown-menu {
-            display: block;
-        }
-
-        /* Right Side Utilities: Search & Cart */
-        .nav-utils {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 10px 0;
-        }
-
-        .search-box {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .search-box input {
-            padding: 8px 32px 8px 12px;
-            border: 1px solid #444;
-            border-radius: 20px;
-            background-color: #444;
-            color: white;
-            outline: none;
-            font-size: 0.9rem;
-            width: 160px;
-            transition: width 0.3s ease;
-        }
-
-        .search-box input:focus {
-            width: 200px;
-            background-color: #fff;
-            color: #333;
-            border-color: var(--primary-color);
-        }
-
-        .search-icon {
-            position: absolute;
-            right: 10px;
-            color: #aaa;
-            pointer-events: none;
-        }
-
-        .cart-icon-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.3rem;
-            cursor: pointer;
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .cart-badge {
-            position: absolute;
-            top: -8px;
-            right: -10px;
-            background-color: var(--primary-color);
-            color: white;
-            font-size: 0.75rem;
-            font-weight: bold;
-            border-radius: 50%;
-            padding: 2px 6px;
-        }
         
         .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
         
-        /* Category Sections */
+        /* Category View Block Containers */
         .category-section {
             display: block; 
             margin-bottom: 45px;
@@ -207,7 +104,7 @@
             border-bottom: 3px solid var(--primary-color);
         }
 
-        /* Product Cards Layout */
+        /* Product Catalog Matrix Elements */
         .product-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(285px, 1fr)); 
@@ -225,7 +122,6 @@
             justify-content: space-between;
             transition: transform 0.2s, box-shadow 0.2s;
         }
-        .product-card.hidden { display: none !important; }
         .product-card:hover { 
             transform: translateY(-3px); 
             box-shadow: 0 6px 15px rgba(0,0,0,0.07);
@@ -266,7 +162,7 @@
         .unit-price { color: #555555; font-size: 0.95rem; font-weight: normal; }
         .total-item-price { color: var(--primary-color); }
 
-        /* Sticky Bottom Bar */
+        /* Bottom Cart Sticky Status Panel */
         .sticky-summary {
             position: fixed;
             bottom: 0;
@@ -297,9 +193,11 @@
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
+            transition: opacity 0.2s;
         }
+        .btn-scroll:hover { opacity: 0.9; }
 
-        /* Order Form Section */
+        /* Delivery Formulation Details Area */
         .order-section { 
             background: white; 
             padding: 35px; 
@@ -322,6 +220,11 @@
             font-size: 1rem;
             background-color: #fafafa;
         }
+        .form-group input:focus, .form-group textarea:focus {
+            background-color: #fff;
+            border-color: var(--primary-color);
+            outline: none;
+        }
         
         .btn-whatsapp { 
             display: flex;
@@ -338,46 +241,9 @@
             border-radius: 8px; 
             cursor: pointer; 
             box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+            transition: background-color 0.2s;
         }
-
-        /* Interactive Cart Modal Window Overlay */
-        .cart-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-        .cart-modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 500px;
-            max-height: 75vh;
-            overflow-y: auto;
-            position: relative;
-            text-align: left;
-        }
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #666;
-        }
-        .cart-item-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
+        .btn-whatsapp:hover { background-color: #1ebe53; }
     </style>
 </head>
 <body>
@@ -392,42 +258,22 @@
 
     <nav>
         <div class="nav-container">
-            <div class="nav-links-group">
-                <div class="nav-link active" onclick="executeCategoryFilter('all', this)">Home</div>
-                
-                <div class="dropdown-wrapper">
-                    <div class="nav-link" id="pickle-nav-root">Pickles ▼</div>
-                    <div class="dropdown-menu">
-                        <div onclick="executeCategoryFilter('veg', document.getElementById('pickle-nav-root'))">Veg Pickles</div>
-                        <div onclick="executeCategoryFilter('nonveg', document.getElementById('pickle-nav-root'))">Non-Veg Pickles</div>
-                    </div>
-                </div>
-
-                <div class="nav-link" onclick="executeCategoryFilter('podi', this)">Podis</div>
-                <div class="nav-link" onclick="executeCategoryFilter('sweet', this)">Sweets</div>
-                <div class="nav-link" onclick="executeCategoryFilter('hot', this)">Snacks</div>
-            </div>
-
-            <div class="nav-utils">
-                <div class="search-box">
-                    <input type="text" id="search-input" placeholder="Search products..." oninput="handleLiveSearch()">
-                    <span class="search-icon">🔍</span>
-                </div>
-                <button class="cart-icon-btn" onclick="toggleCartModal(true)">
-                    🛒<span class="cart-badge" id="cart-counter-badge">0</span>
-                </button>
-            </div>
+            <div class="nav-link active" onclick="executeCategoryFilter('all', this)">Home</div>
+            <div class="nav-link" onclick="executeCategoryFilter('pickles', this)">Pickles</div>
+            <div class="nav-link" onclick="executeCategoryFilter('podi', this)">Podis</div>
+            <div class="nav-link" onclick="executeCategoryFilter('sweet', this)">Sweets</div>
+            <div class="nav-link" onclick="executeCategoryFilter('hot', this)">Snacks</div>
         </div>
     </nav>
 
     <div class="container">
 
-        <div class="category-section filter-veg filter-all-pickles">
+        <div class="category-section filter-pickles">
             <div class="category-title">🌶️ Veg Pickles</div>
             <div class="product-grid" id="veg-container"></div>
         </div>
 
-        <div class="category-section filter-nonveg filter-all-pickles">
+        <div class="category-section filter-pickles">
             <div class="category-title">🍗 Non-Veg Pickles</div>
             <div class="product-grid" id="nonveg-container"></div>
         </div>
@@ -448,8 +294,8 @@
         </div>
 
         <div class="order-section" id="checkout-form">
-            <h2>Complete Your Order</h2>
-            <p style="color: #666; margin-bottom: 25px;">Provide delivery variables below to process the final confirmation routing directly over WhatsApp.</p>
+            <h2>Complete Your Order Setup</h2>
+            <p style="color: #666; margin-bottom: 25px;">Provide delivery variables below to process the final confirmation routing directly over WhatsApp application channels.</p>
             
             <div class="form-group">
                 <label for="cust-name">Your Full Name:</label>
@@ -458,28 +304,14 @@
             
             <div class="form-group">
                 <label for="cust-address">Complete Delivery Address:</label>
-                <textarea id="cust-address" rows="4" placeholder="Enter complete address details with Landmark & Pincode"></textarea>
+                <textarea id="cust-address" rows="4" placeholder="Enter complete doorstep shipping coordinate parameters along with nearby landmark & pincode details"></textarea>
             </div>
             
             <button class="btn-whatsapp" onclick="dispatchWhatsAppOrderPipeline()">
                 📱 Submit Order via WhatsApp
             </button>
         </div>
-    </div>
 
-    <div class="cart-modal" id="shopping-cart-modal" onclick="toggleCartModal(false)">
-        <div class="cart-modal-content" onclick="event.stopPropagation()">
-            <span class="close-modal" onclick="toggleCartModal(false)">&times;</span>
-            <h2>Your Shopping Cart Box</h2>
-            <div id="cart-modal-items-list" style="margin: 20px 0;">
-                <p style="color:#777;">Your cart is currently empty.</p>
-            </div>
-            <div style="border-top:2px solid #ddd; padding-top:15px; font-weight:bold; font-size:1.2rem; display:flex; justify-content:space-between;">
-                <span>Grand Total:</span>
-                <span>₹<span id="cart-modal-grand-total">0</span></span>
-            </div>
-            <button class="btn-scroll" style="width:100%; margin-top:20px;" onclick="toggleCartModal(false); document.getElementById('checkout-form').scrollIntoView({behavior: 'smooth'})">Proceed to Checkout</button>
-        </div>
     </div>
 
     <div class="sticky-summary">
@@ -490,129 +322,106 @@
     </div>
 
     <script>
+        // OFFICIAL INVENTORY CONTROL STRUCTURE DATABASES
+        // Pricing patterns map directly onto matching index structures: [250gm, 500gm, 1Kg]
         const MENU_DATA = {
             veg: {
+                title: "Veg Pickles",
                 sizes: ["250gm", "500gm", "1Kg"],
                 items: [
-                    { name: "Tomato", prices: [150, 300, 500] },
-                    { name: "Usirikaya", prices: [150, 300, 500] },
-                    { name: "Kakarkaya", prices: [150, 300, 500] },
-                    { name: "Pandumirchi", prices: [150, 300, 500] },
-                    { name: "Nimakaya", prices: [150, 300, 500] },
-                    { name: "Allam", prices: [150, 300, 500] },
-                    { name: "Gongura", prices: [150, 300, 500] },
-                    { name: "Cauliflower Avakaya", prices: [150, 300, 500] },
-                    { name: "Vankay Avakaya", prices: [150, 300, 500] }
+                    { name: "Tomato", prices: [140, 260, 480] },
+                    { name: "Usirikaya", prices: [150, 280, 520] },
+                    { name: "Kakarkaya", prices: [150, 280, 520] },
+                    { name: "Pandumirchi", prices: [140, 260, 480] },
+                    { name: "Nimakaya", prices: [130, 240, 450] },
+                    { name: "Allam", prices: [150, 280, 520] },
+                    { name: "Gongura", prices: [130, 240, 450] },
+                    { name: "Cauliflower Avakaya", prices: [160, 300, 550] },
+                    { name: "Vankay Avakaya", prices: [160, 300, 550] }
                 ]
             },
             nonveg: {
+                title: "Non Veg Pickles",
                 sizes: ["250gm", "500gm", "1Kg"],
                 items: [
-                    { name: "Bhimavaram spl Royala Avakaya", prices: [425, 850, 1700] },
-                    { name: "Boneless Chicken pickle", prices: [375, 750, 1500] },
-                    { name: "Chicken pickle with bone", prices: [325, 650, 1300] },
-                    { name: "Mutton pickle with bone", prices: [400, 800, 1600] },
-                    { name: "Mutton pickle with boneless", prices: [500, 1000, 2000] },
-                    { name: "Gongura Boneless chicken pickle", prices: [400, 800, 1600] }
+                    { name: "Bhimavaram spl Royala Avakaya", prices: [350, 680, 1300] },
+                    { name: "Boneless Chicken pickle", prices: [300, 580, 1100] },
+                    { name: "Chicken pickle with bone", prices: [250, 480, 900] },
+                    { name: "Mutton pickle with bone", prices: [400, 780, 1500] },
+                    { name: "Mutton pickle with boneless", prices: [450, 880, 1700] },
+                    { name: "Gongura Boneless chicken pickle", prices: [320, 620, 1150] }
                 ]
             },
             podi: {
+                title: "Podis",
                 sizes: ["250gm", "500gm", "1Kg"],
                 items: [
-                    { name: "Karam podi", prices: [230, 460, 920] },
-                    { name: "Karivepaku podi", prices: [230, 460, 920] },
-                    { name: "Palli karampodi", prices: [230, 460, 920] },
-                    { name: "Nuvvulu Karampodi", prices: [230, 460, 920] },
-                    { name: "Kandi karampodi", prices: [230, 460, 920] },
-                    { name: "Avisaginjalu podi", prices: [230, 460, 920] },
-                    { name: "Homemade Garam masala podi", prices: [250, 500, 1000] }
+                    { name: "Karam podi", prices: [100, 190, 360] },
+                    { name: "Karivepaku podi", prices: [110, 210, 400] },
+                    { name: "Palli karampodi", prices: [110, 210, 400] },
+                    { name: "Nuvvulu Karampodi", prices: [120, 230, 440] },
+                    { name: "Avisaginjalu podi", prices: [120, 230, 440] },
+                    { name: "Homemade Garam masala podi", prices: [150, 290, 560] }
                 ]
             },
             sweet: {
+                title: "Sweets",
                 sizes: ["250gm", "500gm", "1Kg"],
                 items: [
-                    { name: "Bellam Gavvalu", prices: [150, 300, 600] },
-                    { name: "Ghee Nuvvulu Ariselu", prices: [200, 400, 800] },
-                    { name: "Kajjikayalu", prices: [180, 360, 720] },
-                    { name: "Paakundalu", prices: [180, 360, 720] },
-                    { name: "Bellam Chalividi", prices: [180, 360, 720] },
-                    { name: "Bellam Nuvvulu undalu", prices: [180, 360, 720] },
-                    { name: "Palli undalu", prices: [180, 360, 720] },
-                    { name: "Bellam Gorimitilu", prices: [160, 320, 640] },
-                    { name: "Nethi Ravva laddu", prices: [160, 320, 640] },
-                    { name: "Kobbari undalu", prices: [180, 360, 720] },
-                    { name: "Sweet Maida biscuits", prices: [160, 320, 640] },
-                    { name: "Nethi Poornam Bobatlu", prices: [210, 420, 840] },
-                    { name: "Nethi sunnundalu", prices: [190, 380, 760] },
-                    { name: "Dryfruits Laddu", prices: [320, 640, 1280] }
-                    { name: "Kaju pakam", prices: [390, 790, 1580] }
+                    { name: "Bellam Gavvalu", prices: [95, 180, 340] },
+                    { name: "Nuvvulu Ariselu", prices: [115, 220, 420] },
+                    { name: "Kajjikayalu", prices: [105, 200, 380] },
+                    { name: "Paakundalu", prices: [105, 200, 380] },
+                    { name: "Bellam Chalividi", prices: [95, 180, 340] },
+                    { name: "Bellam Nuvvulu undalu", prices: [105, 200, 380] },
+                    { name: "Palli undalu", prices: [95, 180, 340] },
+                    { name: "Bellam Gorimitilu", prices: [95, 180, 340] },
+                    { name: "Nethi Ravva laddu", prices: [125, 240, 460] },
+                    { name: "Kobbari undalu", prices: [105, 200, 380] },
+                    { name: "Sweet Maida biscuits", prices: [85, 160, 300] },
+                    { name: "Nethi Poornam Bobatlu", prices: [135, 260, 500] },
+                    { name: "Maramaralu Laddu", prices: [75, 140, 260] },
+                    { name: "Jeedipappu Achu", prices: [185, 360, 700] }
                 ]
             },
             hot: {
+                title: "Hot Snacks",
                 sizes: ["250gm", "500gm", "1Kg"],
                 items: [
-                    { name: "Corn flakes mixture", prices: [160, 320, 640] },
-                    { name: "Andhra mixture", prices: [160, 320, 640] },
-                    { name: "Atukulu mixture", prices: [160, 320, 640] },
-                    { name: "Sanna karpusa", prices: [160, 320, 640] },
-                    { name: "Karam gavvalu", prices: [160, 320, 640] },
-                    { name: "Aaku pakodi", prices: [160, 320, 640] },
-                    { name: "Masala Kaju", prices: [380, 760, 1520] },
-                    { name: "Janthikalu", prices: [160, 320, 640] },
-                    { name: "Chekkalu", prices: [160, 320, 640] }
+                    { name: "Corn flakes mixture", prices: [85, 160, 300] },
+                    { name: "Andhra mixture", prices: [90, 170, 320] },
+                    { name: "Atukulu mixture", prices: [85, 160, 300] },
+                    { name: "Sanna karpusa", prices: [85, 160, 300] },
+                    { name: "Karam gavvalu", prices: [90, 170, 320] },
+                    { name: "Aaku pakodi", prices: [90, 170, 320] },
+                    { name: "Masala jeedipappu", prices: [190, 370, 720] },
+                    { name: "Janthikalu", prices: [85, 160, 300] },
+                    { name: "Chekkalu", prices: [90, 170, 320] }
                 ]
             }
         };
 
-        let activeTabCategory = 'all';
-
-        // Nav Links and Dropdown Sorting Engine Updated
+        // Instant Dynamic Tab Sorting Manager Setup
         function executeCategoryFilter(targetCategory, triggerElement) {
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => link.classList.remove('active'));
             triggerElement.classList.add('active');
 
-            activeTabCategory = targetCategory;
             const sectionBlocks = document.querySelectorAll('.category-section');
-            
             sectionBlocks.forEach(block => {
                 if (targetCategory === 'all') {
-                    block.style.display = 'block';
-                } else if (targetCategory === 'pickles') {
-                    block.classList.contains('filter-all-pickles') ? block.style.display = 'block' : block.style.display = 'none';
+                    block.style.display = 'block'; 
                 } else {
-                    block.classList.contains(`filter-${targetCategory}`) ? block.style.display = 'block' : block.style.display = 'none';
-                }
-            });
-            handleLiveSearch(); // Re-apply current search parameters on tab switches
-        }
-
-        // Live Real-Time Search Filtering Logic
-        function handleLiveSearch() {
-            const query = document.getElementById('search-input').value.toLowerCase().trim();
-            const productCards = document.querySelectorAll('.product-card');
-
-            productCards.forEach(card => {
-                const titleText = card.getAttribute('data-search-title');
-                const matchesQuery = titleText.includes(query);
-                
-                // Card is visible only if it matches search input string AND fits current selected menu filter tab state
-                if (matchesQuery) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
+                    if (block.classList.contains(`filter-${targetCategory}`)) {
+                        block.style.display = 'block'; 
+                    } else {
+                        block.style.display = 'none'; 
+                    }
                 }
             });
         }
 
-        // Display/Hide Cart Overlay Popup Modal
-        function toggleCartModal(isOpen) {
-            const modal = document.getElementById('shopping-cart-modal');
-            modal.style.display = isOpen ? 'flex' : 'none';
-            if (isOpen) { rebuildCartModalView(); }
-        }
-
-        // Layout HTML Card Items Generation Loop
+        // Automatic Layout Generation Loop Setup
         function renderDynamicMenuCatalogs() {
             let runningCardId = 0;
             
@@ -624,15 +433,15 @@
                     runningCardId++;
                     const itemCardDiv = document.createElement('div');
                     itemCardDiv.className = 'product-card';
-                    itemCardDiv.setAttribute('data-search-title', itemRecord.name.toLowerCase());
                     
+                    // Dropdown elements hold purely size strings (Prices kept hidden inside variable data-attributes)
                     let selectorOptionsMarkup = `<option value="" data-price="0">-- Choose Size --</option>`;
                     sectionCatalog.sizes.forEach((sizeString, sizeIdx) => {
                         selectorOptionsMarkup += `<option value="${sizeString}" data-price="${itemRecord.prices[sizeIdx]}">${sizeString}</option>`;
                     });
                     
                     itemCardDiv.innerHTML = `
-                        <h3 class="card-item-title-name">${itemRecord.name}</h3>
+                        <h3>${itemRecord.name}</h3>
                         <div class="selector-group">
                             <select id="size-${runningCardId}" onchange="recalculateProductMetrics(${runningCardId})">
                                 ${selectorOptionsMarkup}
@@ -649,7 +458,7 @@
             }
         }
 
-        // Live Single Card Prices Updater
+        // Interactive Live Card Values Updater Logic
         function recalculateProductMetrics(cardId) {
             const sizeElement = document.getElementById(`size-${cardId}`);
             const quantityElement = document.getElementById(`qty-${cardId}`);
@@ -662,11 +471,13 @@
             let interactiveQtyVal = parseInt(quantityElement.value) || 0;
             if (interactiveQtyVal < 0) { interactiveQtyVal = 0; quantityElement.value = 0; }
             
+            // Layout pricing view evaluation guidelines rules matching user requirements
             if (sizeElement.value === "") {
                 unitLabelElement.innerText = "Select size...";
                 cardTotalLabelElement.innerText = "0";
                 quantityElement.value = 0; 
             } else {
+                // If customer selects size option but qty is zero, default increment to 1 for responsive workflow feel
                 if (interactiveQtyVal === 0) {
                     interactiveQtyVal = 1;
                     quantityElement.value = 1;
@@ -678,65 +489,19 @@
             aggregateGrandCartTotal();
         }
 
-        // Sum up totals and compute active cart count badge values
+        // Sum up overall bottom bar total box metrics
         function aggregateGrandCartTotal() {
             let structuralCartSum = 0;
-            let activeItemsCounter = 0;
-            
-            const totalSpansList = document.querySelectorAll('.calculated-item-totals');
-            totalSpansList.forEach(spanElement => {
-                const val = parseInt(spanElement.innerText) || 0;
-                structuralCartSum += val;
-                if (val > 0) { activeItemsCounter++; }
+            const targetSpansList = document.querySelectorAll('.calculated-item-totals');
+            targetSpansList.forEach(spanElement => {
+                structuralCartSum += parseInt(spanElement.innerText) || 0;
             });
-            
             document.getElementById('grand-total-val').innerText = structuralCartSum;
-            document.getElementById('cart-modal-grand-total').innerText = structuralCartSum;
-            document.getElementById('cart-counter-badge').innerText = activeItemsCounter;
         }
 
-        // Dynamically build item rows inside the Cart Overlay View
-        function rebuildCartModalView() {
-            const listContainer = document.getElementById('cart-modal-items-list');
-            listContainer.innerHTML = "";
-            
-            let activeItemsExist = false;
-            let functionalCardIndexCounter = 0;
-            
-            for (let categoryKey in MENU_DATA) {
-                const sectionCatalog = MENU_DATA[categoryKey];
-                sectionCatalog.items.forEach(itemRecord => {
-                    functionalCardIndexCounter++;
-                    const sizeSelector = document.getElementById(`size-${functionalCardIndexCounter}`);
-                    const quantitySelector = document.getElementById(`qty-${functionalCardIndexCounter}`);
-                    
-                    const extractedQty = parseInt(quantitySelector.value) || 0;
-                    
-                    if (extractedQty > 0 && sizeSelector.value !== "") {
-                        activeItemsExist = true;
-                        const selectedOptionNode = sizeSelector.options[sizeSelector.selectedIndex];
-                        const price = parseInt(selectedOptionNode.getAttribute('data-price')) || 0;
-                        const rowTotal = price * extractedQty;
-                        
-                        const rowElement = document.createElement('div');
-                        rowElement.className = "cart-item-row";
-                        rowElement.innerHTML = `
-                            <div><strong>${itemRecord.name}</strong> (${sizeSelector.value})<br><small>₹${price} x ${extractedQty}</small></div>
-                            <div style="color:var(--primary-color); font-weight:bold;">₹${rowTotal}</div>
-                        `;
-                        listContainer.appendChild(rowElement);
-                    }
-                });
-            }
-            
-            if (!activeItemsExist) {
-                listContainer.innerHTML = `<p style="color:#777; text-align:center; margin: 20px 0;">Your shopping cart is empty.</p>`;
-            }
-        }
-
-        // Package and forward order matrix information stream directly over WhatsApp API links
+        // Parse order states matrix and compile deep tracking link API structure
         function dispatchWhatsAppOrderPipeline() {
-            const officialBusinessPhoneNum = "918125576101"; 
+            const officialBusinessPhoneNum = "918125576101"; // Pre-assigned official destination number
             
             const userNameVal = document.getElementById('cust-name').value.trim();
             const userAddressVal = document.getElementById('cust-address').value.trim();
@@ -763,7 +528,7 @@
                     
                     if (extractedQty > 0 && sizeSelector.value !== "") {
                         if (!categoryHeaderPrintedFlag) {
-                            finalReceiptMessageText += `\n*■ ${categoryKey.toUpperCase()} ITEMS*:\n`;
+                            finalReceiptMessageText += `\n*■ ${sectionCatalog.title}*:\n`;
                             categoryHeaderPrintedFlag = true;
                         }
                         const selectedOptionNode = sizeSelector.options[sizeSelector.selectedIndex];
@@ -771,17 +536,17 @@
                         const individualLineSummedPrice = individualItemCost * extractedQty;
                         overallCalculatedInvoiceAmount += individualLineSummedPrice;
                         
-                        finalReceiptMessageText += `  • ${itemRecord.name} (${sizeSelector.value}) x ${extractedQty} = ₹${functionalCardIndexCounter}\n`;
                         finalReceiptMessageText += `  • ${itemRecord.name} (${sizeSelector.value}) x ${extractedQty} = ₹${individualLineSummedPrice}\n`;
                     }
                 });
             }
             
             if (overallCalculatedInvoiceAmount === 0) {
-                alert("Your cart total is ₹0. Please choose items and increment quantities before checking out.");
+                alert("Your cart total is ₹0. Please increment quantities on at least one item choice configuration before checking out.");
                 return;
             }
             
+            // Build text formatting template for WhatsApp processing
             let encodedWhatsAppString = `*NEW ORDER - RUCHI TARANGAM*\n`;
             encodedWhatsAppString += `=========================\n`;
             encodedWhatsAppString += `*Customer Delivery Coordinates*:\n`;
@@ -797,6 +562,7 @@
             window.location.href = destinationEndpointLink;
         }
 
+        // Initialize script logic arrays on interface loaded
         window.onload = renderDynamicMenuCatalogs;
     </script>
 </body>
