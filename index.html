@@ -239,11 +239,13 @@
         <p>Waves of Flavors</p>
     </header>
 
+    <!-- NAVIGATION WITH DROPDOWNS & UTILITIES -->
     <nav>
         <div class="nav-container">
             <div class="nav-menu-wrapper">
                 <div class="nav-link active" onclick="executeCategoryFilter('all', this)">Home</div>
                 
+                <!-- Pickle drop trigger section -->
                 <div class="nav-link has-dropdown">
                     Pickles ▾
                     <div class="dropdown-menu">
@@ -259,10 +261,12 @@
             </div>
             
             <div class="nav-utilities">
+                <!-- Live Search Engine Field -->
                 <div class="search-container">
                     <input type="text" class="search-box" id="global-search-input" placeholder="Search products..." oninput="triggerLiveSearchFilter()">
                     <span class="search-icon-inside">🔍</span>
                 </div>
+                <!-- Dynamic Cart Trigger Icon Link -->
                 <button class="cart-trigger-btn" onclick="toggleCartDrawer(true)">🛒 Cart (<span id="cart-counter-val">0</span>)</button>
             </div>
         </div>
@@ -270,31 +274,37 @@
 
     <div class="container">
 
+        <!-- ==================== CATEGORY VEG PICKLES BLOCK ==================== -->
         <div class="category-section filter-pickles filter-veg-pickles">
             <div class="category-title">🌶️ Veg Pickles</div>
             <div class="product-grid" id="veg-container"></div>
         </div>
 
+        <!-- ==================== CATEGORY NON-VEG PICKLES BLOCK ==================== -->
         <div class="category-section filter-pickles filter-nonveg-pickles">
             <div class="category-title">🍗 Non-Veg Pickles</div>
             <div class="product-grid" id="nonveg-container"></div>
         </div>
 
+        <!-- ==================== CATEGORY PODIS BLOCK ==================== -->
         <div class="category-section filter-podi">
             <div class="category-title">🌾 Flavorful Podis</div>
             <div class="product-grid" id="podi-container"></div>
         </div>
 
+        <!-- ==================== CATEGORY SWEETS BLOCK ==================== -->
         <div class="category-section filter-sweet">
             <div class="category-title">🍯 Traditional Sweets</div>
             <div class="product-grid" id="sweet-container"></div>
         </div>
 
+        <!-- ==================== CATEGORY HOT SNACKS BLOCK ==================== -->
         <div class="category-section filter-hot">
             <div class="category-title">🔥 Hot Snacks</div>
             <div class="product-grid" id="hot-container"></div>
         </div>
 
+        <!-- ==================== BILLING CHECKOUT INTERFACE ==================== -->
         <div class="order-section" id="checkout-form">
             <h2>Complete Your Order Setup</h2>
             <div class="form-group">
@@ -309,6 +319,7 @@
         </div>
     </div>
 
+    <!-- VIEWABLE SLIDEOUT CART DRAWER MODAL -->
     <div class="cart-drawer-overlay" id="cart-overlay-node" onclick="toggleCartDrawer(false)"></div>
     <div class="cart-drawer" id="cart-drawer-node">
         <div class="cart-header">
@@ -316,7 +327,8 @@
             <button class="close-cart-btn" onclick="toggleCartDrawer(false)">✕</button>
         </div>
         <div class="cart-items-list" id="drawer-items-container">
-            </div>
+            <!-- Dynamic itemizations print layout goes here -->
+        </div>
         <div class="cart-footer">
             <div class="cart-total-row">
                 <span>Total Amount:</span>
@@ -326,80 +338,83 @@
         </div>
     </div>
 
+    <!-- ==================== JAVASCRIPT MASTER SYSTEM ==================== -->
     <script>
         const MENU_DATA = {
             veg: {
                 title: "Veg Pickles",
                 sizes: ["250gm", "500gm", "1Kg"],
                 items: [
-                    { name: "Tomato", prices: [140, 260, 480] },
-                    { name: "Usirikaya", prices: [150, 280, 520] },
-                    { name: "Kakarkaya", prices: [150, 280, 520] },
-                    { name: "Pandumirchi", prices: [140, 260, 480] },
-                    { name: "Nimakaya", prices: [130, 240, 450] },
-                    { name: "Allam", prices: [150, 280, 520] },
-                    { name: "Gongura", prices: [130, 240, 450] },
-                    { name: "Cauliflower Avakaya", prices: [160, 300, 550] },
-                    { name: "Vankay Avakaya", prices: [160, 300, 550] }
+                    { name: "Tomato", prices: [150, 300, 500] },
+                    { name: "Usirikaya", prices: [150, 300, 500] },
+                    { name: "Kakarkaya", prices: [150, 300, 500] },
+                    { name: "Pandumirchi", prices: [150, 300, 500] },
+                    { name: "Nimakaya", prices: [150, 300, 500] },
+                    { name: "Allam", prices: [150, 300, 500] },
+                    { name: "Gongura", prices: [150, 300, 500] },
+                    { name: "Cauliflower Avakaya", prices: [150, 300, 500] },
+                    { name: "Vankay Avakaya", prices: [150, 300, 500] }
                 ]
             },
             nonveg: {
                 title: "Non Veg Pickles",
                 sizes: ["250gm", "500gm", "1Kg"],
                 items: [
-                    { name: "Bhimavaram spl Royala Avakaya", prices: [350, 680, 1300] },
-                    { name: "Boneless Chicken pickle", prices: [300, 580, 1100] },
-                    { name: "Chicken pickle with bone", prices: [250, 480, 900] },
-                    { name: "Mutton pickle with bone", prices: [400, 780, 1500] },
-                    { name: "Mutton pickle with boneless", prices: [450, 880, 1700] },
-                    { name: "Gongura Boneless chicken pickle", prices: [320, 620, 1150] }
+                    { name: "Bhimavaram spl Royala Avakaya", prices: [425, 850, 1700] },
+                    { name: "Boneless Chicken pickle", prices: [375, 750, 1500] },
+                    { name: "Chicken pickle with bone", prices: [325, 650, 1300] },
+                    { name: "Mutton pickle with bone", prices: [400, 800, 1600] },
+                    { name: "Mutton pickle with boneless", prices: [500, 1000, 2000] },
+                    { name: "Gongura Boneless chicken pickle", prices: [400, 800, 1600] }
                 ]
             },
             podi: {
                 title: "Podis",
                 sizes: ["250gm", "500gm", "1Kg"],
                 items: [
-                    { name: "Karam podi", prices: [100, 190, 360] },
-                    { name: "Karivepaku podi", prices: [110, 210, 400] },
-                    { name: "Palli karampodi", prices: [110, 210, 400] },
-                    { name: "Nuvvulu Karampodi", prices: [120, 230, 440] },
-                    { name: "Avisaginjalu podi", prices: [120, 230, 440] },
-                    { name: "Homemade Garam masala podi", prices: [150, 290, 560] }
+                    { name: "Karam podi", prices: [230, 460, 920] },
+                    { name: "Karivepaku podi", prices: [230, 460, 920] },
+                    { name: "Palli karampodi", prices: [230, 460, 920] },
+                    { name: "Nuvvulu Karampodi", prices: [230, 460, 920] },
+                    { name: "Kandi karampodi", prices: [230, 460, 920] },
+                    { name: "Avisaginjalu podi", prices: [230, 460, 920] },
+                    { name: "Homemade Garam masala podi", prices: [250, 500, 1000] }
                 ]
             },
             sweet: {
                 title: "Sweets",
                 sizes: ["250gm", "500gm", "1Kg"],
                 items: [
-                    { name: "Bellam Gavvalu", prices: [95, 180, 340] },
-                    { name: "Nuvvulu Ariselu", prices: [115, 220, 420] },
-                    { name: "Kajjikayalu", prices: [105, 200, 380] },
-                    { name: "Paakundalu", prices: [105, 200, 380] },
-                    { name: "Bellam Chalividi", prices: [95, 180, 340] },
-                    { name: "Bellam Nuvvulu undalu", prices: [105, 200, 380] },
-                    { name: "Palli undalu", prices: [95, 180, 340] },
-                    { name: "Bellam Gorimitilu", prices: [95, 180, 340] },
-                    { name: "Nethi Ravva laddu", prices: [125, 240, 460] },
-                    { name: "Kobbari undalu", prices: [105, 200, 380] },
-                    { name: "Sweet Maida biscuits", prices: [85, 160, 300] },
-                    { name: "Nethi Poornam Bobatlu", prices: [135, 260, 500] },
-                    { name: "Maramaralu Laddu", prices: [75, 140, 260] },
-                    { name: "Jeedipappu Achu", prices: [185, 360, 700] }
+                    { name: "Bellam Gavvalu", prices: [150, 300, 600] },
+                    { name: "Ghee Nuvvulu Ariselu", prices: [200, 400, 800] },
+                    { name: "Kajjikayalu", prices: [180, 360, 720] },
+                    { name: "Paakundalu", prices: [180, 360, 720] },
+                    { name: "Bellam Chalividi", prices: [180, 360, 720] },
+                    { name: "Bellam Nuvvulu undalu", prices: [180, 360, 720] },
+                    { name: "Palli undalu", prices: [180, 360, 720] },
+                    { name: "Bellam Gorimitilu", prices: [160, 320, 640] },
+                    { name: "Nethi Ravva laddu", prices: [160, 320, 640] },
+                    { name: "Kobbari undalu", prices: [180, 360, 720] },
+                    { name: "Sweet Maida biscuits", prices: [160, 320, 640] },
+                    { name: "Nethi Poornam Bobatlu", prices: [210, 420, 840] },
+                    { name: "Nethi sunnundalu", prices: [190, 380, 760] },
+                    { name: "Dryfruits Laddu", prices: [320, 640, 1280] },
+                    { name: "Kaju pakam", prices: [390, 790, 1580] }
                 ]
             },
             hot: {
                 title: "Hot Snacks",
                 sizes: ["250gm", "500gm", "1Kg"],
                 items: [
-                    { name: "Corn flakes mixture", prices: [85, 160, 300] },
-                    { name: "Andhra mixture", prices: [90, 170, 320] },
-                    { name: "Atukulu mixture", prices: [85, 160, 300] },
-                    { name: "Sanna karpusa", prices: [85, 160, 300] },
-                    { name: "Karam gavvalu", prices: [90, 170, 320] },
-                    { name: "Aaku pakodi", prices: [90, 170, 320] },
-                    { name: "Masala jeedipappu", prices: [190, 370, 720] },
-                    { name: "Janthikalu", prices: [85, 160, 300] },
-                    { name: "Chekkalu", prices: [90, 170, 320] }
+                    { name: "Corn flakes mixture", prices: [160, 320, 640] },
+                    { name: "Andhra mixture", prices: [160, 320, 640] },
+                    { name: "Atukulu mixture", prices: [160, 320, 640] },
+                    { name: "Sanna karpusa", prices: [160, 320, 640] },
+                    { name: "Karam gavvalu", prices: [160, 320, 640] },
+                    { name: "Aaku pakodi", prices: [160, 320, 640] },
+                    { name: "Masala Kaju", prices: [380, 760, 1520] },
+                    { name: "Janthikalu", prices: [160, 320, 640] },
+                    { name: "Chekkalu", prices: [160, 320, 640] }
                 ]
             }
         };
