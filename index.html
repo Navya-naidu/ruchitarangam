@@ -12,12 +12,55 @@ HTML
     <h2>Our Menu</h2>
     <p>Enter the quantity you want for each item:</p>
 
-    <div class="product" data-name="Avakaya Pickle (500g)" data-price="250">
-        <h3>Avakaya Pickle (500g)</h3>
-        <p>Price: ₹250</p>
-        <label>Quantity: </label>
-        <input type="number" class="qty" value="0" min="0">
+   <h2>Our Menu</h2>
+<p>Choose your size, quantity, and place your order:</p>
+
+<!-- Product 1: Mango Pickle -->
+<div class="product" id="mango-pickle">
+    <h3>Mango Pickle</h3>
+    <!-- This dropdown lets the user choose the size -->
+    <label>Choose Size: </label>
+    <select class="product-size" onchange="updatePrice(this, 150, 280, 520)">
+        <option value="250g" data-price="150">250g - ₹150</option>
+        <option value="500g" data-price="280">500g - ₹280</option>
+        <option value="1kg" data-price="520">1kg - ₹520</option>
+    </select>
+    <br><br>
+    
+    <!-- This displays the calculated cost dynamically -->
+    <div class="price-display">Price: ₹<span class="current-price">150</span></div>
+    
+    <label>Quantity: </label>
+    <input type="number" class="qty" value="0" min="0" oninput="calculateItemTotal(this)">
+    
+    <div class="item-total-display" style="margin-top: 5px; font-weight: bold; color: green;">
+        Total: ₹<span class="item-total">0</span>
     </div>
+</div>
+
+<br>
+
+<!-- Product 2: Tomato Pickle -->
+<div class="product" id="tomato-pickle">
+    <h3>Tomato Pickle</h3>
+    <label>Choose Size: </label>
+    <select class="product-size" onchange="updatePrice(this, 120, 220, 400)">
+        <option value="250g" data-price="120">250g - ₹120</option>
+        <option value="500g" data-price="220">500g - ₹220</option>
+        <option value="1kg" data-price="400">1kg - ₹400</option>
+    </select>
+    <br><br>
+    
+    <div class="price-display">Price: ₹<span class="current-price">120</span></div>
+    
+    <label>Quantity: </label>
+    <input type="number" class="qty" value="0" min="0" oninput="calculateItemTotal(this)">
+    
+    <div class="item-total-display" style="margin-top: 5px; font-weight: bold; color: green;">
+        Total: ₹<span class="item-total">0</span>
+    </div>
+    
+</div>
 
     <div class="product" data-name="Karappodi (250g)" data-price="120">
         <h3>Karappodi (250g)</h3>
