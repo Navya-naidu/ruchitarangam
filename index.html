@@ -6,174 +6,174 @@
     <title>Ruchi Tarangam - Waves of Flavors</title>
     <style>
         :root {
-            --brand-primary: #7D141D;   /* Sophisticated Burgundy Accent */
-            --brand-dark: #2C2523;      /* Deep Charcoal */
-            --brand-gold: #C5A880;      /* Premium Gold Trim */
-            --brand-bg: #FDFBF7;        /* Elegant Light Cream Background */
-            --accent-green: #1E7E34;    /* Clean Order Processing Theme */
-            --white: #FFFFFF;
+            --primary-color: #d32f2f; 
+            --accent-color: #25D366;  
+            --bg-color: #fdfaf6;
+            --card-bg: #ffffff;
+            --text-dark: #333333;
         }
         
         * { box-sizing: border-box; }
 
         body { 
-            font-family: 'Georgia', 'Times New Roman', serif; 
+            font-family: 'Segoe UI', Arial, sans-serif; 
             margin: 0; 
             padding: 0; 
-            background-color: var(--brand-bg); 
-            color: var(--brand-dark);
+            background-color: var(--bg-color); 
+            color: var(--text-dark);
             line-height: 1.6;
-            padding-bottom: 80px;
+            padding-bottom: 40px;
         }
-
-        /* Top Business Metadata Contact Strip Header */
-        .top-info-banner {
-            background-color: var(--brand-dark);
-            color: #F3EFE9;
-            font-size: 0.8rem;
-            padding: 8px 15px;
-            text-align: center;
-            border-bottom: 1px solid var(--brand-gold);
-            font-family: 'Segoe UI', Arial, sans-serif;
-            letter-spacing: 0.5px;
-        }
-        .top-info-banner span { margin: 0 12px; display: inline-block; }
-        .top-info-banner a { color: var(--brand-gold); text-decoration: none; }
         
-        /* Main Brand Title Hero Identity Frame */
         header { 
-            background-color: var(--white); 
-            color: var(--brand-dark); 
-            padding: 35px 15px; 
+            background-color: var(--primary-color); 
+            color: white; 
+            padding: 30px 15px; 
             text-align: center;
-            border-bottom: 1px solid #EFEBE4;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .logo-placeholder {
-            width: 90px;
-            height: 90px;
-            background-color: var(--brand-bg);
+            width: 85px;
+            height: 85px;
+            background-color: #fff;
             border-radius: 50%;
-            margin: 0 auto 15px auto;
+            margin: 0 auto 10px auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--brand-primary);
+            color: var(--primary-color);
             font-weight: bold;
-            border: 2px solid var(--brand-gold);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             overflow: hidden;
-            font-family: 'Segoe UI', Arial, sans-serif;
         }
-        .logo-placeholder img { width: 100%; height: 100%; object-fit: cover; }
-        
-        header h1 { margin: 0; font-size: 2.8rem; font-weight: normal; color: var(--brand-primary); letter-spacing: 1px; }
-        header p { margin: 6px 0 0 0; font-size: 1.1rem; color: #6D6461; font-style: italic; letter-spacing: 2px; text-transform: uppercase; }
 
-        /* Elegant Sticky Navigation Bar & Toolbar Elements */
+        .logo-placeholder img { width: 100%; height: 100%; object-fit: cover; }
+        header h1 { margin: 0; font-size: 2.2rem; letter-spacing: 1px; }
+        header p { margin: 5px 0 0 0; font-size: 1.1rem; opacity: 0.95; font-style: italic; }
+
+        /* Navigation Bar Alignment Grid */
         nav {
-            background-color: var(--white);
+            background-color: #2c2c2c;
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-top: 1px solid #EFEBE4;
-            border-bottom: 2px solid var(--brand-gold);
-            padding: 10px 15px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+            padding: 8px 10px;
         }
 
         .nav-container {
-            max-width: 1150px;
+            max-width: 1100px;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
             gap: 12px;
-            align-items: center;
         }
 
         .nav-menu-wrapper { 
             display: flex; 
             flex-wrap: wrap; 
             justify-content: center;
-            gap: 5px;
+            gap: 4px;
         }
         
         .nav-link {
-            color: var(--brand-dark);
+            color: #efefef;
             text-decoration: none;
-            padding: 10px 16px;
-            font-weight: 500;
+            padding: 10px 12px;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            transition: background 0.2s;
         }
-        .nav-link:hover, .nav-link.active { color: var(--brand-primary); border-bottom: 2px solid var(--brand-primary); }
+        .nav-link:hover, .nav-link.active { background-color: var(--primary-color); color: white; }
 
-        /* Search input bar and interactive basket metrics interface controls */
         .nav-utilities {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
             width: 100%;
         }
 
-        .search-container { position: relative; flex-grow: 1; max-width: 450px; margin: 0 auto; }
+        .search-container { position: relative; flex-grow: 1; }
         .search-box {
-            padding: 10px 40px 10px 15px;
-            border-radius: 4px;
-            border: 1px solid #C5A880;
-            background-color: var(--brand-bg);
-            color: var(--brand-dark);
+            padding: 10px 35px 10px 15px;
+            border-radius: 20px;
+            border: 1px solid #555;
+            background-color: #444;
+            color: white;
             outline: none;
             width: 100%;
             font-size: 0.95rem;
-            font-family: 'Segoe UI', Arial, sans-serif;
         }
-        .search-box:focus { background-color: var(--white); border-color: var(--brand-primary); box-shadow: 0 0 5px rgba(125,20,29,0.1); }
-        .search-icon-inside { position: absolute; right: 12px; top: 10px; color: var(--brand-gold); pointer-events: none; }
+        .search-box:focus { background-color: #fff; color: #000; border-color: var(--primary-color); }
+        .search-icon-inside { position: absolute; right: 12px; top: 10px; color: #aaa; pointer-events: none; }
 
         .cart-trigger-btn {
-            background-color: var(--brand-primary);
-            color: var(--white);
+            background-color: var(--primary-color);
+            color: white;
             border: none;
-            padding: 10px 18px;
-            border-radius: 4px;
+            padding: 10px 16px;
+            border-radius: 20px;
             font-weight: bold;
             cursor: pointer;
             font-size: 0.95rem;
             white-space: nowrap;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            transition: background-color 0.2s;
         }
-        .cart-trigger-btn:hover { background-color: var(--brand-dark); }
 
-        .container { max-width: 1150px; margin: 20px auto; padding: 0 15px; }
-        .category-section { display: block; margin-bottom: 40px; }
-        
-        .category-title { 
-            color: var(--brand-primary); 
-            padding: 10px 0; 
-            margin: 25px 0 15px 0; 
-            font-size: 1.8rem;
-            font-weight: normal;
+        .container { max-width: 1100px; margin: 20px auto; padding: 0 15px; }
+
+        /* VISUAL CATEGORY IMAGE CARDS GRID (Inspired by premium e-commerce) */
+        .visual-categories {
+            margin: 20px 0 40px 0;
+        }
+        .visual-categories h2 {
+            font-size: 1.5rem;
             text-align: center;
-            letter-spacing: 1px;
-            position: relative;
+            margin-bottom: 20px;
+            color: #222;
         }
-        .category-title::after {
-            content: '';
+        .category-image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .category-image-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            cursor: pointer;
+            text-align: center;
+            border: 1px solid #eee;
+            transition: transform 0.2s;
+        }
+        .category-image-card:hover { transform: translateY(-3px); }
+        .category-image-card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
             display: block;
-            width: 60px;
-            height: 2px;
-            background: var(--brand-gold);
-            margin: 8px auto 0 auto;
+        }
+        .category-image-card .card-label {
+            padding: 10px;
+            font-weight: bold;
+            color: #2c2c2c;
+            font-size: 0.95rem;
         }
 
-        /* Clean Premium Grid System Elements Layout */
+        .category-section { display: block; margin-bottom: 40px; }
+        .category-title { 
+            color: #111; 
+            padding: 8px 0; 
+            margin: 20px 0 15px 0; 
+            font-size: 1.6rem;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        /* Product Card Grid */
         .product-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
@@ -181,29 +181,34 @@
         }
         
         .product-card { 
-            background: var(--white); 
-            padding: 24px; 
-            border-radius: 4px; 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02); 
-            border: 1px solid #EFEBE4;
+            background: var(--card-bg); 
+            padding: 16px; 
+            border-radius: 12px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04); 
+            border: 1px solid #eaeaea;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .product-card:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(197,168,128,0.15); border-color: var(--brand-gold); }
-        .product-card h3 { margin: 0 0 15px 0; font-size: 1.2rem; font-weight: normal; color: var(--brand-dark); line-height: 1.4; }
         
-        .selector-group { display: flex; gap: 10px; margin-bottom: 15px; align-items: center; }
+        /* Product Thumbnail Styling Slot */
+        .product-thumb {
+            width: 100%;
+            height: 160px;
+            background-color: #eee;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .product-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+        .product-card h3 { margin: 0 0 10px 0; font-size: 1.2rem; color: #222; }
+        .selector-group { display: flex; gap: 10px; margin-bottom: 12px; align-items: center; }
         select, input[type="number"], input[type="text"], textarea { 
-            padding: 10px; 
-            border: 1px solid #D1C9BC; 
-            border-radius: 4px; 
-            font-size: 0.95rem; 
-            outline: none; 
-            background-color: var(--brand-bg); 
-            color: var(--brand-dark);
-            font-family: 'Segoe UI', Arial, sans-serif;
+            padding: 12px; border: 1px solid #cccccc; border-radius: 6px; font-size: 1rem; outline: none; background-color: #fafafa; 
         }
         select { flex: 2; width: 100%; cursor: pointer; }
         input[type="number"] { flex: 1; width: 60px; text-align: center; }
@@ -214,104 +219,96 @@
             align-items: center;
             font-weight: bold;
             font-size: 1.1rem;
-            border-top: 1px solid #F4F1EA;
-            padding-top: 12px;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            border-top: 1px dashed #e2e2e2;
+            padding-top: 10px;
         }
-        .unit-price { color: #7A716E; font-size: 0.9rem; font-weight: normal; }
-        .total-item-price { color: var(--brand-primary); }
+        .unit-price { color: #555555; font-size: 0.95rem; font-weight: normal; }
+        .total-item-price { color: var(--primary-color); }
 
-        /* Slideout Basket Menu Draw Panel Elements */
+        /* Slideout Cart Drawer Layout Rules */
         .cart-drawer-overlay {
             display: none;
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.4);
+            background: rgba(0,0,0,0.5);
             z-index: 5000;
         }
         .cart-drawer {
             position: fixed;
             top: 0; right: -100%;
-            width: 100%; max-width: 400px; height: 100%;
-            background: var(--white);
-            box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+            width: 100%; max-width: 380px; height: 100%;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.2);
             z-index: 5001;
-            transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: right 0.3s ease;
             display: flex;
             flex-direction: column;
         }
         .cart-drawer.open { right: 0; }
-        .cart-header { background: var(--brand-dark); color: var(--white); padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--brand-gold); }
-        .cart-header h2 { margin: 0; font-size: 1.3rem; font-weight: normal; font-family: 'Segoe UI', Arial, sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
-        .close-cart-btn { background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; }
-        
-        .cart-items-list { padding: 20px; overflow-y: auto; flex-grow: 1; background: var(--brand-bg); }
-        .cart-row-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #EFEBE4; font-size: 0.95rem; }
-        
-        .cart-footer { padding: 20px; border-top: 1px solid #EFEBE4; background: var(--white); }
-        .cart-total-row { display: flex; justify-content: space-between; font-weight: bold; font-size: 1.2rem; margin-bottom: 15px; color: var(--brand-dark); font-family: 'Segoe UI', Arial, sans-serif; }
-        .btn-checkout-scroll { width: 100%; background: var(--brand-primary); color: var(--white); border: none; padding: 14px; font-size: 1rem; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; font-family: 'Segoe UI', Arial, sans-serif; }
-        .btn-checkout-scroll:hover { background-color: var(--brand-dark); }
+        .cart-header { background: #2c2c2c; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .cart-header h2 { margin: 0; font-size: 1.25rem; }
+        .close-cart-btn { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+        .cart-items-list { padding: 15px; overflow-y: auto; flex-grow: 1; }
+        .cart-row-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; font-size: 0.95rem; }
+        .cart-footer { padding: 15px; border-top: 2px solid #eee; background: #fafafa; }
+        .cart-total-row { display: flex; justify-content: space-between; font-weight: bold; font-size: 1.15rem; margin-bottom: 12px; }
+        .btn-checkout-scroll { width: 100%; background: var(--primary-color); color: white; border: none; padding: 14px; font-size: 1.05rem; font-weight: bold; border-radius: 6px; cursor: pointer; }
 
-        /* Unified Form Address Input Architecture */
+        /* Address Checkout Layout */
         .order-section { 
-            background: var(--white); padding: 30px 20px; border-radius: 4px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); 
-            margin: 40px auto; max-width: 650px; border: 1px solid #EFEBE4; border-top: 3px solid var(--brand-primary);
+            background: white; padding: 25px 15px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            margin: 40px auto; max-width: 620px; border: 1px solid #efefef;
         }
-        .order-section h2 { font-size: 1.6rem; margin-top: 0; margin-bottom: 20px; font-weight: normal; color: var(--brand-primary); text-align: center; }
-        .form-group { margin-bottom: 18px; }
-        .form-group label { display: block; margin-bottom: 6px; font-weight: 600; color: #4A4240; font-size: 0.95rem; font-family: 'Segoe UI', Arial, sans-serif; }
-        .form-group label span.req { color: var(--brand-primary); }
+        .order-section h2 { font-size: 1.4rem; margin-top: 0; margin-bottom: 15px; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; margin-bottom: 6px; font-weight: bold; color: #444; font-size: 0.95rem; }
+        .form-group label span.req { color: var(--primary-color); }
         .form-group input, .form-group select, .form-group textarea { width: 100%; display: block; }
-        .form-group input[disabled] { background-color: #EFEBE4; color: #7A716E; cursor: not-allowed; }
-        
-        .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; background-color: var(--accent-green); color: var(--white); border: none; padding: 16px; font-size: 1.2rem; font-weight: bold; border-radius: 4px; cursor: pointer; font-family: 'Segoe UI', Arial, sans-serif; text-transform: uppercase; letter-spacing: 0.5px; transition: background-color 0.2s; }
-        .btn-whatsapp:hover { background-color: #145A25; }
+        .form-group input[disabled] { background-color: #eee; color: #666; cursor: not-allowed; }
+        .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; background-color: var(--accent-color); color: white; border: none; padding: 15px; font-size: 1.15rem; font-weight: bold; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25); }
 
-        /* Premium Bottom Footer Branding Area */
+        /* COMPREHENSIVE BUSINESS FOOTER */
         footer {
-            background-color: var(--brand-dark);
-            color: #A39A96;
-            padding: 30px 20px;
-            text-align: center;
-            font-size: 0.9rem;
-            border-top: 3px solid var(--brand-gold);
-            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #2c2c2c;
+            color: #ddd;
+            padding: 35px 20px;
+            text-align: left;
+            font-size: 0.95rem;
+            margin-top: 60px;
+            border-top: 4px solid var(--primary-color);
         }
-        footer p { margin: 5px 0; }
-        footer .footer-brand { color: var(--white); font-size: 1.2rem; margin-bottom: 10px; font-family: 'Georgia', serif; }
+        .footer-container { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 25px; }
+        .footer-brand h3 { color: white; margin: 0 0 5px 0; font-size: 1.4rem; }
+        .footer-brand p { margin: 0; font-style: italic; color: #aaa; }
+        .footer-info h4 { color: white; margin: 0 0 10px 0; font-size: 1.1rem; border-left: 3px solid var(--primary-color); padding-left: 8px; }
+        .footer-info p { margin: 6px 0; }
+        .footer-info a { color: #ffeb3b; text-decoration: none; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #444; font-size: 0.85rem; color: #888; }
 
-        /* Media Query Layout Enhancements for Responsive Width Parameters */
-        @media (min-width: 768px) {
-            .nav-container { flex-direction: row; justify-content: space-between; }
-            .nav-utilities { width: auto; justify-content: flex-end; flex-grow: 1; }
-            .search-container { margin: 0; width: 260px; }
-            .order-section { padding: 40px; }
+        @media (min-width: 650px) {
+            .nav-container { flex-direction: row; align-items: center; }
+            .nav-utilities { width: auto; justify-content: flex-end; }
+            .search-box { width: 180px; }
+            .category-image-grid { grid-template-columns: repeat(5, 1fr); gap: 20px; }
+            .footer-container { flex-direction: row; justify-content: space-between; }
+            .footer-brand, .footer-info { flex: 1; }
         }
     </style>
 </head>
 <body>
 
-    <!-- TOP BUSINESS METADATA CONTACT BANNER STRIP -->
-    <div class="top-info-banner">
-        <span>📞 Phone: 9533338836</span>
-        <span>✉️ Email: <a href="mailto:ruchitarangam.official@gmail.com">ruchitarangam.official@gmail.com</a></span>
-        <span>📍 Beeramguda, Sangareddy, Telangana</span>
-    </div>
-
     <header>
         <div class="logo-placeholder">
-            <img src="logo.png" alt="Ruchi Tarangam Logo" onerror="this.style.display='none'; this.parentNode.innerText='RT'">
+            <img src="logo.png" alt="Ruchi Tarangam Logo" onerror="this.style.display='none'; this.parentNode.innerText='Logo Area'">
         </div>
         <h1>Ruchi Tarangam</h1>
         <p>Waves of Flavors</p>
     </header>
 
-    <!-- PREMIUM HIGH-ACCESSIBILITY TOOLBAR UTILITY GRID NAVIGATION -->
     <nav>
         <div class="nav-container">
             <div class="nav-menu-wrapper">
-                <div class="nav-link active" onclick="executeCategoryFilter('all', this)">Home</div>
+                <div class="nav-link active" id="nav-home-btn" onclick="executeCategoryFilter('all', this)">Home</div>
                 <div class="nav-link" onclick="executeCategoryFilter('veg-pickles', this)">Veg Pickles</div>
                 <div class="nav-link" onclick="executeCategoryFilter('nonveg-pickles', this)">Non-Veg Pickles</div>
                 <div class="nav-link" onclick="executeCategoryFilter('podi', this)">Podis</div>
@@ -321,7 +318,7 @@
             
             <div class="nav-utilities">
                 <div class="search-container">
-                    <input type="text" class="search-box" id="global-search-input" placeholder="Search our delicacies..." oninput="triggerLiveSearchFilter()">
+                    <input type="text" class="search-box" id="global-search-input" placeholder="Search products..." oninput="triggerLiveSearchFilter()">
                     <span class="search-icon-inside">🔍</span>
                 </div>
                 <button class="cart-trigger-btn" onclick="toggleCartDrawer(true)">🛒 Cart (<span id="cart-counter-val">0</span>)</button>
@@ -331,37 +328,63 @@
 
     <div class="container">
 
-        <!-- ==================== CATEGORY VEG PICKLES BLOCK ==================== -->
+        <div class="visual-categories" id="visual-categories-panel">
+            <h2>Shop by Category</h2>
+            <div class="category-image-grid">
+                
+                <div class="category-image-card" onclick="executeCategoryFilter('veg-pickles', null)">
+                    <img src="veg-pickles.jpg" alt="Veg Pickles" onerror="this.src='https://placehold.co/300x200?text=Veg+Pickles'">
+                    <div class="card-label">Veg Pickles</div>
+                </div>
+
+                <div class="category-image-card" onclick="executeCategoryFilter('nonveg-pickles', null)">
+                    <img src="nonveg-pickles.jpg" alt="Non-Veg Pickles" onerror="this.src='https://placehold.co/300x200?text=Non-Veg+Pickles'">
+                    <div class="card-label">Non-Veg Pickles</div>
+                </div>
+
+                <div class="category-image-card" onclick="executeCategoryFilter('podi', null)">
+                    <img src="podis.jpg" alt="Podis" onerror="this.src='https://placehold.co/300x200?text=Podis'">
+                    <div class="card-label">Flavorful Podis</div>
+                </div>
+
+                <div class="category-image-card" onclick="executeCategoryFilter('sweet', null)">
+                    <img src="sweets.jpg" alt="Sweets" onerror="this.src='https://placehold.co/300x200?text=Sweets'">
+                    <div class="card-label">Traditional Sweets</div>
+                </div>
+
+                <div class="category-image-card" onclick="executeCategoryFilter('hot', null)">
+                    <img src="snacks.jpg" alt="Snacks" onerror="this.src='https://placehold.co/300x200?text=Snacks'">
+                    <div class="card-label">Hot Snacks</div>
+                </div>
+
+            </div>
+        </div>
+
         <div class="category-section filter-veg-pickles">
-            <div class="category-title">Veg Pickles</div>
+            <div class="category-title">🌶️ Veg Pickles</div>
             <div class="product-grid" id="veg-container"></div>
         </div>
 
-        <!-- ==================== CATEGORY NON-VEG PICKLES BLOCK ==================== -->
         <div class="category-section filter-nonveg-pickles">
-            <div class="category-title">Non-Veg Pickles</div>
+            <div class="category-title">🍗 Non-Veg Pickles</div>
             <div class="product-grid" id="nonveg-container"></div>
         </div>
 
-        <!-- ==================== CATEGORY PODIS BLOCK ==================== -->
         <div class="category-section filter-podi">
-            <div class="category-title">Podis</div>
+            <div class="category-title">🌾 Flavorful Podis</div>
             <div class="product-grid" id="podi-container"></div>
         </div>
 
-        <!-- ==================== CATEGORY SWEETS BLOCK ==================== -->
         <div class="category-section filter-sweet">
-            <div class="category-title">Sweets</div>
+            <div class="category-title">🍯 Traditional Sweets</div>
             <div class="product-grid" id="sweet-container"></div>
         </div>
 
-        <!-- ==================== CATEGORY HOT SNACKS BLOCK ==================== -->
         <div class="category-section filter-hot">
-            <div class="category-title">Snacks</div>
+            <div class="category-title">🔥 Hot Snacks</div>
             <div class="product-grid" id="hot-container"></div>
         </div>
 
-        <!-- ==================== HIERARCHICAL ADDRESS VERIFICATION AREA ==================== -->
         <div class="order-section" id="checkout-form">
             <h2>Delivery Address Details</h2>
             
@@ -379,8 +402,8 @@
                 <label for="addr-state">State <span class="req">*</span></label>
                 <select id="addr-state">
                     <option value="">-- Choose State --</option>
-                    <option value="Andhra Pradesh">Andhra Pradesh</option>
                     <option value="Telangana">Telangana</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
                     <option value="Karnataka">Karnataka</option>
                     <option value="Tamil Nadu">Tamil Nadu</option>
                     <option value="Kerala">Kerala</option>
@@ -419,7 +442,6 @@
         </div>
     </div>
 
-    <!-- VIEWABLE SLIDEOUT CART DRAWER MODAL -->
     <div class="cart-drawer-overlay" id="cart-overlay-node" onclick="toggleCartDrawer(false)"></div>
     <div class="cart-drawer" id="cart-drawer-node">
         <div class="cart-header">
@@ -436,115 +458,160 @@
         </div>
     </div>
 
-    <!-- BRAND VISUAL BACKGROUND FOOTER MATRIX -->
     <footer>
-        <div class="footer-brand">Ruchi Tarangam</div>
-        <p>Plot no:373, Lakshmi Sai meadows colony, Road no:7, Beeramguda, Sangareddy district, Telangana</p>
-        <p>© 2026 Ruchi Tarangam. Crafted with Traditional Love.</p>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>Ruchi Tarangam</h3>
+                <p>Waves of Flavors</p>
+                <p style="margin-top: 15px; color: #aaa; font-size: 0.85rem;">Delicious homemade pickles, rich aromatic podis, traditional sweets, and crispy hot snacks delivered right to your doorstep.</p>
+            </div>
+            <div class="footer-info">
+                <h4>Contact Details</h4>
+                <p><strong>Phone:</strong> +91 9533338836</p>
+                <p><strong>Email:</strong> <a href="mailto:ruchitarangam.official@gmail.com">ruchitarangam.official@gmail.com</a></p>
+            </div>
+            <div class="footer-info">
+                <h4>Physical Address</h4>
+                <p>Plot no:373, Lakshmi Sai meadows colony,</p>
+                <p>Road no:7, Beeramguda, Sangareddy district,</p>
+                <p>Telangana, India.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Ruchi Tarangam. All Rights Reserved. Created Serverless via GitHub Pages.
+        </div>
     </footer>
 
-    <!-- ==================== JAVASCRIPT MASTER SYSTEM ==================== -->
     <script>
         const MENU_DATA = {
             veg: {
                 title: "Veg Pickles",
                 sizes: ["250gm", "500gm", "1Kg"],
                 items: [
-                    { name: "Tomato", prices: [150, 300, 500] },
-                    { name: "Usirikaya", prices: [150, 300, 500] },
-                    { name: "Kakarkaya", prices: [150, 300, 500] },
-                    { name: "Pandumirchi", prices: [150, 300, 500] },
-                    { name: "Nimakaya", prices: [150, 300, 500] },
-                    { name: "Allam", prices: [150, 300, 500] },
-                    { name: "Gongura", prices: [150, 300, 500] },
-                    { name: "Cauliflower Avakaya", prices: [150, 300, 500] },
-                    { name: "Vankay Avakaya", prices: [150, 300, 500] }
+                    { name: "Tomato", image: "tomato.jpg", prices: [150, 300, 500] },
+                    { name: "Usirikaya", image: "usirikaya.jpg", prices: [150, 300, 500] },
+                    { name: "Kakarkaya", image: "kakarkaya.jpg", prices: [150, 300, 500] },
+                    { name: "Pandumirchi", image: "pandumirchi.jpg", prices: [150, 300, 500] },
+                    { name: "Nimakaya", image: "nimakaya.jpg", prices: [150, 300, 500] },
+                    { name: "Allam", image: "allam.jpg", prices: [150, 300, 500] },
+                    { name: "Gongura", image: "gongura.jpg", prices: [150, 300, 500] },
+                    { name: "Cauliflower Avakaya", image: "cauliflower.jpg", prices: [150, 300, 500] },
+                    { name: "Vankay Avakaya", image: "vankay.jpg", prices: [150, 300, 500] }
                 ]
             },
             nonveg: {
                 title: "Non Veg Pickles",
                 sizes: ["250gm", "500gm", "1Kg"],
                 items: [
-                    { name: "Bhimavaram spl Royala Avakaya", prices: [425, 850, 1700] },
-                    { name: "Boneless Chicken pickle", prices: [375, 750, 1500] },
-                    { name: "Chicken pickle with bone", prices: [325, 650, 1300] },
-                    { name: "Mutton pickle with bone", prices: [400, 800, 1600] },
-                    { name: "Mutton pickle with boneless", prices: [500, 1000, 2000] },
-                    { name: "Gongura Boneless chicken pickle", prices: [400, 800, 1600] }
+                    { name: "Bhimavaram spl Royala Avakaya", image: "royala-avakaya.jpg", prices: [425, 850, 1700] },
+                    { name: "Boneless Chicken pickle", image: "boneless-chicken.jpg", prices: [375, 750, 1500] },
+                    { name: "Chicken pickle with bone", image: "chicken-with-bone.jpg", prices: [325, 650, 1300] },
+                    { name: "Mutton pickle with bone", image: "mutton-with-bone.jpg", prices: [400, 800, 1600] },
+                    { name: "Mutton pickle with boneless", image: "boneless-mutton.jpg", prices: [500, 1000, 2000] },
+                    { name: "Gongura Boneless chicken pickle", image: "gongura-chicken.jpg", prices: [400, 800, 1600] }
                 ]
             },
             podi: {
                 title: "Podis",
                 sizes: ["250gm", "500gm", "1Kg"],
                 items: [
-                    { name: "Karam podi", prices: [230, 460, 920] },
-                    { name: "Karivepaku podi", prices: [230, 460, 920] },
-                    { name: "Palli karampodi", prices: [230, 460, 920] },
-                    { name: "Nuvvulu Karampodi", prices: [230, 460, 920] },
-                    { name: "Kandi karampodi", prices: [230, 460, 920] },
-                    { name: "Avisaginjalu podi", prices: [230, 460, 920] },
-                    { name: "Homemade Garam masala podi", prices: [250, 500, 1000] }
+                    { name: "Karam podi", image: "karam-podi.jpg", prices: [230, 460, 920] },
+                    { name: "Karivepaku podi", image: "karivepaku-podi.jpg", prices: [230, 460, 920] },
+                    { name: "Palli karampodi", image: "palli-podi.jpg", prices: [230, 460, 920] },
+                    { name: "Nuvvulu Karampodi", image: "nuvvulu-podi.jpg", prices: [230, 460, 920] },
+                    { name: "Kandi karampodi", image: "kandi-podi.jpg", prices: [230, 460, 920] },
+                    { name: "Avisaginjalu podi", image: "avisaginjalu-podi.jpg", prices: [230, 460, 920] },
+                    { name: "Homemade Garam masala podi", image: "garam-masala.jpg", prices: [250, 500, 1000] }
                 ]
             },
             sweet: {
                 title: "Sweets",
                 sizes: ["250gm", "500gm", "1Kg"],
                 items: [
-                    { name: "Bellam Gavvalu", prices: [150, 300, 600] },
-                    { name: "Ghee Nuvvulu Ariselu", prices: [200, 400, 800] },
-                    { name: "Kajjikayalu", prices: [180, 360, 720] },
-                    { name: "Paakundalu", prices: [180, 360, 720] },
-                    { name: "Bellam Chalividi", prices: [180, 360, 720] },
-                    { name: "Bellam Nuvvulu undalu", prices: [180, 360, 720] },
-                    { name: "Palli undalu", prices: [180, 360, 720] },
-                    { name: "Bellam Gorimitilu", prices: [160, 320, 640] },
-                    { name: "Nethi Ravva laddu", prices: [160, 320, 640] },
-                    { name: "Kobbari undalu", prices: [180, 360, 720] },
-                    { name: "Sweet Maida biscuits", prices: [160, 320, 640] },
-                    { name: "Nethi Poornam Bobatlu", prices: [210, 420, 840] },
-                    { name: "Nethi sunnundalu", prices: [190, 380, 760] },
-                    { name: "Dryfruits Laddu", prices: [320, 640, 1280] },
-                    { name: "Kaju pakam", prices: [390, 790, 1580] }
+                    { name: "Bellam Gavvalu", image: "gavvalu.jpg", prices: [150, 300, 600] },
+                    { name: "Ghee Nuvvulu Ariselu", image: "ariselu.jpg", prices: [200, 400, 800] },
+                    { name: "Kajjikayalu", image: "kajjikayalu.jpg", prices: [180, 360, 720] },
+                    { name: "Paakundalu", image: "paakundalu.jpg", prices: [180, 360, 720] },
+                    { name: "Bellam Chalividi", image: "chalividi.jpg", prices: [180, 360, 720] },
+                    { name: "Bellam Nuvvulu undalu", image: "nuvvulu-undalu.jpg", prices: [180, 360, 720] },
+                    { name: "Palli undalu", image: "palli-undalu.jpg", prices: [180, 360, 720] },
+                    { name: "Bellam Gorimitilu", image: "gorimitilu.jpg", prices: [160, 320, 640] },
+                    { name: "Nethi Ravva laddu", image: "ravva-laddu.jpg", prices: [160, 320, 640] },
+                    { name: "Kobbari undalu", image: "kobbari-undalu.jpg", prices: [180, 360, 720] },
+                    { name: "Sweet Maida biscuits", image: "maida-biscuits.jpg", prices: [160, 320, 640] },
+                    { name: "Nethi Poornam Bobatlu", image: "bobatlu.jpg", prices: [210, 420, 840] },
+                    { name: "Nethi sunnundalu", image: "sunnundalu.jpg", prices: [190, 380, 760] },
+                    { name: "Dryfruits Laddu", image: "dryfruit-laddu.jpg", prices: [320, 640, 1280] },
+                    { name: "Kaju pakam", image: "kaju-pakam.jpg", prices: [390, 790, 1580] }
                 ]
             },
             hot: {
                 title: "Hot Snacks",
                 sizes: ["250gm", "500gm", "1Kg"],
                 items: [
-                    { name: "Corn flakes mixture", prices: [160, 320, 640] },
-                    { name: "Andhra mixture", prices: [160, 320, 640] },
-                    { name: "Atukulu mixture", prices: [160, 320, 640] },
-                    { name: "Sanna karpusa", prices: [160, 320, 640] },
-                    { name: "Karam gavvalu", prices: [160, 320, 640] },
-                    { name: "Aaku pakodi", prices: [160, 320, 640] },
-                    { name: "Masala Kaju", prices: [380, 760, 1520] },
-                    { name: "Janthikalu", prices: [160, 320, 640] },
-                    { name: "Chekkalu", prices: [160, 320, 640] }
+                    { name: "Corn flakes mixture", image: "cornflakes-mixture.jpg", prices: [160, 320, 640] },
+                    { name: "Andhra mixture", image: "andhra-mixture.jpg", prices: [160, 320, 640] },
+                    { name: "Atukulu mixture", image: "atukulu-mixture.jpg", prices: [160, 320, 640] },
+                    { name: "Sanna karpusa", image: "sanna-karpusa.jpg", prices: [160, 320, 640] },
+                    { name: "Karam gavvalu", image: "karam-gavvalu.jpg", prices: [160, 320, 640] },
+                    { name: "Aaku pakodi", image: "aaku-pakodi.jpg", prices: [160, 320, 640] },
+                    { name: "Masala Kaju", image: "masala-kaju.jpg", prices: [380, 760, 1520] },
+                    { name: "Janthikalu", image: "janthikalu.jpg", prices: [160, 320, 640] },
+                    { name: "Chekkalu", image: "chekkalu.jpg", prices: [160, 320, 640] }
                 ]
             }
         };
 
+        // Smooth category navigation filtering configuration
         function executeCategoryFilter(targetCategory, triggerElement) {
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => link.classList.remove('active'));
-            triggerElement.classList.add('active');
+            
+            // Highlight explicit link if clicked from top menu
+            if (triggerElement) {
+                triggerElement.classList.add('active');
+            } else if (targetCategory === 'all') {
+                document.getElementById('nav-home-btn').classList.add('active');
+            }
 
+            const visualPanel = document.getElementById('visual-categories-panel');
             const sectionBlocks = document.querySelectorAll('.category-section');
-            sectionBlocks.forEach(block => {
-                if (targetCategory === 'all') {
-                    block.style.display = 'block'; 
-                } else {
-                    block.classList.contains(`filter-${targetCategory}`) ? block.style.display = 'block' : block.style.display = 'none';
-                }
-            });
+
+            if (targetCategory === 'all') {
+                visualPanel.style.display = 'block';
+                sectionBlocks.forEach(b => b.style.display = 'block');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                // If specific image clicked, hide top card selector and focus only on chosen collection
+                visualPanel.style.display = 'none';
+                sectionBlocks.forEach(block => {
+                    if (block.classList.contains(`filter-${targetCategory}`)) {
+                        block.style.display = 'block';
+                        block.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    } else {
+                        block.style.display = 'none';
+                    }
+                });
+            }
         }
 
         function triggerLiveSearchFilter() {
             const searchVal = document.getElementById('global-search-input').value.toLowerCase().trim();
             const allProductCards = document.querySelectorAll('.product-card');
+            
+            // If user searches, hide category selector grid automatically to save scrolling space
+            const visualPanel = document.getElementById('visual-categories-panel');
+            if (searchVal !== "") { visualPanel.style.display = 'none'; } 
+            else if (document.getElementById('nav-home-btn').classList.contains('active')) { visualPanel.style.display = 'block'; }
+
             allProductCards.forEach(card => {
                 const nameText = card.querySelector('h3').innerText.toLowerCase();
-                card.style.display = nameText.includes(searchVal) ? 'flex' : 'none';
+                if(nameText.includes(searchVal)) {
+                    card.style.display = 'flex';
+                    card.parentNode.parentNode.style.display = 'block'; // Make sure parent section stays open
+                } else {
+                    card.style.display = 'none';
+                }
             });
         }
 
@@ -578,16 +645,23 @@
                     });
                     
                     itemCardDiv.innerHTML = `
-                        <h3>${itemRecord.name}</h3>
-                        <div class="selector-group">
-                            <select id="size-${runningCardId}" onchange="recalculateProductMetrics(${runningCardId})">
-                                ${selectorOptionsMarkup}
-                            </select>
-                            <input type="number" id="qty-${runningCardId}" value="0" min="0" onchange="recalculateProductMetrics(${runningCardId})">
+                        <div>
+                            <div class="product-thumb">
+                                <img src="${itemRecord.image}" alt="${itemRecord.name}" onerror="this.src='https://placehold.co/150x100?text=${itemRecord.name}'">
+                            </div>
+                            <h3>${itemRecord.name}</h3>
                         </div>
-                        <div class="price-row">
-                            <span class="unit-price" id="unit-p-${runningCardId}">Select size...</span>
-                            <span class="total-item-price">Total: ₹<span id="total-p-${runningCardId}" class="calculated-item-totals">0</span></span>
+                        <div>
+                            <div class="selector-group">
+                                <select id="size-${runningCardId}" onchange="recalculateProductMetrics(${runningCardId})">
+                                    ${selectorOptionsMarkup}
+                                </select>
+                                <input type="number" id="qty-${runningCardId}" value="0" min="0" onchange="recalculateProductMetrics(${runningCardId})">
+                            </div>
+                            <div class="price-row">
+                                <span class="unit-price" id="unit-p-${runningCardId}">Select size...</span>
+                                <span class="total-item-price">Total: ₹<span id="total-p-${runningCardId}" class="calculated-item-totals">0</span></span>
+                            </div>
                         </div>
                     `;
                     domContainer.appendChild(itemCardDiv);
@@ -682,7 +756,7 @@
         }
 
         function dispatchWhatsAppOrderPipeline() {
-            const officialBusinessPhoneNum = "919533338836"; 
+            const officialBusinessPhoneNum = "919533338836"; // Updated with your new destination line!
             
             const cName = document.getElementById('addr-name').value.trim();
             const cState = document.getElementById('addr-state').value;
@@ -693,7 +767,7 @@
             const cPhone = document.getElementById('addr-phone').value.trim();
             
             if (!cName || !cState || !cStreet || !cCity || !cPincode || !cPhone) {
-                alert("Please complete all required address elements marked with an asterisk (*) before submitting.");
+                alert("Please fill out all required address fields marked with an asterisk (*) before ordering.");
                 return;
             }
             
@@ -721,7 +795,7 @@
                         const individualLineSummedPrice = individualItemCost * extractedQty;
                         overallCalculatedInvoiceAmount += individualLineSummedPrice;
                         
-                        finalReceiptMessageText += `  • ${itemRecord.name} (${sizeSelector.value}) x ${extractedQty} = ₹${individualLineSummedPrice}\n`;
+                        finalReceiptMessageText += `  • ${itemRecord.name} (${sizeSelector.value}) x ${extractedQty} = ₹${functionalCardIndexCounter}\n`;
                     }
                 });
             }
