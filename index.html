@@ -1,21 +1,181 @@
 HTML
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Ruchi Tarangam</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruchi Tarangam | Order via WhatsApp</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #fcf8f2; color: #333; }
-        header { background-color: #d32f2f; color: white; padding: 20px; text-align: center; border-radius: 8px; }
-        h2 { color: #d32f2f; margin-top: 30px; border-bottom: 2px solid #d32f2f; padding-bottom: 5px; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 15px; }
-        .product { background: white; padding: 15px; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .product h3 { margin: 0 0 10px 0; font-size: 1.1rem; }
-        select, input { padding: 6px; font-size: 1rem; border-radius: 4px; border: 1px solid #ccc; margin-left: 5px; }
-        .qty { width: 50px; }
-        .price-display { font-weight: bold; color: #d32f2f; }
-        .grand-total-box { background: #fff3e0; padding: 15px; border-radius: 8px; font-size: 1.3rem; font-weight: bold; margin-top: 30px; border: 1px solid #ffb74d; text-align: right; }
-        .form-section { background: white; padding: 20px; border-radius: 8px; margin-top: 20px; border: 1px solid #ddd; }
-        textarea, input[type="text"] { width: 100%; padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box; }
+        :root {
+            --primary-color: #d32f2f; /* Spicy Indian Red */
+            --accent-color: #25D366;  /* WhatsApp Green */
+            --bg-color: #fdfaf6;
+            --card-bg: #ffffff;
+            --text-dark: #333333;
+        }
+        
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--bg-color); 
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        header { 
+            background-color: var(--primary-color); 
+            color: white; 
+            padding: 40px 20px; 
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        header h1 { margin: 0; font-size: 2.8rem; letter-spacing: 1px; }
+        header p { margin: 10px 0 0 0; font-size: 1.2rem; opacity: 0.9; }
+        
+        .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+        
+        /* Category Header Styles */
+        .category-title { 
+            background-color: #f3e5f5; 
+            color: #4a148c; 
+            padding: 12px 20px; 
+            margin: 40px 0 20px 0; 
+            border-radius: 6px; 
+            font-size: 1.6rem;
+            border-left: 6px solid #8e24aa;
+            text-align: left;
+        }
+        .veg-title { background-color: #e8f5e9; color: #1b5e20; border-left-color: #4caf50; }
+        .nonveg-title { background-color: #ffebee; color: #b71c1c; border-left-color: #f44336; }
+        .podi-title { background-color: #fff3e0; color: #e65100; border-left-color: #ff9800; }
+        .sweet-title { background-color: #fce4ec; color: #880e4f; border-left-color: #e91e63; }
+        .hot-title { background-color: #e1f5fe; color: #01579b; border-left-color: #03a9f4; }
+
+        /* Product Grid and Card Layout */
+        .product-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
+        }
+        
+        .product-card { 
+            background: var(--card-bg); 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.04); 
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s;
+        }
+        .product-card:hover { transform: translateY(-3px); }
+        
+        .product-card h3 { margin: 0 0 15px 0; font-size: 1.25rem; color: #222; text-align: left; }
+        
+        .selector-group { 
+            display: flex; 
+            gap: 10px; 
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        select, input[type="number"] { 
+            padding: 8px; 
+            border: 1px solid #ccc; 
+            border-radius: 6px; 
+            font-size: 0.95rem;
+            outline: none;
+        }
+        
+        select { flex: 2; width: 100%; cursor: pointer; }
+        input[type="number"] { flex: 1; width: 50px; text-align: center; }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-top: 1px dashed #ddd;
+            padding-top: 10px;
+            margin-top: 5px;
+        }
+        
+        .unit-price { color: #666; font-size: 0.9rem; font-weight: normal; }
+        .total-item-price { color: var(--primary-color); }
+
+        /* Delivery Sticky Footer Bar */
+        .sticky-summary {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 15px 20px;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 12px 12px 0 0;
+            z-index: 100;
+        }
+        .summary-text { font-size: 1.3rem; font-weight: bold; }
+        .summary-text span { color: var(--primary-color); }
+        .btn-scroll {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        /* Order Form Area */
+        .order-section { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06); 
+            margin: 50px auto 120px auto;
+            max-width: 600px;
+            text-align: left;
+        }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #444; }
+        .form-group input, .form-group textarea { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #ccc; 
+            border-radius: 6px; 
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        
+        .btn-whatsapp { 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%; 
+            background-color: var(--accent-color); 
+            color: white; 
+            border: none; 
+            padding: 15px; 
+            font-size: 1.3rem; 
+            font-weight: bold; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+        }
+        .btn-whatsapp:hover { background-color: #1ebe53; }
     </style>
 </head>
 <body>
@@ -25,254 +185,278 @@ HTML
         <p>Homemade Pickles, Flavorful Podis & Crispy Snacks</p>
     </header>
 
-    <!-- ================= VEG PICKLES SECTION ================= -->
-    <h2>🟢 Veg Pickles</h2>
-    <div class="product-grid">
-        <!-- Tamato -->
-        <div class="product" data-name="Tamato Pickle">
-            <h3>Tamato Pickle</h3>
-            <select class="weight-select" onchange="updatePrice(this)">
-                <option value="120" data-weight="250gm">250gm - ₹120</option>
-                <option value="220" data-weight="500gm">500gm - ₹220</option>
-                <option value="400" data-weight="1Kg">1Kg - ₹400</option>
-            </select>
-            <p>Price: ₹<span class="price-display">120</span></p>
-            <label>Quantity: </label>
-            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
+    <div class="container">
+
+        <!-- ==================== CATEGORY: VEG PICKLES ==================== -->
+        <div class="category-title veg-title">🌶️ Veg Pickles</div>
+        <div class="product-grid" id="veg-container">
+            <!-- Dynamic Javascript targets will build items cleanly here -->
         </div>
 
-        <!-- Usirikaya -->
-        <div class="product" data-name="Usirikaya Pickle">
-            <h3>Usirikaya Pickle</h3>
-            <select class="weight-select" onchange="updatePrice(this)">
-                <option value="130" data-weight="250gm">250gm - ₹130</option>
-                <option value="240" data-weight="500gm">500gm - ₹240</option>
-                <option value="450" data-weight="1Kg">1Kg - ₹450</option>
-            </select>
-            <p>Price: ₹<span class="price-display">130</span></p>
-            <label>Quantity: </label>
-            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
+        <!-- ==================== CATEGORY: NON-VEG PICKLES ==================== -->
+        <div class="category-title nonveg-title">🍗 Non-Veg Pickles</div>
+        <div class="product-grid" id="nonveg-container"></div>
+
+        <!-- ==================== CATEGORY: PODIS ==================== -->
+        <div class="category-title podi-title">🌾 Flavorful Podis</div>
+        <div class="product-grid" id="podi-container"></div>
+
+        <!-- ==================== CATEGORY: SWEETS ==================== -->
+        <div class="category-title sweet-title">🍯 Traditional Sweets</div>
+        <div class="product-grid" id="sweet-container"></div>
+
+        <!-- ==================== CATEGORY: HOT SNACKS ==================== -->
+        <div class="category-title hot-title">🔥 Hot Snacks</div>
+        <div class="product-grid" id="hot-container"></div>
+
+        <!-- ==================== CHECKOUT FORM ==================== -->
+        <div class="order-section" id="checkout-form">
+            <h2>Complete Your Order</h2>
+            <p style="color: #666; margin-bottom: 25px;">Provide your details below to process the final invoice directly over WhatsApp.</p>
+            
+            <div class="form-group">
+                <label for="cust-name">Your Full Name:</label>
+                <input type="text" id="cust-name" placeholder="Enter your name">
+            </div>
+            
+            <div class="form-group">
+                <label for="cust-address">Complete Delivery Address:</label>
+                <textarea id="cust-address" rows="4" placeholder="Enter your doorstep delivery address along with Landmark & Pincode"></textarea>
+            </div>
+            
+            <button class="btn-whatsapp" onclick="dispatchWhatsAppOrder()">
+                Send Order Setup to WhatsApp
+            </button>
         </div>
 
-        <!-- Kakarkaya -->
-        <div class="product" data-name="Kakarkaya Pickle">
-            <h3>Kakarkaya Pickle</h3>
-            <select class="weight-select" onchange="updatePrice(this)">
-                <option value="130" data-weight="250gm">250gm - ₹130</option>
-                <option value="240" data-weight="500gm">500gm - ₹240</option>
-                <option value="450" data-weight="1Kg">1Kg - ₹450</option>
-            </select>
-            <p>Price: ₹<span class="price-display">130</span></p>
-            <label>Quantity: </label>
-            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
-        </div>
-
-        <!-- Pandumirchi -->
-        <div class="product" data-name="Pandumirchi Pickle">
-            <h3>Pandumirchi Pickle</h3>
-            <select class="weight-select" onchange="updatePrice(this)">
-                <option value="120" data-weight="250gm">250gm - ₹120</option>
-                <option value="220" data-weight="500gm">500gm - ₹220</option>
-                <option value="400" data-weight="1Kg">1Kg - ₹400</option>
-            </select>
-            <p>Price: ₹<span class="price-display">120</span></p>
-            <label>Quantity: </label>
-            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
-        </div>
-
-        <!-- Nimakaya -->
-        <div class="product" data-name="Nimakaya Pickle">
-            <h3>Nimakaya Pickle</h3>
-            <select class="weight-select" onchange="updatePrice(this)">
-                <option value="100" data-weight="250gm">250gm - ₹100</option>
-                <option value="180" data-weight="500gm">500gm - ₹180</option>
-                <option value="350" data-weight="1Kg">1Kg - ₹350</option>
-            </select>
-            <p>Price: ₹<span class="price-display">100</span></p>
-            <label>Quantity: </label>
-            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
-        </div>
-
-        <!-- Allam -->
-        <div class="product" data-name="Allam Pickle">
-            <h3>Allam Pickle</h3>
-            <select class="weight-select" onchange="updatePrice(this)">
-                <option value="120" data-weight="250gm">250gm - ₹120</option>
-                <option value="220" data-weight="500gm">500gm - ₹220</option>
-                <option value="400" data-weight="1Kg">1Kg - ₹400</option>
-            </select>
-            <p>Price: ₹<span class="price-display">120</span></p>
-            <label>Quantity: </label>
-            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
-        </div>
-
-        <!-- Gongura -->
-        <div class="product" data-name="Gongura Pickle">
-            <h3>Gongura Pickle</h3>
-            <select class="weight-select" onchange="updatePrice(this)">
-                <option value="110" data-weight="250gm">250gm - ₹110</option>
-                <option value="200" data-weight="500gm">500gm - ₹200</option>
-                <option value="380" data-weight="1Kg">1Kg - ₹380</option>
-            </select>
-            <p>Price: ₹<span class="price-display">110</span></p>
-            <label>Quantity: </label>
-            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
-        </div>
-
-        <!-- Cauliflower Avakaya -->
-        <div class="product" data-name="Cauliflower Avakaya">
-            <h3>Cauliflower Avakaya</h3>
-            <select class="weight-select" onchange="updatePrice(this)">
-                <option value="140" data-weight="250gm">250gm - ₹140</option>
-                <option value="260" data-weight="500gm">500gm - ₹260</option>
-                <option value="500" data-weight="1Kg">1Kg - ₹500</option>
-            </select>
-            <p>Price: ₹<span class="price-display">140</span></p>
-            <label>Quantity: </label>
-            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
-        </div>
-
-        <!-- Vankay Avakaya -->
-        <div class="product" data-name="Vankay Avakaya">
-            <h3>Vankay Avakaya</h3>
-            <select class="weight-select" onchange="updatePrice(this)">
-                <option value="140" data-weight="250gm">250gm - ₹140</option>
-                <option value="260" data-weight="500gm">500gm - ₹260</option>
-                <option value="500" data-weight="1Kg">1Kg - ₹500</option>
-            </select>
-            <p>Price: ₹<span class="price-display">140</span></p>
-            <label>Quantity: </label>
-            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
-        </div>
     </div>
 
-
-    <!-- ================= NON-VEG PICKLES SECTION ================= -->
-    <h2>🔴 Non-Veg Pickles</h2>
-    <div class="product-grid">
-        <!-- Bhimavaram spl Royala Avakaya -->
-        <div class="product" data-name="Bhimavaram spl Royala Avakaya">
-            <h3>Bhimavaram spl Royala Avakaya</h3>
-            <select class="weight-select" onchange="updatePrice(this)">
-                <option value="250" data-weight="250gm">250gm - ₹250</option>
-                <option value="480" data-weight="500gm">500gm - ₹480</option>
-                <option value="900" data-weight="1Kg">1Kg - ₹900</option>
-            </select>
-            <p>Price: ₹<span class="price-display">250</span></p>
-            <label>Quantity: </label>
-            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
-        </div>
-
-        <!-- Boneless Chicken pickle -->
-        <div class="product" data-name="Boneless Chicken Pickle">
-            <h3>Boneless Chicken Pickle</h3>
-            <select class="weight-select" onchange="updatePrice(this)">
-                <option value="220" data-weight="250gm">250gm - ₹220</option>
-                <option value="420" data-weight="500gm">500gm - ₹420</option>
-                <option value="800" data-weight="1Kg">1Kg - ₹800</option>
-            </select>
-            <p>Price: ₹<span class="price-display">220</span></p>
-            <label>Quantity: </label>
-            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
-        </div>
-
-        <!-- Chicken pickle with bone -->
-        <div class="product" data-name="Chicken Pickle (With Bone)">
-            <h3>Chicken Pickle (With Bone)</h3>
-            <select class="weight-select" onchange="updatePrice(this)">
-                <option value="180" data-weight="250gm">250gm - ₹180</option>
-                <option value="340" data-weight="500gm">500gm - ₹340</option>
-                <option value="650" data-weight="1Kg">1Kg - ₹650</option>
-            </select>
-            <p>Price: ₹<span class="price-display">180</span></p>
-            <label>Quantity: </label>
-            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
-        </div>
-
-        <!-- Mutton pickle with bone -->
-        <div class="product" data-name="Mutton Pickle (With Bone)">
-            <h3>Mutton Pickle (With Bone)</h3>
-            <select class="weight-select" onchange="updatePrice(this)">
-                <option value="300" data-weight="250gm">250gm - ₹300</option>
-                <option value="580" data-weight="500gm">500gm - ₹580</option>
-                <option value="1100" data-weight="1Kg">1Kg - ₹1100</option>
-            </select>
-            <p>Price: ₹<span class="price-display">300</span></p>
-            <label>Quantity: </label>
-            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
-        </div>
-
-        <!-- Mutton pickle with boneless -->
-        <div class="product" data-name="Mutton Pickle (Boneless)">
-            <h3>Mutton Pickle (Boneless)</h3>
-            <select class="weight-select" onchange="updatePrice(this)">
-                <option value="350" data-weight="250gm">250gm - ₹350</option>
-                <option value="680" data-weight="500gm">500gm - ₹680</option>
-                <option value="1300" data-weight="1Kg">1Kg - ₹1300</option>
-            </select>
-            <p>Price: ₹<span class="price-display">350</span></p>
-            <label>Quantity: </label>
-            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
-        </div>
-
-        <!-- Gongura Boneless chicken pickle -->
-        <div class="product" data-name="Gongura Boneless Chicken Pickle">
-            <h3>Gongura Boneless Chicken Pickle</h3>
-            <select class="weight-select" onchange="updatePrice(this)">
-                <option value="240" data-weight="250gm">250gm - ₹240</option>
-                <option value="450" data-weight="500gm">500gm - ₹450</option>
-                <option value="850" data-weight="1Kg">1Kg - ₹850</option>
-            </select>
-            <p>Price: ₹<span class="price-display">240</span></p>
-            <label>Quantity: </label>
-            <input type="number" class="qty" value="0" min="0" oninput="calculateGrandTotal()">
-        </div>
+    <!-- Sticky Bottom Bar Total Counter -->
+    <div class="sticky-summary">
+        <div class="summary-text">Cart Grand Total: <span>₹<span id="grand-total-val">0</span></span></div>
+        <button class="btn-scroll" onclick="document.getElementById('checkout-form').scrollIntoView({behavior: 'smooth'})">Proceed to Details ↓</button>
     </div>
 
-    <!-- Live Bill Counter Box -->
-    <div class="grand-total-box">
-        Estimated Grand Total: ₹<span id="grand-total">0</span>
-    </div>
-
-    <!-- Delivery Details -->
-    <div class="form-section">
-        <h3>Delivery Info</h3>
-        <label>Your Full Name:</label>
-        <input type="text" id="cust-name" placeholder="Name">
-        <br><br>
-        <label>Full Address (with Pincode):</label>
-        <textarea id="cust-address" rows="3" placeholder="Address"></textarea>
-    </div>
-
-
-    <!-- ================= JAVASCRIPT MATH LOGIC ================= -->
+    <!-- ==================== SCRIPT SYSTEM ==================== -->
     <script>
-        // 1. Changes the single item price text when a customer toggles 250g/500g/1kg
-        function updatePrice(dropdown) {
-            const chosenPrice = dropdown.value; 
-            const productDiv = dropdown.parentElement;
-            productDiv.querySelector('.price-display').innerText = chosenPrice;
-            
-            // Recalculate total immediately when weight changes
-            calculateGrandTotal();
-        }
+        // MASTER INVENTORY DATA MENU
+        // Modify any default numeric prices inside arrays below directly to change store prices.
+        const MENU_DATA = {
+            veg: {
+                title: "Veg Pickles",
+                sizes: ["250g", "500g", "1kg"],
+                items: [
+                    { name: "Tomato Pickle", prices: [150, 280, 500] },
+                    { name: "Usirikaya Pickle", prices: [160, 300, 550] },
+                    { name: "Kakarkaya Pickle", prices: [160, 300, 550] },
+                    { name: "Pandumirchi Pickle", prices: [150, 280, 520] },
+                    { name: "Nimakaya Pickle", prices: [140, 260, 480] },
+                    { name: "Allam Pickle", prices: [160, 300, 550] },
+                    { name: "Gongura Pickle", prices: [140, 260, 480] },
+                    { name: "Cauliflower Avakaya", prices: [170, 320, 600] },
+                    { name: "Vankay Avakaya", prices: [170, 320, 600] }
+                ]
+            },
+            nonveg: {
+                title: "Non Veg Pickles",
+                sizes: ["250g", "500g", "1kg"],
+                items: [
+                    { name: "Bhimavaram spl Royala Avakaya", prices: [350, 680, 1300] },
+                    { name: "Boneless Chicken pickle", prices: [300, 580, 1100] },
+                    { name: "Chicken pickle with bone", prices: [250, 480, 900] },
+                    { name: "Mutton pickle with bone", prices: [400, 780, 1500] },
+                    { name: "Mutton pickle with boneless", prices: [450, 880, 1700] },
+                    { name: "Gongura Boneless chicken pickle", prices: [320, 620, 1150] }
+                ]
+            },
+            podi: {
+                title: "Podis",
+                sizes: ["250g", "500g"],
+                items: [
+                    { name: "Karam podi", prices: [100, 190] },
+                    { name: "Karivepaku podi", prices: [110, 210] },
+                    { name: "Palli karampodi", prices: [110, 210] },
+                    { name: "Nuvvulu Karampodi", prices: [120, 230] },
+                    { name: "Avisaginjalu podi", prices: [120, 230] },
+                    { name: "Homemade Garam masala podi", prices: [150, 290] }
+                ]
+            },
+            sweet: {
+                title: "Sweets",
+                sizes: ["250g", "500g", "1kg"],
+                items: [
+                    { name: "Bellam Gavvalu", prices: [90, 170, 320] },
+                    { name: "Nuvvulu Ariselu", prices: [110, 210, 400] },
+                    { name: "Kajjikayalu", prices: [100, 190, 360] },
+                    { name: "Paakundalu", prices: [100, 190, 360] },
+                    { name: "Bellam Chalividi", prices: [90, 170, 320] },
+                    { name: "Bellam Nuvvulu undalu", prices: [100, 190, 360] },
+                    { name: "Palli undalu", prices: [90, 170, 320] },
+                    { name: "Bellam Gorimitilu", prices: [90, 170, 320] },
+                    { name: "Nethi Ravva laddu", prices: [120, 230, 440] },
+                    { name: "Kobbari undalu", prices: [100, 190, 360] },
+                    { name: "Sweet Maida biscuits", prices: [80, 150, 280] },
+                    { name: "Nethi Poornam Bobatlu", prices: [130, 250, 480] },
+                    { name: "Maramaralu Laddu", prices: [70, 130, 240] },
+                    { name: "Jeedipappu Achu", prices: [180, 350, 680] }
+                ]
+            },
+            hot: {
+                title: "Hot Snacks",
+                sizes: ["250g", "500g", "1kg"],
+                items: [
+                    { name: "Corn flakes mixture", prices: [80, 150, 280] },
+                    { name: "Andhra mixture", prices: [85, 160, 300] },
+                    { name: "Atukulu mixture", prices: [80, 150, 280] },
+                    { name: "Sanna karpusa", prices: [80, 150, 280] },
+                    { name: "Karam gavvalu", prices: [85, 160, 300] },
+                    { name: "Aaku pakodi", prices: [85, 160, 300] },
+                    { name: "Masala jeedipappu", prices: [180, 350, 680] },
+                    { name: "Janthikalu", prices: [80, 150, 280] },
+                    { name: "Chekkalu", prices: [85, 160, 300] }
+                ]
+            }
+        };
 
-        // 2. Loops through every item, multiplies price by quantity, updates Grand Total box
-        function calculateGrandTotal() {
-            let total = 0;
-            const products = document.querySelectorAll('.product');
+        // Render HTML Elements Automatically
+        function renderMenuCatalog() {
+            let uniqueIdIndex = 0;
             
-            products.forEach(p => {
-                const dropdown = p.querySelector('.weight-select');
-                const price = parseInt(dropdown.value);
-                const quantity = parseInt(p.querySelector('.qty').value) || 0;
+            for (let categoryKey in MENU_DATA) {
+                const container = document.getElementById(`${categoryKey}-container`);
+                const catalog = MENU_DATA[categoryKey];
                 
-                total += (price * quantity);
-            });
-            
-            document.getElementById('grand-total').innerText = total;
+                catalog.items.forEach(item => {
+                    uniqueIdIndex++;
+                    const card = document.createElement('div');
+                    card.className = 'product-card';
+                    
+                    // Build dropdown option elements dynamically
+                    let sizeOptionsHTML = `<option value="" data-price="0">-- Choose Size --</option>`;
+                    catalog.sizes.forEach((size, idx) => {
+                        sizeOptionsHTML += `<option value="${size}" data-price="${item.prices[idx]}">${size}</option>`;
+                    });
+                    
+                    card.innerHTML = `
+                        <h3>${item.name}</h3>
+                        <div class="selector-group">
+                            <select id="size-${uniqueIdIndex}" onchange="recalculateItemCard(${uniqueIdIndex})">
+                                ${sizeOptionsHTML}
+                            </select>
+                            <input type="number" id="qty-${uniqueIdIndex}" value="0" min="0" onchange="recalculateItemCard(${uniqueIdIndex})">
+                        </div>
+                        <div class="price-row">
+                            <span class="unit-price" id="unit-p-${uniqueIdIndex}">Select size...</span>
+                            <span class="total-item-price">Total: ₹<span id="total-p-${uniqueIdIndex}" class="calculated-item-totals">0</span></span>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
         }
-    </script>
 
+        // Live Single Card Price Updater
+        function recalculateItemCard(id) {
+            const sizeDropdown = document.getElementById(`size-${id}`);
+            const qtyInput = document.getElementById(`qty-${id}`);
+            const unitPriceLabel = document.getElementById(`unit-p-${id}`);
+            const totalItemPriceLabel = document.getElementById(`total-p-${id}`);
+            
+            // Extract attributes from selected drop options
+            const chosenOption = sizeDropdown.options[sizeDropdown.selectedIndex];
+            const unitPrice = parseInt(chosenOption.getAttribute('data-price')) || 0;
+            const quantity = parseInt(qtyInput.value) || 0;
+            
+            // Adjust label text views based on user interaction rules
+            if (sizeDropdown.value === "") {
+                unitPriceLabel.innerText = "Select size...";
+                totalItemPriceLabel.innerText = "0";
+                qtyInput.value = 0; // reset quant box if dropdown goes back to placeholder
+            } else {
+                unitPriceLabel.innerText = `Price: ₹${unitPrice}`;
+                totalItemPriceLabel.innerText = unitPrice * quantity;
+            }
+            
+            compileGrandStoreTotal();
+        }
+
+        // Gather all fields to determine overall checkout bottom bar value
+        function compileGrandStoreTotal() {
+            let runningSum = 0;
+            const activeTotals = document.querySelectorAll('.calculated-item-totals');
+            activeTotals.forEach(spanNode => {
+                runningSum += parseInt(spanNode.innerText) || 0;
+            });
+            document.getElementById('grand-total-val').innerText = runningSum;
+        }
+
+        // Gather order string information array & trigger WhatsApp deep interface link
+        function dispatchWhatsAppOrder() {
+            // ENTER YOUR BUSINESS PHONENUMBER BELOW (Format: country code + number, absolute no spaces/plus signs)
+            const targetPhone = "9533338836"; 
+            
+            const clientName = document.getElementById('cust-name').value.trim();
+            const clientAddr = document.getElementById('cust-address').value.trim();
+            
+            if (!clientName || !clientAddr) {
+                alert("Please complete both Name and Address parameters before processing order checkout.");
+                return;
+            }
+            
+            let itemizedTextStream = "";
+            let overallCheckoutBill = 0;
+            let targetCardIndex = 0;
+            
+            // Parse down compiled active values loops
+            for (let categoryKey in MENU_DATA) {
+                const catalog = MENU_DATA[categoryKey];
+                let structuralCategoryHeaderPrinted = false;
+                
+                catalog.items.forEach(item => {
+                    targetCardIndex++;
+                    const sizeDropdown = document.getElementById(`size-${targetCardIndex}`);
+                    const qtyInput = document.getElementById(`qty-${targetCardIndex}`);
+                    
+                    const qtyVal = parseInt(qtyInput.value) || 0;
+                    
+                    if (qtyVal > 0 && sizeDropdown.value !== "") {
+                        if (!structuralCategoryHeaderPrinted) {
+                            itemizedTextStream += `\n*■ ${catalog.title}*:\n`;
+                            structuralCategoryHeaderPrinted = true;
+                        }
+                        const chosenOption = sizeDropdown.options[sizeDropdown.selectedIndex];
+                        const calculatedUnitAmt = parseInt(chosenOption.getAttribute('data-price')) || 0;
+                        const blockTotalSum = calculatedUnitAmt * qtyVal;
+                        overallCheckoutBill += blockTotalSum;
+                        
+                        itemizedTextStream += `  • ${item.name} (${sizeDropdown.value}) x ${qtyVal} = ₹${blockTotalSum}\n`;
+                    }
+                });
+            }
+            
+            if (overallCheckoutBill === 0) {
+                alert("Your checkout total is ₹0. Please increment quantities on at least one configuration flavor before shipping orders.");
+                return;
+            }
+            
+            // WhatsApp message formatting layout structure template
+            let dispatchMessageStr = `*NEW ORDER - RUCHI TARANGAM*\n`;
+            dispatchMessageStr += `=========================\n`;
+            dispatchMessageStr += `*Customer Details*:\n`;
+            dispatchMessageStr += `Name: ${clientName}\n`;
+            dispatchMessageStr += `Delivery Address:\n${clientAddr}\n`;
+            dispatchMessageStr += `=========================\n`;
+            dispatchMessageStr += `*Order Breakdown*:${itemizedTextStream}\n`;
+            dispatchMessageStr += `=========================\n`;
+            dispatchMessageStr += `*Grand Bill Summary Total:* ₹${overallCheckoutBill}\n\n`;
+            dispatchMessageStr += `Please review items requested, confirm delivery timeline details, and provide payment details. Thanks!`;
+            
+            const processedUrlStream = `https://wa.me/${targetPhone}?text=${encodeURIComponent(dispatchMessageStr)}`;
+            window.location.href = processedUrlStream;
+        }
+
+        // Primary initialization routine execution run
+        window.onload = renderMenuCatalog;
+    </script>
 </body>
 </html>
