@@ -407,12 +407,17 @@
         <h4>Sweets</h4>
     </div>
     <!-- Snacks -->
-    <div class="showcase-card" onclick="triggerShowcaseRouting('Hot', null)">
-        <div class="showcase-img-frame">
-            <img src="Snacks.jpg" alt="Snacks">
-        </div>
-        <h4>Snacks</h4>
+   <div class="showcase-card" onclick="executeCategoryFilter('snacks', null)">
+    <div class="showcase-img-frame">
+        <img src="Snacks.jpg" alt="Snacks">
     </div>
+    <h4>Snacks</h4>
+</div>
+
+<div class="category-section filter-snacks" id="sec-snacks">
+    <div class="category-title">Snacks</div>
+    <div class="product-grid" id="snacks-container"></div>
+</div>
 </div>
         </div>
 
@@ -604,7 +609,7 @@
                 ]
             },
             hot: {
-                title: "Hot Snacks",
+                title: "Snacks",
                 sizes: ["250gm", "500gm", "1Kg"],
                 items: [
                     { name: "Corn flakes mixture", prices: [160, 320, 640] },
