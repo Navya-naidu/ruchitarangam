@@ -7,24 +7,19 @@
     <!-- FontAwesome for clean icons -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        /* --- COLOR VARIABLES (CRITICAL FOR ENTIRE SITE) --- */
         :root {
-    /* Main Backgrounds */
-    --bg-main: #FFFDF9;       /* Soft, warm off-white (like fresh cream) */
-    --bg-header: #FFF9EE;     /* Extremely gentle, warm tint for the header */
-    --bg-accent: #FFF5E1;     /* Soft card footer tint */
-    
-    /* Brand Colors (Pulled directly from traditional spices and your logo) */
-    --primary: #8B1E0F;       /* Deep Rich Maroon/Chilli Red (promotes hunger, premium feel) */
-    --primary-hover: #A72615; /* Slightly brighter red for hover actions */
-    --secondary: #E58226;     /* Warm Turmeric Orange (used sparingly for subtle accents/badges) */
-    
-    /* Text and Utility Colors */
-    --dark: #2B1B17;          /* Deep roasted cocoa brown instead of harsh pure black */
-    --white: #FFFFFF;
-    --shadow: rgba(139, 30, 15, 0.06); /* Ultra soft maroon shadow for elegance */
-}
-        /* --- GLOBAL STYLES & RESET (UPDATED) --- */
+            --bg-main: #FFFDF9;
+            --bg-header: #FFF9EE;
+            --primary: #8B1E0F;       /* The deep Maroon for highlights and headers */
+            --secondary: #E58226;     /* The Orange for buttons and badges */
+            --dark: #2B1B17;
+            --white: #FFFFFF;
+            --shadow: rgba(139, 30, 15, 0.08);
+        }
+
+        /* --- GLOBAL STYLES & RESET --- */
         * {
             margin: 0;
             padding: 0;
@@ -35,17 +30,17 @@
         body {
             background-color: var(--bg-main);
             color: var(--dark);
-            padding-bottom: 40px; /* Space for the sticky bottom marquee */
+            padding-bottom: 40px;
         }
 
-        /* --- HEADER & NAVIGATION (FIXED) --- */
+        /* --- HEADER & NAVIGATION --- */
         header {
             background-color: var(--bg-header);
             box-shadow: 0 2px 10px var(--shadow);
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 2px solid rgba(139, 30, 15, 0.08);
+            border-bottom: 2px solid var(--shadow);
         }
 
         .nav-container {
@@ -98,8 +93,8 @@
             margin: 0 auto;
         }
 
-        /* Guarantees menu items highlight correctly in Maroon */
-        nav a, .nav-links a {
+        /* Restores the Maroon Navigation Highlights */
+        nav a {
             font-family: 'Plus Jakarta Sans', sans-serif;
             text-decoration: none;
             color: var(--dark);
@@ -111,13 +106,12 @@
             border-bottom: 2px solid transparent;
         }
 
-        nav a:hover, nav a.active,
-        .nav-links a:hover, .nav-links a.active {
+        nav a:hover, nav a.active {
             color: var(--primary) !important;
             border-bottom: 2px solid var(--primary) !important;
         }
 
-        /* --- HEADER ACTIONS, ICONS & BADGES (FIXED) --- */
+        /* --- HEADER ACTIONS (ICONS & SEARCH) --- */
         .header-actions {
             display: flex;
             align-items: center;
@@ -132,7 +126,7 @@
 
         .search-box input {
             padding: 8px 35px 8px 12px;
-            border: 1px solid rgba(139, 30, 15, 0.2);
+            border: 1px solid var(--shadow);
             border-radius: 20px;
             outline: none;
             width: 180px;
@@ -146,7 +140,7 @@
             font-size: 1.3rem;
             color: var(--dark);
             cursor: pointer;
-            position: relative; /* Keeps the orange badge locked to the icon */
+            position: relative;
             display: inline-flex;
             align-items: center;
             justify-content: center;
