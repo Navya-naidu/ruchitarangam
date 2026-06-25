@@ -1199,13 +1199,14 @@
                     img: item.img
                 });
             }
+            
+            // Reset the product card quantity back to 1
             document.getElementById(`qty-${id}`).innerText = "1";
             updateCardPrice(id, category);
             
-            renderCart();
-            togglePanel('cart');
+            // Updates the cart data and the little orange badge number at the top
+            renderCart(); 
         }
-
         function removeFromCart(index) {
             cart.splice(index, 1);
             renderCart();
