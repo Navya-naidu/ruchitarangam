@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         <!-- FontAwesome Icons Link -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         :root {
     /* Main Backgrounds */
     --bg-main: #FFFDF9;       /* Soft, warm off-white (like fresh cream) */
@@ -39,9 +39,9 @@
             padding-bottom: 40px; /* Space for the sticky bottom marquee */
         }
 
-        /* --- HEADER & NAVIGATION (UPDATED) --- */
+        /* --- HEADER & NAVIGATION (FIXED) --- */
         header {
-            background-color: var(--bg-header); /* Warm elegant cream */
+            background-color: var(--bg-header);
             box-shadow: 0 2px 10px var(--shadow);
             position: sticky;
             top: 0;
@@ -70,12 +70,13 @@
         .logo-img {
             width: 90px;
             height: 90px;
-            object-fit: cover; /* Forces the internal image to fill out the circle beautifully */
+            object-fit: cover;
             border-radius: 50%; 
             border: 3px solid var(--primary);
             background-color: var(--white);
             display: block;
         }
+
         .logo-text h1 {
             font-family: 'DM Serif Display', serif;
             color: var(--primary);
@@ -98,7 +99,8 @@
             margin: 0 auto;
         }
 
-        nav a {
+        /* Guarantees menu items highlight correctly in Maroon */
+        nav a, .nav-links a {
             font-family: 'Plus Jakarta Sans', sans-serif;
             text-decoration: none;
             color: var(--dark);
@@ -106,50 +108,21 @@
             font-size: 1.1rem;
             transition: color 0.3s;
             cursor: pointer;
-            position: relative;
             padding: 4px 0;
+            border-bottom: 2px solid transparent;
         }
 
-        nav a:hover, nav a.active {
-            color: var(--primary);
+        nav a:hover, nav a.active,
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary) !important;
+            border-bottom: 2px solid var(--primary) !important;
         }
 
-        /* Premium sliding underline animation for menu items */
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--primary);
-            transition: width 0.2s ease;
-        }
-
-        nav a:hover::after, nav a.active::after {
-            width: 100%;
-        }
+        /* --- HEADER ACTIONS, ICONS & BADGES (FIXED) --- */
         .header-actions {
             display: flex;
             align-items: center;
             gap: 20px;
-        }
-
-        .icon-btn {
-            background: none;
-            border: none;
-            font-size: 1.4rem;
-            color: var(--dark);
-            cursor: pointer;
-            position: relative;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icon-btn:hover {
-            color: var(--primary);
         }
 
         .search-box {
@@ -160,32 +133,26 @@
 
         .search-box input {
             padding: 8px 35px 8px 12px;
-            border: 1px solid #ccc;
+            border: 1px solid rgba(139, 30, 15, 0.2);
             border-radius: 20px;
             outline: none;
             width: 180px;
             font-size: 0.95rem;
-            transition: width 0.3s;
-        }
-
-        .search-box input:focus {
-            width: 220px;
-            border-color: var(--secondary);
-        }
-
-        .search-box i {
-            position: absolute;
-            right: 12px;
-            color: #777;
+            background-color: var(--white);
         }
 
         .icon-btn {
             background: none;
             border: none;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--dark);
             cursor: pointer;
-            position: relative;
+            position: relative; /* Keeps the orange badge locked to the icon */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
             transition: color 0.3s;
         }
 
@@ -195,20 +162,19 @@
 
         .badge {
             position: absolute;
-            top: -8px;
-            right: -8px;
+            top: -4px;
+            right: -4px;
             background-color: var(--secondary);
             color: var(--white);
-            font-size: 0.75rem;
-            width: 20px;
-            height: 20px;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
         }
-
         /* Free Shipping Banner */
         .shipping-banner {
             background-color: #fff3cd;
