@@ -7,6 +7,8 @@
     <!-- FontAwesome for clean icons -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        <!-- FontAwesome Icons Link -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         :root {
     /* Main Backgrounds */
     --bg-main: #FFFDF9;       /* Soft, warm off-white (like fresh cream) */
@@ -66,14 +68,14 @@
         }
 
         .logo-img {
-            width: 100px; /* Sized beautifully to not crowd the header layout */
-            height: 100px;
-            object-fit: contain;
+            width: 90px;
+            height: 90px;
+            object-fit: cover; /* Forces the internal image to fill out the circle beautifully */
             border-radius: 50%; 
             border: 3px solid var(--primary);
             background-color: var(--white);
+            display: block;
         }
-
         .logo-text h1 {
             font-family: 'DM Serif Display', serif;
             color: var(--primary);
@@ -130,7 +132,24 @@
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: var(--dark);
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-btn:hover {
+            color: var(--primary);
         }
 
         .search-box {
