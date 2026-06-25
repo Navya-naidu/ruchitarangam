@@ -4,928 +4,1307 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ruchi Tarangam - Waves of Flavors</title>
+    <!-- FontAwesome for clean icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #d32f2f; 
-            --accent-color: #25D366;  
-            --bg-color: #fdfaf6;
-            --card-bg: #ffffff;
-            --text-dark: #333333;
-        }
-        
-        * { box-sizing: border-box; }
-
-        body { 
-            font-family: 'Segoe UI', Arial, sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            background-color: var(--bg-color); 
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-        
-        header { 
-            background-color: var(--primary-color); 
-            color: white; 
-            padding: 25px 15px; 
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            --primary: #8B0000;
+            --secondary: #FF8C00;
+            --dark: #2F2F2F;
+            --light: #FFF8F0;
+            --bg-accent: #FFF3E0; /* Rich warm background color accent */
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
         }
 
-        .logo-placeholder {
-            width: 80px;
-            height: 80px;
-            background-color: #fff;
-            border-radius: 50%;
-            margin: 0 auto 10px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-color);
-            font-weight: bold;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            overflow: hidden;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        .logo-placeholder img { width: 100%; height: 100%; object-fit: cover; }
-        header h1 { margin: 0; font-size: 2rem; letter-spacing: 1px; }
-        header p { margin: 5px 0 0 0; font-size: 1.1rem; opacity: 0.95; font-style: italic; }
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            padding-bottom: 40px; /* Space for the sticky bottom marquee */
+        }
 
-        /* Navigation Bar Settings */
-        nav {
-            background-color: #2c2c2c;
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background-color: var(--bg-accent); /* Warm header color */
+            box-shadow: 0 2px 10px var(--shadow);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-            padding: 8px 10px;
+            border-bottom: 3px solid var(--secondary);
         }
 
         .nav-container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .nav-menu-wrapper { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center;
-            gap: 2px;
-        }
-        
-        .nav-link {
-            color: #efefef;
-            text-decoration: none;
-            padding: 10px 12px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 0.95rem;
-            position: relative;
-            border-radius: 4px;
-        }
-        .nav-link:hover, .nav-link.active { background-color: var(--primary-color); color: white; }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            background-color: #2c2c2c;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-            top: 100%;
-            left: 0;
-            z-index: 2000;
-            border-radius: 0 0 4px 4px;
-        }
-        .dropdown-menu div {
-            color: #efefef;
-            padding: 12px 16px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-        .dropdown-menu div:hover { background-color: var(--primary-color); }
-        .nav-link.has-dropdown:hover .dropdown-menu { display: block; }
-
-        .nav-utilities {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            gap: 10px;
-            width: 100%;
+            justify-content: space-between;
+            padding: 15px 20px;
         }
 
-        .search-container { position: relative; flex-grow: 1; }
-        .search-box {
-            padding: 10px 35px 10px 15px;
-            border-radius: 20px;
-            border: 1px solid #555;
-            background-color: #444;
-            color: white;
-            outline: none;
-            width: 100%;
-            font-size: 0.95rem;
-        }
-        .search-box:focus { background-color: #fff; color: #000; border-color: var(--primary-color); }
-        .search-icon-inside { position: absolute; right: 12px; top: 10px; color: #aaa; pointer-events: none; }
-
-        .cart-trigger-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 0.95rem;
-            white-space: nowrap;
-        }
-
-        .container { max-width: 1100px; margin: 15px auto; padding: 0 12px; min-height: 400px; }
-        
-        /* Categories Display */
-        .category-showcase-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        .logo-area {
+            display: flex;
+            align-items: center;
             gap: 15px;
-            margin: 25px 0 15px 0;
+            text-decoration: none;
+            color: var(--primary);
+            cursor: pointer;
         }
-        
-        .showcase-card {
-            background: white;
+
+        .logo-img {
+            width: 180px;
+            height: 180px;
+            max-width: 6in;
+            max-height: 6in;
+            object-fit: cover;
+            border-radius: 50%; /* Made logo perfectly circular */
+            border: 4px solid var(--secondary);
+            background-color: var(--white);
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .logo-text span {
+            font-size: 1rem;
+            color: var(--secondary);
+            font-style: italic;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 1.3rem;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box input {
+            padding: 8px 35px 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+            width: 180px;
+            font-size: 0.95rem;
+            transition: width 0.3s;
+        }
+
+        .search-box input:focus {
+            width: 220px;
+            border-color: var(--secondary);
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 12px;
+            color: #777;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: var(--dark);
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .icon-btn:hover {
+            color: var(--primary);
+        }
+
+        .badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--secondary);
+            color: var(--white);
+            font-size: 0.75rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Free Shipping Banner */
+        .shipping-banner {
+            background-color: #fff3cd;
+            color: #856404;
+            text-align: center;
+            padding: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #ffeeba;
+        }
+
+        /* --- STICKY BOTTOM MARQUEE --- */
+        .marquee-wrapper {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 0;
+            overflow: hidden;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
+        }
+
+        .marquee-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 25s linear infinite;
+            padding-left: 100%;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        .marquee-content span {
+            margin-right: 60px;
+        }
+
+        /* --- PAGES / SECTIONS --- */
+        .page {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: none;
+        }
+
+        .page.active-page {
+            display: block;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+            color: var(--primary);
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+            margin: 8px auto 0;
+        }
+
+        .shop-categories-title {
+            font-size: 1.5rem; 
+            text-align: center;
+            margin-bottom: 35px;
+            color: var(--primary);
+            position: relative;
+            font-weight: 700;
+        }
+
+        .shop-categories-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+            margin: 8px auto 0;
+        }
+
+        /* --- HOME CATEGORY GRID (UPDATED TO MEDIUM SIZE) --- */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, max-content));
+            gap: 25px;
+            margin-bottom: 50px;
+            justify-content: center;
+        }
+
+        .category-card {
+            background-color: var(--white);
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 8px var(--shadow);
             text-align: center;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: 1px solid #eaeaea;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255,140,0,0.2);
+            width: 260px; 
+            height: auto;
         }
-        .showcase-card:hover { transform: translateY(-4px); box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
-        
-        .showcase-img-frame {
-            width: 100%;
-            height: 130px;
-            background-color: #eee;
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .category-card img {
+            width: 260px;
+            height: 280px; 
+            object-fit: cover;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .category-card h3 {
+            padding: 18px;
+            color: var(--dark);
+            font-size: 1.3rem;
+            font-weight: 700;
+            background-color: var(--bg-accent); 
+            border-top: 1px solid rgba(255,140,0,0.2);
+        }
+        /* --- SUB-NAV FOR FILTERING --- */
+        .sub-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .sub-nav button {
+            background-color: var(--white);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .sub-nav button.active, .sub-nav button:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        /* --- PRODUCTS GRID --- */
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px var(--shadow);
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid #f0e0cf;
         }
-        .showcase-img-frame img {
+
+        .product-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background-color: #f1f1f1;
+        }
+
+        .product-img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        .showcase-card h4 { margin: 10px 0; font-size: 1rem; color: #222; padding: 0 5px; }
 
-        /* Custom Infobar Banners */
-        .infobar-benefits {
-            background-color: #fff3e0;
-            color: #e65100;
-            border: 1px dashed #ffb74d;
-            border-radius: 8px;
-            padding: 12px;
-            margin: 15px 0;
-            font-weight: bold;
-            text-align: center;
-            font-size: 0.9rem;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px 20px;
-        }
-        .infobar-benefits span { display: inline-block; white-space: nowrap; }
-
-        .infobar-policies {
-            background-color: #ffebee;
-            color: #c62828;
-            border: 1px solid #ffcdd2;
-            border-radius: 8px;
-            padding: 8px;
-            margin: 10px 0 25px 0;
-            font-weight: bold;
-            text-align: center;
-            font-size: 0.85rem;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 5px 20px;
-        }
-        .infobar-policies span { display: inline-block; white-space: nowrap; }
-
-        /* Back Navigation Tool Button alignment rules */
-        .back-nav-container {
-            display: none;
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        .btn-back-dashboard {
-            background-color: #2c2c2c;
-            color: white;
+        .wishlist-heart {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.95);
             border: none;
-            padding: 10px 18px;
-            font-weight: bold;
-            font-size: 0.95rem;
-            border-radius: 6px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-        }
-        .btn-back-dashboard:hover { background-color: var(--primary-color); }
-
-        .category-section { display: none; margin-bottom: 30px; }
-        .category-title { 
-            color: #111; 
-            padding: 8px 0; 
-            margin: 15px 0; 
-            font-size: 1.5rem;
-            border-bottom: 3px solid var(--primary-color);
+            color: #ccc;
+            font-size: 1.2rem;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            z-index: 10;
         }
 
-        /* Responsive Products Listing Layout */
-        .product-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 16px; 
+        .wishlist-heart.active {
+            color: #e74c3c;
         }
-        .product-card { 
-            background: var(--card-bg); padding: 16px; border-radius: 12px; 
-            box-shadow: 0 2px 6px rgba(0,0,0,0.04); border: 1px solid #eaeaea;
-            display: flex; flex-direction: column; justify-content: space-between;
+
+        .product-info {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+            background-color: #fffdfb;
         }
-        .product-card h3 { margin: 0 0 12px 0; font-size: 1.15rem; color: #222; }
-        .selector-group { display: flex; gap: 10px; margin-bottom: 12px; align-items: center; }
-        select, input[type="number"], input[type="text"], textarea { padding: 12px; border: 1px solid #cccccc; border-radius: 6px; font-size: 1rem; outline: none; background-color: #fafafa; }
-        select { flex: 2; width: 100%; cursor: pointer; }
-        input[type="number"] { flex: 1; width: 60px; text-align: center; }
-        
-        .price-row { display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 1.05rem; border-top: 1px dashed #e2e2e2; padding-top: 10px; }
-        .unit-price { color: #555555; font-size: 0.9rem; font-weight: normal; }
-        .total-item-price { color: var(--primary-color); }
 
-        /* Slideout Cart Drawer Layout */
-        .cart-drawer-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 5000; }
-        .cart-drawer { position: fixed; top: 0; right: -100%; width: 100%; max-width: 380px; height: 100%; background: white; box-shadow: -5px 0 15px rgba(0,0,0,0.2); z-index: 5001; transition: right 0.3s ease; display: flex; flex-direction: column; }
-        .cart-drawer.open { right: 0; }
-        .cart-header { background: #2c2c2c; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
-        .cart-header h2 { margin: 0; font-size: 1.25rem; }
-        .close-cart-btn { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
-        .cart-items-list { padding: 15px; overflow-y: auto; flex-grow: 1; }
-        .cart-row-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; font-size: 0.95rem; }
-        .cart-footer { padding: 15px; border-top: 2px solid #eee; background: #fafafa; }
-        .cart-total-row { display: flex; justify-content: space-between; font-weight: bold; font-size: 1.15rem; margin-bottom: 12px; }
-        .btn-checkout-scroll { width: 100%; background: var(--primary-color); color: white; border: none; padding: 14px; font-size: 1.05rem; font-weight: bold; border-radius: 6px; cursor: pointer; }
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 12px;
+            line-height: 1.4;
+            min-height: 48px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
 
-        /* Checkout Form Layout */
-        .order-section { background: white; padding: 20px 15px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin: 30px auto; max-width: 620px; border: 1px solid #efefef; display: none; }
-        .order-section h2 { font-size: 1.4rem; margin-top: 0; margin-bottom: 15px; }
-        .form-group { margin-bottom: 16px; }
-        .form-group label { display: block; margin-bottom: 6px; font-weight: bold; color: #444; font-size: 0.95rem; }
-        .form-group label span.req { color: var(--primary-color); }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; display: block; }
-        .form-group input[disabled] { background-color: #eee; color: #666; cursor: not-allowed; }
-        .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; background-color: var(--accent-color); color: white; border: none; padding: 15px; font-size: 1.15rem; font-weight: bold; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25); }
+        .product-controls {
+            margin-top: 10px;
+        }
 
-        /* Business Footer Section Layout */
-        footer {
-            background-color: #2c2c2c;
-            color: #dfdfdf;
-            padding: 30px 15px;
-            margin-top: 50px;
+        .size-select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: var(--white);
+            margin-bottom: 12px;
             font-size: 0.95rem;
-            border-top: 4px solid var(--primary-color);
+            outline: none;
+            font-weight: 600;
         }
+
+        .qty-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .qty-counter {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .qty-counter button {
+            background-color: #f1f1f1;
+            border: none;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .qty-counter span {
+            width: 35px;
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .price-display {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            background-color: var(--secondary);
+            color: var(--white);
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #e07b00;
+        }
+
+        /* --- ABOUT US --- */
+        .about-section {
+            background-color: var(--white);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px var(--shadow);
+            margin-top: 50px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .about-content {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #444;
+            text-align: justify;
+        }
+
+        /* --- FOOTER / DETAILS --- */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 40px 20px 20px;
+            margin-top: 60px;
+        }
+
         .footer-container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 30px;
         }
-        .footer-col h4 { color: white; font-size: 1.1rem; margin-top: 0; margin-bottom: 15px; border-left: 3px solid var(--primary-color); padding-left: 8px; }
-        .footer-col p { margin: 8px 0; color: #bbb; }
-        .footer-col a { color: #fff; text-decoration: none; font-weight: bold; }
-        .footer-col a:hover { color: var(--primary-color); }
-        .footer-bottom { text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid #444; color: #888; font-size: 0.85rem; }
 
-        @media (min-width: 600px) {
-            .nav-container { flex-direction: row; align-items: center; }
-            .nav-utilities { width: auto; justify-content: flex-end; }
-            .search-box { width: 180px; }
-            .search-box:focus { width: 230px; }
-            .category-showcase-grid { grid-template-columns: repeat(5, 1fr); gap: 20px; }
-            .showcase-img-frame { height: 160px; }
+        .footer-col h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .footer-col a:hover {
+            color: var(--white);
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #e1306c;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .policy-disclaimer {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* --- CART & WISHLIST SIDE PANEL --- */
+        .side-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background-color: var(--white);
+            box-shadow: -4px 0 10px var(--shadow);
+            z-index: 2000;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-panel.open {
+            right: 0;
+        }
+
+        .panel-header {
+            padding: 20px;
+            background-color: var(--primary);
+            color: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel-header h2 {
+            font-size: 1.3rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.6rem;
+            cursor: pointer;
+        }
+
+        .panel-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        .panel-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .panel-item img {
+            width: 55px;
+            height: 55px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .panel-item-details {
+            flex-grow: 1;
+        }
+
+        .panel-item-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .panel-item-meta {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #e74c3c;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        /* --- CHECKOUT FORM --- */
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background-color: #25D366;
+            color: var(--white);
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            nav a {
+                font-size: 1.15rem;
+            }
+            .logo-area {
+                flex-direction: column;
+                align-items: center;
+            }
+            /* Fluid scaling below desktop boundaries */
+            .category-card, .category-card img {
+                width: 100%;
+                max-width: 462px;
+                height: auto;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Top Info Bar -->
+    <div class="shipping-banner">
+        <i class="fa-solid fa-truck-fast"></i> Free Shipping on all orders above ₹999!
+    </div>
+
+    <!-- --- HEADER AND NAV --- -->
     <header>
-        <div class="logo-placeholder">
-            <img src="logo.png" alt="Ruchi Tarangam Logo" onerror="this.style.display='none'; this.parentNode.innerText='Logo Area'">
+        <div class="nav-container">
+            <a onclick="showPage('home')" class="logo-area">
+                <img src="images/logo.jpg" alt="Ruchi Tarangam Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1>Ruchi Tarangam</h1>
+                    <span>Waves of Flavors</span>
+                </div>
+            </a>
+            
+            <nav id="main-nav">
+                <a onclick="showPage('home')" class="nav-link active" id="nav-home">Home</a>
+                <a onclick="showPage('pickles')" class="nav-link" id="nav-pickles">Pickles</a>
+                <a onclick="showPage('podis')" class="nav-link" id="nav-podis">Podis</a>
+                <a onclick="showPage('sweets')" class="nav-link" id="nav-sweets">Sweets</a>
+                <a onclick="showPage('snacks')" class="nav-link" id="nav-snacks">Snacks</a>
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search deliciousness..." oninput="handleSearch()">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <button class="icon-btn" onclick="togglePanel('wishlist')">
+                    <i class="fa-solid fa-heart"></i>
+                    <span class="badge" id="wishlist-count">0</span>
+                </button>
+                <button class="icon-btn" onclick="togglePanel('cart')">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="badge" id="cart-count">0</span>
+                </button>
+            </div>
         </div>
-        <h1>Ruchi Tarangam</h1>
-        <p>Waves of Flavors</p>
     </header>
 
-    <nav>
-        <div class="nav-container">
-            <div class="nav-menu-wrapper">
-                <div class="nav-link active" onclick="executeCategoryFilter('all', this)">Home</div>
-                
-                <div class="nav-link has-dropdown">
-                    Pickles ▾
-                    <div class="dropdown-menu">
-                        <div onclick="executeCategoryFilter('pickles', this.parentNode.parentNode)">All Pickles</div>
-                        <div onclick="executeCategoryFilter('veg-pickles', this.parentNode.parentNode)">Veg Pickles</div>
-                        <div onclick="executeCategoryFilter('nonveg-pickles', this.parentNode.parentNode)">Non-Veg Pickles</div>
-                    </div>
-                </div>
-                
-                <div class="nav-link" onclick="executeCategoryFilter('podi', this)">Podis</div>
-                <div class="nav-link" onclick="executeCategoryFilter('sweet', this)">Sweets</div>
-                <div class="nav-link" onclick="executeCategoryFilter('hot', this)">Snacks</div>
+    <!-- --- HOME PAGE --- -->
+    <div id="page-home" class="page active-page">
+        <h2 class="shop-categories-title">Shop Our Home Made Categories</h2>
+        <div class="category-grid">
+            <div class="category-card" onclick="showPage('pickles'); filterPickles('all');">
+                <img src="images/pickles.jpg" alt="Pickles">
+                <h3>Pickles</h3>
             </div>
-            
-            <div class="nav-utilities">
-                <div class="search-container">
-                    <input type="text" class="search-box" id="global-search-input" placeholder="Search products..." oninput="triggerLiveSearchFilter()">
-                    <span class="search-icon-inside">🔍</span>
-                </div>
-                <button class="cart-trigger-btn" onclick="toggleCartDrawer(true)">🛒 Cart (<span id="cart-counter-val">0</span>)</button>
+            <div class="category-card" onclick="showPage('podis')">
+                <img src="images/podis.jpg" alt="Podis">
+                <h3>Podis</h3>
+            </div>
+            <div class="category-card" onclick="showPage('sweets')">
+                <img src="images/sweets.jpg" alt="Sweets">
+                <h3>Sweets</h3>
+            </div>
+            <div class="category-card" onclick="showPage('snacks')">
+                <img src="images/snacks.jpg" alt="Snacks">
+                <h3>Snacks</h3>
             </div>
         </div>
-    </nav>
 
-    <div class="container">
-
-        <div class="back-nav-container" id="back-nav-row">
-            <button class="btn-back-dashboard" onclick="executeCategoryFilter('all', null)">← Back to Main Categories</button>
-        </div>
-
-        <div id="home-categories-dashboard">
-            <h2 style="text-align: center; font-size: 1.6rem; margin-bottom: 10px;">Shop Our Homemade Categories</h2>
-            
-            <div class="infobar-benefits">
-                <span>🌱 No added preservatives</span>
-                <span>🎨 No added colors</span>
-                <span>🌴 No palm oil</span>
-                <span>🧪 No chemicals</span>
+        <!-- ABOUT US SECTION -->
+        <div class="about-section">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <p>Welcome to <strong>Ruchi Tarangam (Waves of Flavors)</strong>! We are dedicated to bringing the pure essence of authentic, traditional, homemade culinary delights straight to your doorstep. Every blend, pickle, and sweet is prepared with care, matching the precise recipes passed down through generations. Keeping health and purity at our core, we completely discard bad industry practices: our kitchen functions completely without added artificial preservatives, chemical enhancements, unnatural colorings, or palm oil. We select only first-rate premium raw oils and native ingredients to let you feel the true wave of home-cooked luxury.</p>
             </div>
-
-            <div class="infobar-policies">
-                <span>❌ No cancellation</span>
-                <span>📦 No return</span>
-                <span>💰 No refund</span>
-            </div>
-
-            <div class="category-showcase-grid">
-    <!-- Veg Pickles -->
-    <div class="showcase-card" onclick="triggerShowcaseRouting('veg-pickles')">
-        <div class="showcase-img-frame">
-            <img src="veg%20pickles.webp" alt="Veg Pickles">
-        </div>
-        <h4>Veg Pickles</h4>
-    </div>
-    <!-- Non Veg Pickles -->
-    <div class="showcase-card" onclick="triggerShowcaseRouting('nonveg-pickles')">
-        <div class="showcase-img-frame">
-            <img src="Non%20veg%20pickles.jpeg" alt="Non Veg Pickles">
-        </div>
-        <h4>Non-Veg Pickles</h4>
-    </div>
-    <!-- Podis -->
-    <div class="showcase-card" onclick="triggerShowcaseRouting('podi')">
-        <div class="showcase-img-frame">
-            <img src="Podis.jpeg" alt="Podis">
-        </div>
-        <h4>Podis</h4>
-    </div>
-    <!-- Sweets -->
-    <div class="showcase-card" onclick="triggerShowcaseRouting('sweet')">
-        <div class="showcase-img-frame">
-            <img src="Sweets.jpeg" alt="Sweets">
-        </div>
-        <h4>Sweets</h4>
-    </div>
-    <!-- Snacks -->
-   <div class="showcase-card" onclick="executeCategoryFilter('snacks')">
-    <div class="showcase-img-frame">
-        <img src="Snacks.jpg" alt="Snacks">
-    </div>
-    <h4>Snacks</h4>
-</div>
-</div>
-        </div>
-
-        <div class="category-section filter-pickles filter-veg-pickles" id="sec-veg-pickles">
-            <div class="category-title">🌶️ Veg Pickles</div>
-            <div class="product-grid" id="veg-container"></div>
-        </div>
-
-        <div class="category-section filter-pickles filter-nonveg-pickles" id="sec-nonveg-pickles">
-            <div class="category-title">🍗 Non-Veg Pickles</div>
-            <div class="product-grid" id="nonveg-container"></div>
-        </div>
-
-        <div class="category-section filter-podi" id="sec-podi">
-            <div class="category-title">🌾 Flavorful Podis</div>
-            <div class="product-grid" id="podi-container"></div>
-        </div>
-
-        <div class="category-section filter-sweet" id="sec-sweet">
-            <div class="category-title">🍯 Traditional Sweets</div>
-            <div class="product-grid" id="sweet-container"></div>
-        </div>
-
-        <div class="category-section filter-hot" id="sec-hot">
-            <div class="category-title">🔥 Hot Snacks</div>
-            <div class="product-grid" id="hot-container"></div>
-        </div>
-
-        <div class="order-section" id="checkout-form">
-            <h2>Delivery Address Details</h2>
-            
-            <div class="form-group">
-                <label for="addr-name">Name <span class="req">*</span></label>
-                <input type="text" id="addr-name" placeholder="Enter your full name">
-            </div>
-
-            <div class="form-group">
-                <label for="addr-country">Country</label>
-                <input type="text" id="addr-country" value="India" disabled>
-            </div>
-
-            <div class="form-group">
-                <label for="addr-state">State <span class="req">*</span></label>
-                <select id="addr-state">
-                    <option value="">-- Choose State --</option>
-                    <option value="Andhra Pradesh">Andhra Pradesh</option>
-                    <option value="Telangana">Telangana</option>
-                    <option value="Karnataka">Karnataka</option>
-                    <option value="Tamil Nadu">Tamil Nadu</option>
-                    <option value="Kerala">Kerala</option>
-                    <option value="Maharashtra">Maharashtra</option>
-                    <option value="Delhi">Delhi</option>
-                    <option value="Other">Other State</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="addr-street">Address <span class="req">*</span></label>
-                <input type="text" id="addr-street" placeholder="House No, Street Name, Area Local Colony">
-            </div>
-
-            <div class="form-group">
-                <label for="addr-opt">Apartment, suite, etc (Optional)</label>
-                <input type="text" id="addr-opt" placeholder="Apartment name, Flat No, Block details">
-            </div>
-
-            <div class="form-group">
-                <label for="addr-city">City <span class="req">*</span></label>
-                <input type="text" id="addr-city" placeholder="Town / City name">
-            </div>
-
-            <div class="form-group">
-                <label for="addr-pincode">Pincode <span class="req">*</span></label>
-                <input type="number" id="addr-pincode" placeholder="6-digit PIN code" oninput="if(this.value.length > 6) this.value = this.value.slice(0,6);">
-            </div>
-
-            <div class="form-group">
-                <label for="addr-phone">Phone number <span class="req">*</span></label>
-                <input type="number" id="addr-phone" placeholder="Mobile contact number">
-            </div>
-
-            <button class="btn-whatsapp" onclick="dispatchWhatsAppOrderPipeline()">📱 Submit Order via WhatsApp</button>
         </div>
     </div>
 
-    <div class="cart-drawer-overlay" id="cart-overlay-node" onclick="toggleCartDrawer(false)"></div>
-    <div class="cart-drawer" id="cart-drawer-node">
-        <div class="cart-header">
+    <!-- --- PICKLES PAGE --- -->
+    <div id="page-pickles" class="page">
+        <h2 class="section-title">Pickles Collection</h2>
+        <div class="sub-nav">
+            <button id="btn-all-pickles" class="active" onclick="filterPickles('all')">All Pickles</button>
+            <button id="btn-veg" onclick="filterPickles('veg')">Veg Pickles</button>
+            <button id="btn-nonveg" onclick="filterPickles('nonveg')">Non-Veg Pickles</button>
+        </div>
+        <div id="pickles-grid" class="products-container"></div>
+    </div>
+
+    <!-- --- PODIS PAGE --- -->
+    <div id="page-podis" class="page">
+        <h2 class="section-title">Podis</h2>
+        <div id="podis-grid" class="products-container"></div>
+    </div>
+
+    <!-- --- SWEETS PAGE --- -->
+    <div id="page-sweets" class="page">
+        <h2 class="section-title">Sweets</h2>
+        <div id="sweets-grid" class="products-container"></div>
+    </div>
+
+    <!-- --- SNACKS PAGE --- -->
+    <div id="page-snacks" class="page">
+        <h2 class="section-title">Snacks</h2>
+        <div id="snacks-grid" class="products-container"></div>
+    </div>
+
+
+    <!-- --- WISHLIST SIDE PANEL --- -->
+    <div id="wishlist-panel" class="side-panel">
+        <div class="panel-header">
+            <h2>My Wishlist</h2>
+            <button class="close-btn" onclick="togglePanel('wishlist')">&times;</button>
+        </div>
+        <div class="panel-body" id="wishlist-items-container"></div>
+    </div>
+
+
+    <!-- --- CART / CHECKOUT SIDE PANEL --- -->
+    <div id="cart-panel" class="side-panel">
+        <div class="panel-header">
             <h2>Your Shopping Cart</h2>
-            <button class="close-cart-btn" onclick="toggleCartDrawer(false)">✕</button>
+            <button class="close-btn" onclick="togglePanel('cart')">&times;</button>
         </div>
-        <div class="cart-items-list" id="drawer-items-container"></div>
-        <div class="cart-footer">
-            <div class="cart-total-row">
-                <span>Total Amount:</span>
-                <span>₹<span id="drawer-grand-total">0</span></span>
+        <div class="panel-body">
+            <div id="cart-items-container"></div>
+            
+            <div id="checkout-form-wrapper" style="margin-top: 20px; display: none;">
+                <h3 style="margin-bottom: 15px; font-size: 1.1rem; border-bottom: 1px solid #ccc; padding-bottom: 5px;">Delivery Address</h3>
+                <form id="address-form" onsubmit="handleCheckout(event)">
+                    <div class="form-group">
+                        <label>Name *</label>
+                        <input type="text" id="cust-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Country</label>
+                        <input type="text" id="cust-country" value="India" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>State *</label>
+                        <select id="cust-state" required>
+                            <option value="">Select State</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Address *</label>
+                        <input type="text" id="cust-address" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Apartment, suite, etc (Optional)</label>
+                        <input type="text" id="cust-apartment">
+                    </div>
+                    <div class="form-group">
+                        <label>City *</label>
+                        <input type="text" id="cust-city" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Pincode *</label>
+                        <input type="text" id="cust-pincode" pattern="[0-9]{6}" title="Six digit postal code" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" id="cust-phone" pattern="[0-9]{10}" title="Ten digit mobile number" required>
+                    </div>
+                    
+                    <div style="font-size: 0.95rem; margin-top: 15px; border-top: 1px dashed #ccc; padding-top: 10px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>Subtotal:</span>
+                            <span id="cart-subtotal">₹0</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>Shipping Charges:</span>
+                            <span id="cart-shipping">₹0</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: bold; color: var(--primary); margin-top: 5px;">
+                            <span>Grand Total:</span>
+                            <span id="cart-grand-total">₹0</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="checkout-btn">
+                        <i class="fa-brands fa-whatsapp"></i> Place Order via WhatsApp
+                    </button>
+                </form>
             </div>
-            <button class="btn-checkout-scroll" onclick="toggleCartDrawer(false); showCheckoutFormAndScroll()">Proceed to Checkout ↓</button>
         </div>
     </div>
 
+
+    <!-- --- FOOTER --- -->
     <footer>
         <div class="footer-container">
             <div class="footer-col">
-                <h4>About Trade Company</h4>
+                <h3>Ruchi Tarangam</h3>
+                <p>Enjoy the waves of exquisite native flavors cleanly crafted straight inside our traditional home kitchen.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/ruchitarangam?igsh=Z3Y2cnQ2anNtbmt1&utm_-source=qr" target="_blank">
+                        <i class="fa-brands fa-instagram"></i> Follow Instagram
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Menu</h3>
+                <a onclick="showPage('home')">Home</a>
+                <a onclick="showPage('pickles'); filterPickles('all');">Pickles</a>
+                <a onclick="showPage('podis')">Podis</a>
+                <a onclick="showPage('sweets')">Sweets</a>
+                <a onclick="showPage('snacks')">Snacks</a>
+            </div>
+            <div class="footer-col">
+                <h3>Our Business Details</h3>
                 <p><strong>Trade Name:</strong> Ruchi Tarangam</p>
-                <p>Authentic, premium homemade Telugu pickles, flavorful podis, traditional sweets, and crispy hot snacks prepared with natural ingredients and pure love.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Contact Support</h4>
-                <p><strong>📞 Phone:</strong> +91 9533338836</p>
-                <p><strong>✉️ Email:</strong> ruchitarangam.official@gmail.com</p>
-                <p><strong>📱 Instagram:</strong> <a href="https://www.instagram.com/ruchitarangam?igsh=Z3Y2cnQ2anNtbmt1&utm_-source=qr" target="_blank">@ruchitarangam</a></p>
-            </div>
-            <div class="footer-col">
-                <h4>Physical Address</h4>
-                <p>Plot no:373,</p>
-                <p>Lakshmi Sai meadows colony, Road no:7,</p>
-                <p>Beeramguda, Sangareddy district,</p>
-                <p>Telangana, India.</p>
+                <p><strong>Phone:</strong> +91 9533338836</p>
+                <p><strong>Email:</strong> ruchitarangam.official@gmail.com</p>
+                <p><strong>Address:</strong> Plot no:373, Lakshmi Sai meadows colony, Road no:7, Beeramguda, Sangareddy district, Telangana, 502032</p>
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; 2026 Ruchi Tarangam - Waves of Flavors. All Rights Reserved. Crafted for Mobile Excellence.
+            &copy; 2026 Ruchi Tarangam. All Rights Reserved.
+            <div class="policy-disclaimer">No Cancellation | No Return | No Refund</div>
         </div>
     </footer>
 
+    <!-- --- STICKY BOTTOM MARQUEE BAR --- -->
+    <div class="marquee-wrapper">
+        <div class="marquee-content">
+            <span><i class="fa-solid fa-leaf"></i> No Added Preservatives</span>
+            <span><i class="fa-solid fa-flask-vial"></i> No Chemicals</span>
+            <span><i class="fa-solid fa-palette"></i> No Added Colors</span>
+            <span><i class="fa-solid fa-droplet-slash"></i> No Palm Oil</span>
+            <span><i class="fa-solid fa-leaf"></i> No Added Preservatives</span>
+            <span><i class="fa-solid fa-flask-vial"></i> No Chemicals</span>
+            <span><i class="fa-solid fa-palette"></i> No Added Colors</span>
+            <span><i class="fa-solid fa-droplet-slash"></i> No Palm Oil</span>
+        </div>
+    </div>
+
+    <!-- --- JAVASCRIPT LOGIC --- -->
     <script>
-        const MENU_DATA = {
-            veg: {
-                title: "Veg Pickles",
-                sizes: ["250gm", "500gm", "1Kg"],
-                items: [
-                    { name: "Tomato", prices: [150, 300, 500] },
-                    { name: "Usirikaya", prices: [150, 300, 500] },
-                    { name: "Kakarkaya", prices: [150, 300, 500] },
-                    { name: "Pandumirchi", prices: [150, 300, 500] },
-                    { name: "Nimakaya", prices: [150, 300, 500] },
-                    { name: "Allam", prices: [150, 300, 500] },
-                    { name: "Gongura", prices: [150, 300, 500] },
-                    { name: "Cauliflower Avakaya", prices: [150, 300, 500] },
-                    { name: "Vankay Avakaya", prices: [150, 300, 500] }
-                ]
-            },
-            nonveg: {
-                title: "Non Veg Pickles",
-                sizes: ["250gm", "500gm", "1Kg"],
-                items: [
-                    { name: "Bhimavaram spl Royala Avakaya", prices: [425, 850, 1700] },
-                    { name: "Boneless Chicken pickle", prices: [375, 750, 1500] },
-                    { name: "Chicken pickle with bone", prices: [325, 650, 1300] },
-                    { name: "Mutton pickle with bone", prices: [400, 800, 1600] },
-                    { name: "Mutton pickle with boneless", prices: [500, 1000, 2000] },
-                    { name: "Gongura Boneless chicken pickle", prices: [400, 800, 1600] }
-                ]
-            },
-            podi: {
-                title: "Podis",
-                sizes: ["250gm", "500gm", "1Kg"],
-                items: [
-                    { name: "Karam podi", prices: [230, 460, 920] },
-                    { name: "Karivepaku podi", prices: [230, 460, 920] },
-                    { name: "Palli karampodi", prices: [230, 460, 920] },
-                    { name: "Nuvvulu Karampodi", prices: [230, 460, 920] },
-                    { name: "Kandi karampodi", prices: [230, 460, 920] },
-                    { name: "Avisaginjalu podi", prices: [230, 460, 920] },
-                    { name: "Homemade Garam masala podi", prices: [250, 500, 1000] }
-                ]
-            },
-            sweet: {
-                title: "Sweets",
-                sizes: ["250gm", "500gm", "1Kg"],
-                items: [
-                    { name: "Bellam Gavvalu", prices: [150, 300, 600] },
-                    { name: "Ghee Nuvvulu Ariselu", prices: [200, 400, 800] },
-                    { name: "Kajjikayalu", prices: [180, 360, 720] },
-                    { name: "Paakundalu", prices: [180, 360, 720] },
-                    { name: "Bellam Chalividi", prices: [180, 360, 720] },
-                    { name: "Bellam Nuvvulu undalu", prices: [180, 360, 720] },
-                    { name: "Palli undalu", prices: [180, 360, 720] },
-                    { name: "Bellam Gorimitilu", prices: [160, 320, 640] },
-                    { name: "Nethi Ravva laddu", prices: [160, 320, 640] },
-                    { name: "Kobbari undalu", prices: [180, 360, 720] },
-                    { name: "Sweet Maida biscuits", prices: [160, 320, 640] },
-                    { name: "Nethi Poornam Bobatlu", prices: [210, 420, 840] },
-                    { name: "Nethi sunnundalu", prices: [190, 380, 760] },
-                    { name: "Dryfruits Laddu", prices: [320, 640, 1280] },
-                    { name: "Kaju pakam", prices: [390, 790, 1580] }
-                ]
-            },
-            hot: {
-                title: "Snacks",
-                sizes: ["250gm", "500gm", "1Kg"],
-                items: [
-                    { name: "Corn flakes mixture", prices: [160, 320, 640] },
-                    { name: "Andhra mixture", prices: [160, 320, 640] },
-                    { name: "Atukulu mixture", prices: [160, 320, 640] },
-                    { name: "Sanna karpusa", prices: [160, 320, 640] },
-                    { name: "Karam gavvalu", prices: [160, 320, 640] },
-                    { name: "Aaku pakodi", prices: [160, 320, 640] },
-                    { name: "Masala Kaju", prices: [380, 760, 1520] },
-                    { name: "Janthikalu", prices: [160, 320, 640] },
-                    { name: "Chekkalu", prices: [160, 320, 640] }
-                ]
-            }
+        const productsData = {
+            veg: [
+                { id: "v1", name: "Tomato", prices: [150, 300, 500], img: "images/items/tomato.jpg" },
+                { id: "v2", name: "Usirikaya", prices: [150, 300, 500], img: "images/items/usirikaya.jpg" },
+                { id: "v3", name: "Kakarkaya", prices: [150, 300, 500], img: "images/items/kakarkaya.jpg" },
+                { id: "v4", name: "Pandumirchi", prices: [150, 300, 500], img: "images/items/pandumirchi.jpg" },
+                { id: "v5", name: "Nimakaya", prices: [150, 300, 500], img: "images/items/nimakaya.jpg" },
+                { id: "v6", name: "Allam", prices: [150, 300, 500], img: "images/items/allam.jpg" },
+                { id: "v7", name: "Gongura", prices: [150, 300, 500], img: "images/items/gongura.jpg" },
+                { id: "v8", name: "Cauliflower Avakaya", prices: [150, 300, 500], img: "images/items/cauliflower.jpg" },
+                { id: "v9", name: "Vankay Avakaya", prices: [150, 300, 500], img: "images/items/vankay.jpg" }
+            ],
+            nonveg: [
+                { id: "nv1", name: "Bhimavaram spl Royala Avakaya", prices: [425, 850, 1700], img: "images/items/royala_avakaya.jpg" },
+                { id: "nv2", name: "Boneless Chicken pickle", prices: [375, 750, 1500], img: "images/items/chicken_boneless.jpg" },
+                { id: "nv3", name: "Chicken pickle with bone", prices: [325, 650, 1300], img: "images/items/chicken_bone.jpg" },
+                { id: "nv4", name: "Mutton pickle with bone", prices: [400, 800, 1600], img: "images/items/mutton_bone.jpg" },
+                { id: "nv5", name: "Mutton pickle with boneless", prices: [500, 1000, 2000], img: "images/items/mutton_boneless.jpg" },
+                { id: "nv6", name: "Gongura Boneless chicken pickle", prices: [400, 800, 1600], img: "images/items/gongura_chicken.jpg" }
+            ],
+            podi: [
+                { id: "p1", name: "Karam podi", prices: [230, 460, 920], img: "images/items/karam_podi.jpg" },
+                { id: "p2", name: "Karivepaku podi", prices: [230, 460, 920], img: "images/items/karivepaku_podi.jpg" },
+                { id: "p3", name: "Palli karampodi", prices: [230, 460, 920], img: "images/items/palli_podi.jpg" },
+                { id: "p4", name: "Nuvvulu Karampodi", prices: [230, 460, 920], img: "images/items/nuvvulu_podi.jpg" },
+                { id: "p5", name: "Kandi karampodi", prices: [230, 460, 920], img: "images/items/kandi_podi.jpg" },
+                { id: "p6", name: "Avisaginjalu podi", prices: [230, 460, 920], img: "images/items/avisaginjalu_podi.jpg" },
+                { id: "p7", name: "Homemade Garam masala podi", prices: [250, 500, 1000], img: "images/items/garam_masala.jpg" }
+            ],
+            sweet: [
+                { id: "sw1", name: "Bellam Gavvalu", prices: [150, 300, 600], img: "images/items/gavvalu.jpg" },
+                { id: "sw2", name: "Ghee Nuvvulu Ariselu", prices: [200, 400, 800], img: "images/items/ariselu.jpg" },
+                { id: "sw3", name: "Kajjikayalu", prices: [180, 360, 720], img: "images/items/kajjikayalu.jpg" },
+                { id: "sw4", name: "Paakundalu", prices: [180, 360, 720], img: "images/items/paakundalu.jpg" },
+                { id: "sw5", name: "Bellam Chalividi", prices: [180, 360, 720], img: "images/items/chalividi.jpg" },
+                { id: "sw6", name: "Bellam Nuvvulu undalu", prices: [180, 360, 720], img: "images/items/nuvvulu_undalu.jpg" },
+                { id: "sw7", name: "Palli undalu", prices: [180, 360, 720], img: "images/items/palli_undalu.jpg" },
+                { id: "sw8", name: "Bellam Gorimitilu", prices: [160, 320, 640], img: "images/items/gorimitilu.jpg" },
+                { id: "sw9", name: "Nethi Ravva laddu", prices: [160, 320, 640], img: "images/items/ravva_laddu.jpg" },
+                { id: "sw10", name: "Kobbari undalu", prices: [180, 360, 720], img: "images/items/kobbari_undalu.jpg" },
+                { id: "sw11", name: "Sweet Maida biscuits", prices: [160, 320, 640], img: "images/items/maida_biscuits.jpg" },
+                { id: "sw12", name: "Nethi Poornam Bobatlu", prices: [210, 420, 840], img: "images/items/bobatlu.jpg" },
+                { id: "sw13", name: "Nethi sunnundalu", prices: [190, 380, 760], img: "images/items/sunnundalu.jpg" },
+                { id: "sw14", name: "Dryfruits Laddu", prices: [320, 640, 1280], img: "images/items/dryfruit_laddu.jpg" },
+                { id: "sw15", name: "Kaju pakam", prices: [390, 790, 1580], img: "images/items/kaju_pakam.jpg" }
+            ],
+            snacks: [
+                { id: "sn1", name: "Corn flakes mixture", prices: [160, 320, 640], img: "images/items/cornflakes_mix.jpg" },
+                { id: "sn2", name: "Andhra mixture", prices: [160, 320, 640], img: "images/items/andhra_mix.jpg" },
+                { id: "sn3", name: "Atukulu mixture", prices: [160, 320, 640], img: "images/items/atukulu_mix.jpg" },
+                { id: "sn4", name: "Sanna karpusa", prices: [160, 320, 640], img: "images/items/sanna_karpusa.jpg" },
+                { id: "sn5", name: "Karam gavvalu", prices: [160, 320, 640], img: "images/items/karam_gavvalu.jpg" },
+                { id: "sn6", name: "Aaku pakodi", prices: [160, 320, 640], img: "images/items/aaku_pakodi.jpg" },
+                { id: "sn7", name: "Masala Kaju", prices: [380, 760, 1520], img: "images/items/masala_kaju.jpg" },
+                { id: "sn8", name: "Janthikalu", prices: [160, 320, 640], img: "images/items/janthikalu.jpg" },
+                { id: "sn9", name: "Chekkalu", prices: [160, 320, 640], img: "images/items/chekkalu.jpg" }
+            ]
         };
 
-        function executeCategoryFilter(targetCategory, triggerElement) {
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => link.classList.remove('active'));
-            if(triggerElement) { triggerElement.classList.add('active'); }
+        const sizeLabels = ["250gm", "500gm", "1Kg"];
+        let cart = [];
+        let wishlist = [];
 
-            const dashboard = document.getElementById('home-categories-dashboard');
-            const backRow = document.getElementById('back-nav-row');
-            const checkoutArea = document.getElementById('checkout-form');
-            const sectionBlocks = document.querySelectorAll('.category-section');
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active-page'));
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            
+            const targetPage = document.getElementById(`page-${pageId}`);
+            if(targetPage) targetPage.classList.add('active-page');
+            
+            const targetNav = document.getElementById(`nav-${pageId}`);
+            if(targetNav) targetNav.classList.add('active');
 
-            document.getElementById('global-search-input').value = "";
-
-            if (targetCategory === 'all') {
-                dashboard.style.display = 'block';
-                backRow.style.display = 'none';
-                checkoutArea.style.display = 'none';
-                sectionBlocks.forEach(b => b.style.display = 'none');
-                if(!triggerElement) { document.querySelectorAll('.nav-link')[0].classList.add('active'); }
-            } else {
-                dashboard.style.display = 'none';
-                backRow.style.display = 'block';
-                
-                sectionBlocks.forEach(block => {
-                    if (targetCategory === 'pickles') {
-                        block.classList.contains('filter-pickles') ? block.style.display = 'block' : block.style.display = 'none';
-                    } else if (targetCategory === 'veg-pickles') {
-                        block.classList.contains('filter-veg-pickles') ? block.style.display = 'block' : block.style.display = 'none';
-                    } else if (targetCategory === 'nonveg-pickles') {
-                        block.classList.contains('filter-nonveg-pickles') ? block.style.display = 'block' : block.style.display = 'none';
-                    } else {
-                        block.classList.contains(`filter-${targetCategory}`) ? block.style.display = 'block' : block.style.display = 'none';
-                    }
-                });
-                syncCheckoutFormVisibility();
-            }
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            closeAllPanels();
         }
 
-        function triggerShowcaseRouting(categoryKey) {
-            let activeMenuIndex = 1; 
-            if (categoryKey === 'podi') activeMenuIndex = 2;
-            if (categoryKey === 'sweet') activeMenuIndex = 3;
-            if (categoryKey === 'hot') activeMenuIndex = 4;
+        function filterPickles(type) {
+            document.getElementById('btn-all-pickles').classList.toggle('active', type === 'all');
+            document.getElementById('btn-veg').classList.toggle('active', type === 'veg');
+            document.getElementById('btn-nonveg').classList.toggle('active', type === 'nonveg');
             
-            const targetedNavNode = document.querySelectorAll('.nav-link')[activeMenuIndex];
-            executeCategoryFilter(categoryKey, targetedNavNode);
-        }
-
-        function triggerLiveSearchFilter() {
-            const searchVal = document.getElementById('global-search-input').value.toLowerCase().trim();
-            const allProductCards = document.querySelectorAll('.product-card');
-            const dashboard = document.getElementById('home-categories-dashboard');
-            const backRow = document.getElementById('back-nav-row');
-            const sectionBlocks = document.querySelectorAll('.category-section');
-
-            if(searchVal !== "") {
-                dashboard.style.display = 'none';
-                backRow.style.display = 'block';
-                sectionBlocks.forEach(b => b.style.display = 'block');
-                
-                allProductCards.forEach(card => {
-                    const nameText = card.querySelector('h3').innerText.toLowerCase();
-                    card.style.display = nameText.includes(searchVal) ? 'flex' : 'none';
-                });
-                syncCheckoutFormVisibility();
-            } else {
-                executeCategoryFilter('all', null);
+            const container = document.getElementById('pickles-grid');
+            let combinedHTML = '';
+            
+            if (type === 'all' || type === 'veg') {
+                combinedHTML += productsData.veg.map(item => generateProductHTML(item, 'veg')).join('');
             }
-        }
-
-        function toggleCartDrawer(openState) {
-            const overlay = document.getElementById('cart-overlay-node');
-            const drawer = document.getElementById('cart-drawer-node');
-            if(openState) {
-                overlay.style.display = 'block';
-                drawer.classList.add('open');
-                buildItemizedCartView();
-            } else {
-                overlay.style.display = 'none';
-                drawer.classList.remove('open');
+            if (type === 'all' || type === 'nonveg') {
+                combinedHTML += productsData.nonveg.map(item => generateProductHTML(item, 'nonveg')).join('');
             }
+            
+            container.innerHTML = combinedHTML;
         }
 
-        function renderDynamicMenuCatalogs() {
-            let runningCardId = 0;
-            for (let categoryKey in MENU_DATA) {
-                const domContainer = document.getElementById(`${categoryKey}-container`);
-                const sectionCatalog = MENU_DATA[categoryKey];
-                
-                sectionCatalog.items.forEach(itemRecord => {
-                    runningCardId++;
-                    const itemCardDiv = document.createElement('div');
-                    itemCardDiv.className = 'product-card';
-                    
-                    let selectorOptionsMarkup = `<option value="" data-price="0">-- Choose Size --</option>`;
-                    sectionCatalog.sizes.forEach((sizeString, sizeIdx) => {
-                        selectorOptionsMarkup += `<option value="${sizeString}" data-price="${itemRecord.prices[sizeIdx]}">${sizeString}</option>`;
-                    });
-                    
-                    itemCardDiv.innerHTML = `
-                        <h3>${itemRecord.name}</h3>
-                        <div class="selector-group">
-                            <select id="size-${runningCardId}" onchange="recalculateProductMetrics(${runningCardId})">
-                                ${selectorOptionsMarkup}
+        function generateProductHTML(item, categoryKey) {
+            const isWishlisted = wishlist.includes(item.id) ? 'active' : '';
+            return `
+                <div class="product-card" data-name="${item.name.toLowerCase()}">
+                    <div class="product-img-wrapper">
+                        <img src="${item.img}" alt="${item.name}" onerror="this.src='https://placehold.co/300x200?text=${item.name}'">
+                        <button class="wishlist-heart ${isWishlisted}" onclick="toggleWishlist('${item.id}', '${categoryKey}')" id="wish-${item.id}">
+                            <i class="fa-solid fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">${item.name}</div>
+                        <div class="product-controls">
+                            <select class="size-select" id="size-${item.id}" onchange="updateCardPrice('${item.id}', '${categoryKey}')">
+                                <option value="0">${sizeLabels[0]}</option>
+                                <option value="1">${sizeLabels[1]}</option>
+                                <option value="2">${sizeLabels[2]}</option>
                             </select>
-                            <input type="number" id="qty-${runningCardId}" value="0" min="0" onchange="recalculateProductMetrics(${runningCardId})">
+                            <div class="qty-row">
+                                <div class="qty-counter">
+                                    <button onclick="changeCardQty('${item.id}', '${categoryKey}', -1)">-</button>
+                                    <span id="qty-${item.id}">1</span>
+                                    <button onclick="changeCardQty('${item.id}', '${categoryKey}', 1)">+</button>
+                                </div>
+                                <div class="price-display" id="price-${item.id}">₹${item.prices[0]}</div>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart('${item.id}', '${categoryKey}')">
+                                <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                            </button>
                         </div>
-                        <div class="price-row">
-                            <span class="unit-price" id="unit-p-${runningCardId}">Select size...</span>
-                            <span class="total-item-price">Total: ₹<span id="total-p-${runningCardId}" class="calculated-item-totals">0</span></span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function updateCardPrice(id, category) {
+            const select = document.getElementById(`size-${id}`);
+            const qtySpan = document.getElementById(`qty-${id}`);
+            const priceDiv = document.getElementById(`price-${id}`);
+            
+            const item = findItemInGlobal(id);
+            const sizeIndex = parseInt(select.value);
+            const quantity = parseInt(qtySpan.innerText);
+            
+            priceDiv.innerText = `₹${item.prices[sizeIndex] * quantity}`;
+        }
+
+        function changeCardQty(id, category, change) {
+            const qtySpan = document.getElementById(`qty-${id}`);
+            let currentQty = parseInt(qtySpan.innerText) + change;
+            if (currentQty < 1) currentQty = 1;
+            qtySpan.innerText = currentQty;
+            
+            updateCardPrice(id, category);
+        }
+
+        function findItemInGlobal(id) {
+            for (let cat in productsData) {
+                const found = productsData[cat].find(i => i.id === id);
+                if (found) return found;
+            }
+            return null;
+        }
+
+        function renderStaticGrids() {
+            document.getElementById('podis-grid').innerHTML = productsData.podi.map(item => generateProductHTML(item, 'podi')).join('');
+            document.getElementById('sweets-grid').innerHTML = productsData.sweet.map(item => generateProductHTML(item, 'sweet')).join('');
+            document.getElementById('snacks-grid').innerHTML = productsData.snacks.map(item => generateProductHTML(item, 'snacks')).join('');
+        }
+
+        function handleSearch() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            if(query.trim() !== "") {
+                document.querySelectorAll('.product-card').forEach(card => {
+                    const match = card.getAttribute('data-name').includes(query);
+                    card.style.display = match ? "flex" : "none";
+                });
+            } else {
+                document.querySelectorAll('.product-card').forEach(card => card.style.display = "flex");
+            }
+        }
+
+        function togglePanel(panelType) {
+            const cartPanel = document.getElementById('cart-panel');
+            const wishlistPanel = document.getElementById('wishlist-panel');
+            
+            if(panelType === 'cart') {
+                wishlistPanel.classList.remove('open');
+                cartPanel.classList.toggle('open');
+            } else {
+                cartPanel.classList.remove('open');
+                wishlistPanel.classList.toggle('open');
+            }
+        }
+
+        function closeAllPanels() {
+            document.getElementById('cart-panel').classList.remove('open');
+            document.getElementById('wishlist-panel').classList.remove('open');
+        }
+
+        function addToCart(id, category) {
+            const sizeIndex = parseInt(document.getElementById(`size-${id}`).value);
+            const qty = parseInt(document.getElementById(`qty-${id}`).innerText);
+            const item = findItemInGlobal(id);
+            
+            const existingIndex = cart.findIndex(c => c.id === id && c.sizeIndex === sizeIndex);
+            if(existingIndex > -1) {
+                cart[existingIndex].qty += qty;
+            } else {
+                cart.push({
+                    id: id,
+                    name: item.name,
+                    sizeIndex: sizeIndex,
+                    sizeLabel: sizeLabels[sizeIndex],
+                    unitPrice: item.prices[sizeIndex],
+                    qty: qty,
+                    img: item.img
+                });
+            }
+            document.getElementById(`qty-${id}`).innerText = "1";
+            updateCardPrice(id, category);
+            
+            renderCart();
+            togglePanel('cart');
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            renderCart();
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cart-items-container');
+            const formWrapper = document.getElementById('checkout-form-wrapper');
+            const countBadge = document.getElementById('cart-count');
+            
+            countBadge.innerText = cart.reduce((acc, curr) => acc + curr.qty, 0);
+            
+            if(cart.length === 0) {
+                container.innerHTML = `<p style="text-align:center; color:#888; padding:20px;">Your cart is empty.</p>`;
+                formWrapper.style.display = "none";
+                return;
+            }
+            
+            formWrapper.style.display = "block";
+            let subtotal = 0;
+            
+            container.innerHTML = cart.map((item, index) => {
+                const totalItemPrice = item.unitPrice * item.qty;
+                subtotal += totalItemPrice;
+                return `
+                    <div class="panel-item">
+                        <img src="${item.img}" alt="${item.name}" onerror="this.src='https://placehold.co/50x50'">
+                        <div class="panel-item-details">
+                            <div class="panel-item-name">${item.name}</div>
+                            <div class="panel-item-meta">Size: ${item.sizeLabel} | Qty: ${item.qty}</div>
+                            <div class="panel-item-meta" style="font-weight:bold; color:var(--primary)">₹${totalItemPrice}</div>
                         </div>
-                    `;
-                    domContainer.appendChild(itemCardDiv);
-                });
-            }
+                        <button class="remove-item" onclick="removeFromCart(${index})"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+            }).join('');
+            
+            let shippingCharges = subtotal > 999 ? 0 : 60; 
+            let grandTotal = subtotal + shippingCharges;
+            
+            document.getElementById('cart-subtotal').innerText = `₹${subtotal}`;
+            document.getElementById('cart-shipping').innerText = shippingCharges === 0 ? "FREE" : `₹${shippingCharges}`;
+            document.getElementById('cart-grand-total').innerText = `₹${grandTotal}`;
         }
 
-        function recalculateProductMetrics(cardId) {
-            const sizeElement = document.getElementById(`size-${cardId}`);
-            const quantityElement = document.getElementById(`qty-${cardId}`);
-            const unitLabelElement = document.getElementById('unit-p-' + cardId);
-            const cardTotalLabelElement = document.getElementById('total-p-' + cardId);
+        function toggleWishlist(id, category) {
+            const heartBtn = document.getElementById(`wish-${id}`);
+            const index = wishlist.indexOf(id);
             
-            const selectedOptionNode = sizeElement.options[sizeElement.selectedIndex];
-            const parsedUnitCost = parseInt(selectedOptionNode.getAttribute('data-price')) || 0;
-            let interactiveQtyVal = parseInt(quantityElement.value) || 0;
-            
-            if (interactiveQtyVal < 0) { interactiveQtyVal = 0; quantityElement.value = 0; }
-            
-            if (sizeElement.value === "") {
-                unitLabelElement.innerText = "Select size...";
-                cardTotalLabelElement.innerText = "0";
-                quantityElement.value = 0; 
+            if(index > -1) {
+                wishlist.splice(index, 1);
+                if(heartBtn) heartBtn.classList.remove('active');
             } else {
-                if (interactiveQtyVal === 0) { interactiveQtyVal = 1; quantityElement.value = 1; }
-                unitLabelElement.innerText = `Price: ₹${parsedUnitCost}`;
-                cardTotalLabelElement.innerText = parsedUnitCost * interactiveQtyVal;
+                wishlist.push(id);
+                if(heartBtn) heartBtn.classList.add('active');
             }
-            syncCartGlobalCounts();
+            renderWishlist();
         }
 
-        function syncCartGlobalCounts() {
-            let activeItemsCount = 0;
-            let totalCartSum = 0;
-            let functionalCardIndexCounter = 0;
-
-            for (let categoryKey in MENU_DATA) {
-                MENU_DATA[categoryKey].items.forEach(() => {
-                    functionalCardIndexCounter++;
-                    const sizeSelector = document.getElementById(`size-${functionalCardIndexCounter}`);
-                    const quantitySelector = document.getElementById(`qty-${functionalCardIndexCounter}`);
-                    const qtyVal = parseInt(quantitySelector.value) || 0;
-
-                    if (qtyVal > 0 && sizeSelector.value !== "") {
-                        activeItemsCount += qtyVal;
-                        const selectedOptionNode = sizeSelector.options[sizeSelector.selectedIndex];
-                        const price = parseInt(selectedOptionNode.getAttribute('data-price')) || 0;
-                        totalCartSum += (price * qtyVal);
-                    }
-                });
-            }
-            document.getElementById('cart-counter-val').innerText = activeItemsCount;
-            document.getElementById('drawer-grand-total').innerText = totalCartSum;
-            syncCheckoutFormVisibility();
-        }
-
-        function syncCheckoutFormVisibility() {
-            const totalVal = parseInt(document.getElementById('drawer-grand-total').innerText) || 0;
-            const checkoutArea = document.getElementById('checkout-form');
-            const dashboard = document.getElementById('home-categories-dashboard');
-
-            if(totalVal > 0 && dashboard.style.display !== 'block') {
-                checkoutArea.style.display = 'block';
-            } else {
-                checkoutArea.style.display = 'none';
-            }
-        }
-
-        function showCheckoutFormAndScroll() {
-            const checkoutArea = document.getElementById('checkout-form');
-            const totalVal = parseInt(document.getElementById('drawer-grand-total').innerText) || 0;
-
-            if(totalVal === 0) {
-                alert("Your cart is empty. Please add items to your cart first.");
-                return;
-            }
-
-            if(document.getElementById('home-categories-dashboard').style.display === 'block') {
-                document.getElementById('home-categories-dashboard').style.display = 'none';
-                document.getElementById('back-nav-row').style.display = 'block';
-                document.querySelectorAll('.category-section').forEach(b => b.style.display = 'block');
-            }
-
-            checkoutArea.style.display = 'block';
-            checkoutArea.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function buildItemizedCartView() {
-            const container = document.getElementById('drawer-items-container');
-            container.innerHTML = "";
-            let itemIndex = 0;
-            let totalSum = 0;
-            let hasItems = false;
-
-            for (let categoryKey in MENU_DATA) {
-                MENU_DATA[categoryKey].items.forEach(item => {
-                    itemIndex++;
-                    const sizeSel = document.getElementById(`size-${itemIndex}`);
-                    const qtySel = document.getElementById(`qty-${itemIndex}`);
-                    const qty = parseInt(qtySel.value) || 0;
-
-                    if (qty > 0 && sizeSel.value !== "") {
-                        hasItems = true;
-                        const opt = sizeSel.options[sizeSel.selectedIndex];
-                        const price = parseInt(opt.getAttribute('data-price')) || 0;
-                        const sum = price * qty;
-                        totalSum += sum;
-
-                        const row = document.createElement('div');
-                        row.className = 'cart-row-item';
-                        row.innerHTML = `
-                            <div><strong>${item.name}</strong><br><small>Size: ${sizeSel.value} x ${qty}</small></div>
-                            <span>₹${sum}</span>
-                        `;
-                        container.appendChild(row);
-                    }
-                });
-            }
-
-            if(!hasItems) {
-                container.innerHTML = `<div class="empty-cart-text">Your basket is empty. Select items to see them here!</div>`;
-            }
-            document.getElementById('drawer-grand-total').innerText = totalSum;
-        }
-
-        function dispatchWhatsAppOrderPipeline() {
-            const officialBusinessPhoneNum = "919533338836"; 
+        function renderWishlist() {
+            const container = document.getElementById('wishlist-items-container');
+            document.getElementById('wishlist-count').innerText = wishlist.length;
             
-            const cName = document.getElementById('addr-name').value.trim();
-            const cState = document.getElementById('addr-state').value;
-            const cStreet = document.getElementById('addr-street').value.trim();
-            const cOpt = document.getElementById('addr-opt').value.trim();
-            const cCity = document.getElementById('addr-city').value.trim();
-            const cPincode = document.getElementById('addr-pincode').value.trim();
-            const cPhone = document.getElementById('addr-phone').value.trim();
-            
-            if (!cName || !cState || !cStreet || !cCity || !cPincode || !cPhone) {
-                alert("Please complete all required address elements marked with an asterisk (*) before submitting.");
+            if(wishlist.length === 0) {
+                container.innerHTML = `<p style="text-align:center; color:#888; padding:20px;">Your wishlist is empty.</p>`;
                 return;
             }
             
-            let finalReceiptMessageText = "";
-            let overallCalculatedInvoiceAmount = 0;
-            let functionalCardIndexCounter = 0;
-            
-            for (let categoryKey in MENU_DATA) {
-                const sectionCatalog = MENU_DATA[categoryKey];
-                let categoryHeaderPrintedFlag = false;
-                
-                sectionCatalog.items.forEach(itemRecord => {
-                    functionalCardIndexCounter++;
-                    const sizeSelector = document.getElementById(`size-${functionalCardIndexCounter}`);
-                    const quantitySelector = document.getElementById(`qty-${functionalCardIndexCounter}`);
-                    const extractedQty = parseInt(quantitySelector.value) || 0;
-                    
-                    if (extractedQty > 0 && sizeSelector.value !== "") {
-                        if (!categoryHeaderPrintedFlag) {
-                            finalReceiptMessageText += `\n*■ ${sectionCatalog.title}*:\n`;
-                            categoryHeaderPrintedFlag = true;
-                        }
-                        const selectedOptionNode = sizeSelector.options[sizeSelector.selectedIndex];
-                        const individualItemCost = parseInt(selectedOptionNode.getAttribute('data-price')) || 0;
-                        const individualLineSummedPrice = individualItemCost * extractedQty;
-                        overallCalculatedInvoiceAmount += individualLineSummedPrice;
-                        
-                        finalReceiptMessageText += `  • ${itemRecord.name} (${sizeSelector.value}) x ${extractedQty} = ₹${individualLineSummedPrice}\n`;
-                    }
-                });
-            }
-            
-            if (overallCalculatedInvoiceAmount === 0) {
-                alert("Your checkout total is ₹0. Add item configurations to your basket first.");
-                return;
-            }
-            
-            let encodedWhatsAppString = `*NEW ORDER - RUCHI TARANGAM*\n`;
-            encodedWhatsAppString += `=========================\n`;
-            encodedWhatsAppString += `*Customer Delivery Coordinates*:\n`;
-            encodedWhatsAppString += `Name: ${cName}\n`;
-            encodedWhatsAppString += `Country: India\n`;
-            encodedWhatsAppString += `State: ${cState}\n`;
-            encodedWhatsAppString += `Address: ${cStreet}\n`;
-            if(cOpt) { encodedWhatsAppString += `Apartment, suite, etc: ${cOpt}\n`; }
-            encodedWhatsAppString += `City: ${cCity}\n`;
-            encodedWhatsAppString += `Pincode: ${cPincode}\n`;
-            encodedWhatsAppString += `Phone number: ${cPhone}\n`;
-            encodedWhatsAppString += `=========================\n`;
-            encodedWhatsAppString += `*Order Breakdown Details*:${finalReceiptMessageText}`;
-            encodedWhatsAppString += `=========================\n`;
-            encodedWhatsAppString += `*Grand Invoice Total Summary:* ₹${overallCalculatedInvoiceAmount}\n\n`;
-            encodedWhatsAppString += `Please confirm fresh product availability pipelines and share digital payout parameters. Thank you!`;
-            
-            window.location.href = `https://wa.me/${officialBusinessPhoneNum}?text=${encodeURIComponent(encodedWhatsAppString)}`;
+            container.innerHTML = wishlist.map(id => {
+                const item = findItemInGlobal(id);
+                return `
+                    <div class="panel-item">
+                        <img src="${item.img}" alt="${item.name}" onerror="this.src='https://placehold.co/50x50'">
+                        <div class="panel-item-details">
+                            <div class="panel-item-name">${item.name}</div>
+                            <div class="panel-item-meta" style="color:var(--primary)">Pure Homemade Fresh Item</div>
+                        </div>
+                        <button class="remove-item" onclick="toggleWishlist('${id}')"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+            }).join('');
         }
 
-        window.onload = renderDynamicMenuCatalogs;
+        function handleCheckout(event) {
+            event.preventDefault();
+            if(cart.length === 0) return;
+            
+            const name = document.getElementById('cust-name').value;
+            const country = document.getElementById('cust-country').value;
+            const state = document.getElementById('cust-state').value;
+            const address = document.getElementById('cust-address').value;
+            const apartment = document.getElementById('cust-apartment').value;
+            const city = document.getElementById('cust-city').value;
+            const pincode = document.getElementById('cust-pincode').value;
+            const phone = document.getElementById('cust-phone').value;
+            
+            let message = `*RUCHI TARANGAM - NEW ORDER*\n`;
+            message += `=========================\n\n`;
+            message += `*Customer Details:*\n`;
+            message += `• Name: ${name}\n`;
+            message += `• Phone: ${phone}\n\n`;
+            message += `*Shipping Address:*\n`;
+            message += `• ${address}${apartment ? ', ' + apartment : ''}\n`;
+            message += `• ${city}, ${state} - ${pincode}\n`;
+            message += `• ${country}\n\n`;
+            message += `*Ordered Items:*\n`;
+            
+            let subtotal = 0;
+            cart.forEach((item, index) => {
+                const totalItemPrice = item.unitPrice * item.qty;
+                subtotal += totalItemPrice;
+                message += `${index + 1}. ${item.name} (${item.sizeLabel}) x ${item.qty} = ₹${totalItemPrice}\n`;
+            });
+            
+            let shipping = subtotal > 999 ? 0 : 60;
+            let grandTotal = subtotal + shipping;
+            
+            message += `\n-------------------------\n`;
+            message += `• Subtotal: ₹${subtotal}\n`;
+            message += `• Shipping: ${shipping === 0 ? "FREE" : '₹' + shipping}\n`;
+            message += `*Grand Total: ₹${grandTotal}*\n`;
+            message += `=========================\n`;
+            message += `_Policy Note: No Cancellation | No Return | No Refund_`;
+            
+            const whatsappUrl = `https://wa.me/919533338836?text=${encodeURIComponent(message)}`;
+            
+            cart = [];
+            renderCart();
+            closeAllPanels();
+            document.getElementById('address-form').reset();
+            window.open(whatsappUrl, '_blank');
+        }
+
+        window.onload = function() {
+            filterPickles('all');
+            renderStaticGrids();
+        };
     </script>
 </body>
 </html>
